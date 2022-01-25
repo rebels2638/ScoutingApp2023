@@ -1,14 +1,20 @@
 {
   "expo": {
-    "name": "ScoutingApp2022",
-    "slug": "ScoutingApp2022",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "name": "Scouting App",
+    "description": "Scouting in 2638 style!",
+    "slug": "Scouting-App",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "web"
+    ],
+    "version": "3.0.1",
+    "orientation": "landscape",
+    "icon": "./Assets/appicon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./Assets/appicon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#2C2C2C"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,16 +23,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.reidf.2638scout",
+      "buildNumber": "3.0.1"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+      "package": "com.reidf.scout2638",
+      "versionCode": 1
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "githubUrl": "https://github.com/PatheticMustan/ScoutingApp2020"
   }
 }
