@@ -12,6 +12,7 @@ import RadioButton from "../../Components/Buttons/RadioButton.js";
 import ScoutingColors from "../../Config/ScoutingColors";
 import { useSelector } from "react-redux";
 import { selectID } from "../../Redux/Features/dataSlice.js";
+import BoolButton from "../../Components/Buttons/BoolButton.js";
 
 export default function MatchInfoContainer() {
 	const selectedTeam = useSelector(selectID("Team"));
@@ -65,7 +66,7 @@ export default function MatchInfoContainer() {
 				<View style={styles.piecesContainer}>
 					<View style={styles.inputContainer2}>
 						<Text style={styles.bold}>Starting Game Pieces</Text>
-						<Incrementer id="StartingPieces" max={3} />
+						<BoolButton id="StartingPieces" bgc="lime" width={160}>Has Game Piece</BoolButton>
 						<View>
 							<Image
 								source={selectedTeam===1? require("../../Assets/redCargo2022.jpg") : require("../../Assets/blueCargo2022.jpg")}
