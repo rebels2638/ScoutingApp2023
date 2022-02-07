@@ -8,18 +8,16 @@ import {
 import BoolButton from "../../Components/Buttons/BoolButton.js";
 import ScoutingColors from "../../Config/ScoutingColors";
 
-export default class Other extends React.Component {
-	render() {
-		return (
-			<View style={styles.container}>
-				<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Other</Text>
-				<View style={styles.otherContainer}>
-					<BoolButton id="YellowCard" bgc="yellow" width={160}>Yellow Card</BoolButton>
-					<BoolButton id="RedCard" bgc="red" width={160}>Red Card</BoolButton>
-				</View>
+export default function Other() {
+	return (
+		<View style={styles.container}>
+			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Other</Text>
+			<View style={styles.otherContainer}>
+				<BoolButton id="YellowCard" bgc="yellow" width={160}>Yellow Card</BoolButton>
+				<BoolButton id="RedCard" bgc="red" width={160}>Red Card</BoolButton>
 			</View>
-		);
-	}
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
