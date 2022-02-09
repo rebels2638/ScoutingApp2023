@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Entypo, Octicons, Ionicons } from "react-native-vector-icons";
+import { Octicons } from "react-native-vector-icons";
 
 import store from "./Redux/Store.js";
 import { Provider, useDispatch } from "react-redux";
@@ -40,7 +40,7 @@ function MyTabs() {
 				component={PastMatches}
 				options={{
 					tabBarLabel: "Past Matches",
-					tabBarIcon: ({ color, size }) => <Entypo name="back-in-time" color={color} size={size} />
+					tabBarIcon: ({ color, size }) => <Octicons name="clock" color={color} size={size} />
 				}}
 			/>
 			<Tab.Screen
@@ -48,7 +48,7 @@ function MyTabs() {
 				component={About}
 				options={{
 					tabBarLabel: "About",
-					tabBarIcon: ({ color, size }) => <Ionicons name="ios-information-circle" color={color} size={size} />
+					tabBarIcon: ({ color, size }) => <Octicons name="info" color={color} size={size} />
 				}}
 			/>
 		</Tab.Navigator>
