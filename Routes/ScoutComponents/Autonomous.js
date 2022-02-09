@@ -65,17 +65,7 @@ export default function Autonomous() {
 						justifyContent: "center",
 						flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
 					}}>
-						<Text
-							style={{ fontSize: 12, color: ScoutingColors.white, width: 120, textAlign: "center" }}
-							margin={0}
-						>
-							Balls Scored
-						</Text>
-
-						<NumButton id="AutoLow">Low</NumButton>
-						<NumButton id="AutoOuter">Outer</NumButton>
-						<NumButton id="AutoInner">Inner</NumButton>
-						<NumButton id="AutoMissed">Missed</NumButton>
+						<BoolButton id="ExitTarmac" bgc="lime" width={160}>Leaves the Tarmac</BoolButton>
 					</View>
 				</Arena>
 

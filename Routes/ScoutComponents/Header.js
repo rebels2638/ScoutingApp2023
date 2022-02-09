@@ -154,7 +154,7 @@ export default function Header() {
 
 	return (
 		<View style={{ backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue, flex: 1 }}>
-			<Text style={styles.headerText}>2020 - Infinite Recharge{"\n"}</Text>
+			<Text style={styles.headerText}>2022 - Rapid React{"\n"}</Text>
 			<View style={styles.linkContainer}>
 				<Link color={ScoutingColors.red} onPress={() => reset()}>Reset</Link>
 
