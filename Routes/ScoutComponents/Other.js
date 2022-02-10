@@ -5,7 +5,8 @@ import {
 	View
 } from "react-native";
 
-import BoolButton from "../../Components/Buttons/BoolButton.js";
+import BoolButton from "../../Components/Buttons/BoolButton";
+import NumButton from "../../Components/Buttons/NumButton";
 import ScoutingColors from "../../Config/ScoutingColors";
 
 export default function Other() {
@@ -13,6 +14,8 @@ export default function Other() {
 		<View style={styles.container}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Other</Text>
 			<View style={styles.otherContainer}>
+				<NumButton id="FoulCount" width={160}>Fouls</NumButton>
+				<NumButton id="TechFoulCount" width={160}>Tech Fouls</NumButton>
 				<BoolButton id="YellowCard" bgc="yellow" width={160}>Yellow Card</BoolButton>
 				<BoolButton id="RedCard" bgc="red" width={160}>Red Card</BoolButton>
 			</View>
