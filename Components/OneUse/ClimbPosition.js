@@ -19,20 +19,22 @@ export default function ClimbPosition(props) {
 	// all possible options.
 	// [name, flexSpace]
 	const data = [
-		["Edge", 1.4],
-		["Middle Bar", 0.8],
-		["Center", 1.22]
+		["Traversal", 1],
+		["High", 1],
+		["Medium", 1],
+		["Low", 1],
+		["None", 1]
 	];
 
 	return (
 		<View style={{ alignItems: "center" }}>
 			<Text style={{ fontWeight: "bold", fontSize: 20 }}>Climb Position</Text>
 
-			<ImageBackground source={require("../../Assets/ClimbPosition.png")} style={{ width: 600, height: 300 }}>
+			<ImageBackground source={require("../../Assets/ClimbPosition.png")} style={{ width: 800, height: 400 }}>
 				<View style={styles.container}>
 					{
 						data.map((v, i) =>
-							<View style={{ flex: data[i][1], backgroundColor: "orange" }} key={data[i][0]}>
+							<View style={{ flex: data[i][1] }} key={data[i][0]}>
 								<Pressable onPress={() => {dispatch(setKeyPair([props.id, i]))}}>
 									<View style={{
 										justifyContent: "center",
@@ -59,6 +61,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexDirection: "row",
-		top: 230
+		top: 330
 	}
 });

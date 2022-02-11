@@ -21,36 +21,24 @@ export default function Endgame() {
 
 	// set default value
 	dispatch(setDefault([endgameID, 0]));
-	// get value from store
-	const value = useSelector(selectID(endgameID));
+
 	return (
 		<View style={styles.container}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Endgame</Text>
 
 			<View style={styles.endgameContainer}>
-				<NumButton id="BallsScored" width={120}>Balls Scored</NumButton>
-
-				<View style={{ margin: 20 }}>
-					<RadioButton
-						id={endgameID}
-						data={["Park", "Climb", "None"]}
-						bgc="orange"
-						segmentedButton
-						forceOption
-						default="None"
-						options={{
-							flexDirection: "row",
-						}}
-					/>
-				</View>
-					
-				<View style={{display: (value === 1? "" : "none")}}>
-					<Timer id="Time"/>
-
-					<ClimbHeight id="ClimbHeight" bgc="orange" />
+				<View style={{flexDirection: "row", justifyContent: "space-evenly"}}>
+					<View style={{justifyContent: "space-evenly", alignItems: "center"}}>
+						<NumButton id="BallsScored" width={120}>Balls Scored</NumButton>
+						<Timer id="Time"/>
+					</View>
 
 					<ClimbPosition id="ClimbPosition" bgc="orange" />
 				</View>
+				
+				
+				
+
 
 				<View style={styles.climbComments}>
 					<Text style={{ fontWeight: "bold", fontSize: 20 }}>Comments</Text>
