@@ -87,7 +87,7 @@ export default function Header() {
 			styles.flex,
 			{ backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue }
 		]}>
-			<Text style={styles.headerText}>2020 - Infinite Recharge{"\n"}</Text>
+			<Text style={styles.headerText}>2022 - Rapid React{"\n"}</Text>
 
 			<View style={styles.linkContainer}>
 				<Link color="red" onPress={clickResetMatches}>Reset All Matches</Link>

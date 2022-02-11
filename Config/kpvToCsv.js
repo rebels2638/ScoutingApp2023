@@ -90,9 +90,6 @@ export default function kpvToCsv(matches) {
 		name: "Balls Scored",
 		vf: kpv => kpv["BallsScored"]
 	}, {
-		name: "Climb Height",
-		vf: kpv => kpv["ClimbHeight"]
-	}, {
 		name: "Climb Position",
 		vf: kpv => kpv["ClimbPosition"]
 	}, {

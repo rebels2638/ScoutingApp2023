@@ -4,7 +4,9 @@ import {
 	ScrollView,
 	StyleSheet,
 	Text,
-	Image
+	Image,
+	Button,
+	Linking
 } from "react-native";
 import Header from "./AboutComponents/Header";
 
@@ -29,7 +31,7 @@ export default function About() {
 						/>
 
 						{title("2638 Scout")}
-						{text("Version 3.0 3/6/2020")}
+						{text("Version 4.0 2/11/2022")}
 
 						{spacer}
 
@@ -49,6 +51,7 @@ export default function About() {
 						{text("React Native")}
 						{text("Expo")}
 						{text("VSCode")}
+						{text("Github Codespaces")}
 
 						{spacer}
 
@@ -62,7 +65,7 @@ export default function About() {
 
 						{text("Questions or Comments? Please email reidfleishman5@gmail.com")}
 
-						{title("© 2020 Rebel Robotics")}
+						{title("© 2022 Rebel Robotics")}
 						{title("gnsrobotics.com")}
 					</View>
 				</ScrollView>

@@ -6,10 +6,8 @@ import {
 } from "react-native";
 
 import NumButton from "../../Components/Buttons/NumButton.js";
-import RadioButton from "../../Components/Buttons/RadioButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox";
 import Timer from "../../Components/OneUse/Timer.js";
-import ClimbHeight from "../../Components/OneUse/ClimbHeight.js";
 import ClimbPosition from "../../Components/OneUse/ClimbPosition.js";
 import ScoutingColors from "../../Config/ScoutingColors";
 import { useDispatch, useSelector } from "react-redux";
