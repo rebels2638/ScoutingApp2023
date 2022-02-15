@@ -2,13 +2,11 @@ import React from "react";
 import {
 	StyleSheet,
 	Text,
-	View,
-	ImageBackground
+	View
 } from "react-native";
 
 import BoolButton from "../../Components/Buttons/BoolButton.js";
 import NumButton from "../../Components/Buttons/NumButton.js";
-import RadioButton from "../../Components/Buttons/RadioButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
 import Arena from "../../Components/Utility/Arena.js";
 import ScoutingColors from "../../Config/ScoutingColors";
@@ -36,9 +34,14 @@ export default function Autonomous() {
 						justifyContent: "space-between",
 						flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
 					}}>
-						<View style={{ flex: 4 }} />
+						<View style={{ flex: 1 }} />
 						<View style={{ flex: 1, alignItems: "center" }}>
 							<NumButton id="BallsPickedUp" width={160}>Balls Picked Up</NumButton>
+
+							<NumButton id="AutoUpperHubScored" width={160}>Upper Hub Scored</NumButton>
+							<NumButton id="AutoUpperHubMissed" width={160}>Upper Hub Missed</NumButton>
+							<NumButton id="AutoLowerHubScored" width={160}>Lower Hub Scored</NumButton>
+							<NumButton id="AutoLowerHubMissed" width={160}>Lower Hub Missed</NumButton>
 						</View>
 						<View style={{ flex: 0.6 }} />
 					</View>
@@ -52,11 +55,6 @@ export default function Autonomous() {
 						<View style={{ flex: 0.25, justifyContent: "space-between", alignSelf: "center" }}>
 							<BoolButton id="CrossesInitiationLine" bgc="lime" width={160}>Crosses Initation Line</BoolButton>
 						</View>
-						<RadioButton id="LinePosition" data={["Left", "Middle", "Right"]} bgc={"orange"} options={{
-							flex: 1,
-							justifyContent: "space-between",
-							flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
-						}} />
 						<View style={{ flex: 0.25 }} />
 					</View>
 
@@ -71,9 +69,8 @@ export default function Autonomous() {
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
 				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
-					Add any comments that you feel are useful. Does the robot get any penalties? Does the robot cycle
-					efficiently? Do they struggle with picking up balls or shooting? Do they play defense, and if so,
-					how? Where do they usually shoot from? Anything else that shows evidence of good/poor performance?
+					Add any comments that you feel are useful. Do they struggle with picking up balls or scoring?
+					Does the robot cycle effectively? Anything else that shows evidence of good/poor performance.
 				</Text>
 				<View style={{ padding: 20 }}>
 					<CustomTextBox

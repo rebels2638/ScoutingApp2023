@@ -96,8 +96,8 @@ export default function TeleOp() {
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
 				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
 					Add any comments that you feel are useful. Does the robot get any penalties? Does the robot cycle
-					efficiently? Do they struggle with picking up balls or shooting? Do they play defense, and if so,
-					how? Where do they usually shoot from? Anything else that shows evidence of good/poor performance?
+					efficiently? Do they struggle with picking up balls or shooting? Do they usually shoot high or low?
+					Anything else that shows evidence of good/poor performance.
 				</Text>
 				<View style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20, paddingBottom: 20 }}>
 					<CustomTextBox
