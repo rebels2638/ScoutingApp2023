@@ -16,6 +16,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#2C2C2C"
     },
+    "userInterfaceStyle": "automatic",
     "updates": {
       "fallbackToCacheTimeout": 0
     },

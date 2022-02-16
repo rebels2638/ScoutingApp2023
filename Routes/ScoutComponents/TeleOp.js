@@ -106,7 +106,7 @@ export default function TeleOp() {
 						width={900}
 						height={250}
 						placeholder="Type your comments here..."
-						backgroundColor={"#DDD"}
+						backgroundColor={ScoutingColors.lightGray}
 						borderRadius={10}
 					/>
 				</View>

@@ -1,7 +1,8 @@
 /* eslint-disable react/display-name */
 import * as React from "react";
+import { useColorScheme } from "react-native";
 
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DarkTheme, DefaultTheme } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -21,36 +22,19 @@ const Tab = createBottomTabNavigator();
 
 function MyTabs() {
 	return (
-		<Tab.Navigator
-			initialRouteName="Scout"
-			tabBarOptions={{
-				activeTintColor: ScoutingColors.ruby,
-			}}
-		>
-			<Tab.Screen
-				name="Scout"
-				component={Scout}
-				options={{
-					tabBarLabel: "Scout",
-					tabBarIcon: ({ color, size }) => <Octicons name="checklist" color={color} size={size} />
-				}}
-			/>
-			<Tab.Screen
-				name="PastMatches"
-				component={PastMatches}
-				options={{
-					tabBarLabel: "Past Matches",
-					tabBarIcon: ({ color, size }) => <Octicons name="clock" color={color} size={size} />
-				}}
-			/>
-			<Tab.Screen
-				name="About"
-				component={About}
-				options={{
-					tabBarLabel: "About",
-					tabBarIcon: ({ color, size }) => <Octicons name="info" color={color} size={size} />
-				}}
-			/>
+		<Tab.Navigator initialRouteName="Scout" screenOptions={{activeTintColor: ScoutingColors.ruby}}>
+			<Tab.Screen name="Scout" component={Scout} options={{
+				tabBarLabel: "Scout",
+				tabBarIcon: ({ color, size }) => <Octicons name="checklist" color={color} size={size} />
+			}}/>
+			<Tab.Screen name="PastMatches" component={PastMatches} options={{
+				tabBarLabel: "Past Matches",
+				tabBarIcon: ({ color, size }) => <Octicons name="clock" color={color} size={size} />
+			}}/>
+			<Tab.Screen name="About" component={About} options={{
+				tabBarLabel: "About",
+				tabBarIcon: ({ color, size }) => <Octicons name="info" color={color} size={size} />
+			}}/>
 		</Tab.Navigator>
 	);
 }
@@ -93,12 +77,14 @@ export default function App() {
 	// shut up console.warn
 	// console.warn = () => {}
 
+	const scheme = useColorScheme();
+
 	return (
 		<Provider store={store}>
 			{/** ASS must be inside the Provider to dispatch importMatches(), so I made it into a component. */}
 			<ASS />
 
-			<NavigationContainer>
+			<NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme} >
 				<MyTabs />
 			</NavigationContainer>
 
