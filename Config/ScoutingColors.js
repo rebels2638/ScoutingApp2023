@@ -13,18 +13,9 @@ export default {
 	blue: "#0000ff", 
 
 	/**
-	 * Why do birds suddenly appear, everytime you are near?
-	 * Just like me, they want to be... close to you...
-	 * 
-	 * on the day that you were born the angels got together
-	 * and decided to create a dream come true
-	 * so they sprinkled moonlight in your hair
-	 * and gold in your golden eyes of blue! (????)
-	 * 
-	 * that is why, all the girls in town, follow you, all around!
-	 * Just like me, they want to be, close to youuuuu?
-	 * 
-	 * WHYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYyyyyyyyYyyyyy close to youuuuuuuu
-	 * WHYYYYYYYYYYYYYYYYYYYYYYYYYYYYyyyyYyyyyyyyyYyyyyy close to you......
+	 * You are the sunset, you're the morning
+	 * You're the time I kill between them
+	 * In the depth of a daydream
+	 * I awake so I can find you
 	 **/
 };
