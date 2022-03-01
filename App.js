@@ -2,6 +2,7 @@
 import * as React from "react";
 import { useColorScheme } from "react-native";
 
+import themes from "./Config/Themes";
 import { NavigationContainer, DarkTheme, DefaultTheme } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StatusBar } from "expo-status-bar";
@@ -22,7 +23,7 @@ const Tab = createBottomTabNavigator();
 
 function MyTabs() {
 	return (
-		<Tab.Navigator initialRouteName="Scout" screenOptions={{activeTintColor: ScoutingColors.ruby}}>
+		<Tab.Navigator initialRouteName="Scout" screenOptions={{tabBarActiveTintColor: ScoutingColors.ruby}}>
 			<Tab.Screen name="Scout" component={Scout} options={{
 				tabBarLabel: "Scout",
 				tabBarIcon: ({ color, size }) => <Octicons name="checklist" color={color} size={size} />
@@ -70,9 +71,16 @@ function ASS() {
 	return <></>;
 }
 
+function ThemeManager() {
+	return <></>
+}
+
 export default function App() {
 	// make store global bc I want to see the data pls
 	window.natsumi = store;
+
+	// themes
+	window.themes = themes;
 
 	// shut up console.warn
 	// console.warn = () => {}
@@ -83,8 +91,10 @@ export default function App() {
 		<Provider store={store}>
 			{/** ASS must be inside the Provider to dispatch importMatches(), so I made it into a component. */}
 			<ASS />
+			<ThemeManager />
 
-			<NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme} >
+			{/** <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme} > */}
+			<NavigationContainer>
 				<MyTabs />
 			</NavigationContainer>
 

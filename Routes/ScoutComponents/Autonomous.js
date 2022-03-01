@@ -8,6 +8,7 @@ import BoolButton from "../../Components/Buttons/BoolButton.js";
 import NumButton from "../../Components/Buttons/NumButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
 import Arena from "../../Components/Utility/Arena.js";
+import GridArena from "../../Components/Utility/GridArena.js";
 import ScoutingColors from "../../Config/ScoutingColors";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -26,22 +27,24 @@ export default function Autonomous() {
 		<View style={styles.container}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Autonomous</Text>
 			<View style={styles.autonomousContainer}>
-				<Arena>
-					<View style={{ flex: 4, justifyContent: "center" }}></View>
+				<GridArena items={[
+					{ pos: [0.2, 0.3], com: _=>(<>
+						<NumButton id="BallsPickedUp" width={160}>Balls Picked Up</NumButton>
+						<NumButton id="AutoUpperHubScored" width={160}>Upper Hub Scored</NumButton>
+						<NumButton id="AutoUpperHubMissed" width={160}>Upper Hub Missed</NumButton>
+						<NumButton id="AutoLowerHubScored" width={160}>Lower Hub Scored</NumButton>
+						<NumButton id="AutoLowerHubMissed" width={160}>Lower Hub Missed</NumButton>
+					</>)}
+				]} />
+
+				{/*</View>
 					<View style={{
 						flex: 1,
 						justifyContent: "space-between",
 						flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
 					}}>
 						<View style={{ flex: 1 }} />
-						<View style={{ flex: 1, alignItems: "center" }}>
-							<NumButton id="BallsPickedUp" width={160}>Balls Picked Up</NumButton>
-
-							<NumButton id="AutoUpperHubScored" width={160}>Upper Hub Scored</NumButton>
-							<NumButton id="AutoUpperHubMissed" width={160}>Upper Hub Missed</NumButton>
-							<NumButton id="AutoLowerHubScored" width={160}>Lower Hub Scored</NumButton>
-							<NumButton id="AutoLowerHubMissed" width={160}>Lower Hub Missed</NumButton>
-						</View>
+						
 						<View style={{ flex: 0.6 }} />
 					</View>
 
@@ -64,7 +67,7 @@ export default function Autonomous() {
 					}}>
 						<BoolButton id="ExitTarmac" bgc="lime" width={160}>Leaves the Tarmac</BoolButton>
 					</View>
-				</Arena>
+				</GridArena>
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
 				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
@@ -82,6 +85,7 @@ export default function Autonomous() {
 						borderRadius={10}
 					/>
 				</View>
+				*/}
 			</View>
 		</View>
 	);
