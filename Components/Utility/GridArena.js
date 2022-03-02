@@ -31,7 +31,6 @@ export default function GridArena(props) {
 			<ImageBackground
 				source={require("../../Assets/2022Field.png")}
 				style={{
-					flexDirection: selectedTeam == 0 ? "row" : "row-reverse",
 					width: width,
 					height: height,
 					marginTop: 20
@@ -59,15 +58,20 @@ export default function GridArena(props) {
 					// { pos: (x, y), com: component }
 					const [x, y] = item.pos;
 					
-					return (
-						<View style={{
-							position: "absolute",
-							left: width*x,
-							top: height*y
-						}}>
-							<item.com/>
-						</View>
-					);
+					if (selectedTeam == 0) {
+						return (
+							<View style={{ position: "absolute", left: width*x, top: height*y }}>
+								<item.com/>
+							</View>
+						);
+					} else {
+						return (
+							<View style={{ position: "absolute", right: width*x, bottom: height*y }}>
+								<item.com/>
+							</View>
+						);
+					}
+
 				})}
 			</ImageBackground>
 		</View>

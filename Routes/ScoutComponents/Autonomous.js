@@ -34,7 +34,9 @@ export default function Autonomous() {
 						<NumButton id="AutoUpperHubMissed" width={160}>Upper Hub Missed</NumButton>
 						<NumButton id="AutoLowerHubScored" width={160}>Lower Hub Scored</NumButton>
 						<NumButton id="AutoLowerHubMissed" width={160}>Lower Hub Missed</NumButton>
-					</>)}
+					</>)},
+
+					{ pos: [0.5, 0.5], com: _=><Text>natsumi</Text>}
 				]} />
 
 				{/*</View>
