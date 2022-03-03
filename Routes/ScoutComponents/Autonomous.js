@@ -28,48 +28,35 @@ export default function Autonomous() {
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Autonomous</Text>
 			<View style={styles.autonomousContainer}>
 				<GridArena items={[
-					{ pos: [0.2, 0.3], com: _=>(<>
-						<NumButton id="BallsPickedUp" width={160}>Balls Picked Up</NumButton>
+					{ pos: [0.69420, 0.2], com: _=>(<>
 						<NumButton id="AutoUpperHubScored" width={160}>Upper Hub Scored</NumButton>
-						<NumButton id="AutoUpperHubMissed" width={160}>Upper Hub Missed</NumButton>
 						<NumButton id="AutoLowerHubScored" width={160}>Lower Hub Scored</NumButton>
-						<NumButton id="AutoLowerHubMissed" width={160}>Lower Hub Missed</NumButton>
 					</>)},
 
-					{ pos: [0.5, 0.5], com: _=><Text>natsumi</Text>}
+					{ pos: [0.1, 0.5], com: _=>(
+						<BoolButton id="Taxi" bgc="lime" width={160}>Crosses Line/Taxi</BoolButton>
+					)},
+
+					{ pos: [0.27, 0.25], com: _=>(
+						<BoolButton id="AutoBP1" bgc="blue" width={50}>Picks Up</BoolButton>
+					)},
+
+					{ pos: [0.27, 0.62], com: _=>(
+						<BoolButton id="AutoBP2" bgc="blue" width={50}>Picks Up</BoolButton>
+					)},
+
+					{ pos: [0.38, 0.77], com: _=>(
+						<BoolButton id="AutoBP3" bgc="blue" width={50}>Picks Up</BoolButton>
+					)},
+
+					{ pos: [0.05, 0.6], com: _=>(
+						<BoolButton id="AutoBP4" bgc="blue" width={50}>Picks Up</BoolButton>
+					)},
+
+					{ pos: [0.1, 0.6], com: _=>(
+						<BoolButton id="AutoBP5" bgc="blue" width={50}>Picks Up</BoolButton>
+					)},
 				]} />
-
-				{/*</View>
-					<View style={{
-						flex: 1,
-						justifyContent: "space-between",
-						flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
-					}}>
-						<View style={{ flex: 1 }} />
-						
-						<View style={{ flex: 0.6 }} />
-					</View>
-
-					<View style={{
-						flex: 1,
-						justifyContent: "space-between",
-						alignItems: "center",
-						flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
-					}}>
-						<View style={{ flex: 0.25, justifyContent: "space-between", alignSelf: "center" }}>
-							<BoolButton id="CrossesInitiationLine" bgc="lime" width={160}>Crosses Initation Line</BoolButton>
-						</View>
-						<View style={{ flex: 0.25 }} />
-					</View>
-
-					<View style={{
-						flex: 1,
-						justifyContent: "center",
-						flexDirection: selectedTeam == 1 ? "column-reverse" : "column"
-					}}>
-						<BoolButton id="ExitTarmac" bgc="lime" width={160}>Leaves the Tarmac</BoolButton>
-					</View>
-				</GridArena>
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
 				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
@@ -87,7 +74,6 @@ export default function Autonomous() {
 						borderRadius={10}
 					/>
 				</View>
-				*/}
 			</View>
 		</View>
 	);

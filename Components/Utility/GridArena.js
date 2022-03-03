@@ -71,7 +71,6 @@ export default function GridArena(props) {
 							</View>
 						);
 					}
-
 				})}
 			</ImageBackground>
 		</View>

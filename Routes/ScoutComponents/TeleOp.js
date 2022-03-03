@@ -7,7 +7,7 @@ import {
 import BoolButton from "../../Components/Buttons/BoolButton.js";
 import NumButton from "../../Components/Buttons/NumButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
-import Arena from "../../Components/Utility/Arena.js";
+import GridArena from "../../Components/Utility/GridArena.js";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setDefault, selectID } from "../../Redux/Features/dataSlice.js";
@@ -27,70 +27,22 @@ export default function TeleOp() {
 		<View style={styles.container}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Tele-Op</Text>
 			<View style={styles.teleOpContainer}>
+				<GridArena items={[
+					{ pos: [0.69420, 0.3], com: _=>(<>
+						<NumButton id="TeleopUpperHubScored" width={160}>Upper Hub Scored</NumButton>
+						<NumButton id="TeleopLowerHubScored" width={160}>Lower Hub Scored</NumButton>
+						<NumButton id="TeleopUpperHubMissed" width={160}>Upper Hub Missed</NumButton>
+						<NumButton id="TeleopLowerHubMissed" width={160}>Lower Hub Missed</NumButton>
+					</>)},
 
-				<Arena>
-					<View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam == 1 ? "column-reverse" : "column" }}>
-						<View style={{ flex: 1, justifyContent: "center" }}>
-							<BoolButton id="PlaysDefense" bgc="lime" >Plays Defense</BoolButton>
-						</View>
-						<View style={{ flex: 1, justifyContent: "center" }}>
-							<NumButton id="BallsPickedUpFromLoadingStation" height={80}>Balls Picked Up from Loading Station</NumButton>
-						</View>
-					</View>
+					{ pos: [0.1, 0.5], com: _=>(
+						<BoolButton id="Taxi" bgc="lime" width={160}>Crosses Line/Taxi</BoolButton>
+					)},
 
-					<View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam == 1 ? "column-reverse" : "column" }}>
-						<View style={{ flex: 9 }} />
-						<BoolButton id="Rotation" bgc="lime">Rotation</BoolButton>
-						<BoolButton id="Color" bgc="lime">Color</BoolButton>
-					</View>
-
-					<View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam == 1 ? "column-reverse" : "column" }}>
-						<View style={{ flex: 3 }}>
-						</View>
-						<View style={{ flex: 1 }}>
-							<NumButton id="BallsPickedUpFromFloor" height={80}>Balls Picked Up from Floor</NumButton>
-						</View>
-						<View style={{ flex: 1.5, justifyContent: "center" }}>
-							<BoolButton id="FitsUnderTrench" bgc="lime">Fits Under Trench</BoolButton>
-						</View>
-					</View>
-
-					<View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam == 1 ? "column-reverse" : "column" }}>
-						<View style={{ flex: 0.4 }} />
-						<View style={{ flex: 2.4 }}>
-							<Text
-								style={{ fontSize: 12, color: "white", width: 120, textAlign: "center" }}
-								margin={0}
-							>
-								Where can they shoot from?
-							</Text>
-
-							<BoolButton id="TargetZone" bgc="lime">Target Zone</BoolButton>
-							<BoolButton id="TrenchZone" bgc="lime">Trench Zone</BoolButton>
-							<BoolButton id="Other" bgc="lime">Other</BoolButton>
-						</View>
-						<View style={{ flex: 4 }}></View>
-					</View>
-
-					<View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: selectedTeam == 1 ? "column-reverse" : "column" }}>
-						<View style={{ flex: 2 }}></View>
-
-						<View style={{ flex: 2 }}>
-							<Text
-								style={{ fontSize: 12, color: "white", width: 120, textAlign: "center" }}
-								margin={0}
-							>
-								Balls Scored
-							</Text>
-
-							<NumButton id="TeleLow">Low</NumButton>
-							<NumButton id="TeleOuter">Outer</NumButton>
-							<NumButton id="TeleInner">Inner</NumButton>
-							<NumButton id="TeleMissed">Missed</NumButton>
-						</View>
-					</View>
-
-				</Arena>
+					{ pos: [0.1, 0.5], com: _=>(
+						<BoolButton id="PlaysDefense" bgc="lime" width={160}>PlaysDefense</BoolButton>
+					)},
+				]} />
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
 				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
