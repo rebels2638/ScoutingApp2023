@@ -31,6 +31,8 @@ export default function Autonomous() {
 					{ pos: [0.69420, 0.2], com: _=>(<>
 						<NumButton id="AutoUpperHubScored" width={160}>Upper Hub Scored</NumButton>
 						<NumButton id="AutoLowerHubScored" width={160}>Lower Hub Scored</NumButton>
+						<NumButton id="AutoUpperHubMissed" width={160}>Upper Hub Missed</NumButton>
+						<NumButton id="AutoLowerHubMissed" width={160}>Lower Hub Missed</NumButton>
 					</>)},
 
 					{ pos: [0.1, 0.5], com: _=>(
