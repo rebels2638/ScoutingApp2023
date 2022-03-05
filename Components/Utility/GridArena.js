@@ -33,6 +33,7 @@ export default function GridArena(props) {
 			y = e.nativeEvent.offsetY / height;
 
 		// truncate to two decimal places
+		// this is why i love javascript
 		[x, y] = [x, y].map(v => ~~(v*100)/100);
 		
 		// as a final note, components are positioned by their TOP LEFT CORNER, not the center.
@@ -42,53 +43,49 @@ export default function GridArena(props) {
 	return (
 		<View>
 			<Pressable onPress={e => printDebugCoords(e)} >
-			<ImageBackground
-				source={require("../../Assets/2022Field.png")}
-				style={{
-					width: width,
-					height: height,
-					marginTop: 20
-				}}
-				imageStyle={{ borderRadius: 10 }}
-			>
-				{/** this.props.items
-				  * in an effort to make item positioning easier, we have a custom arena wrapper
-				  * GridArena allows us to specify an X and a Y as a percentage (float 0-1)
-				  * It places the top left corner of the component at the specified coord
-				  * 
-				  * maybe we can change it to place the middle of the component at the coord?
-				  * we would need to know the height and width of the component though, so we'd 
-				  * need to render it once to get the dimensions, then again to re-position
-				  * 
-				  * follows the format
-				  * [{pos: (percentage, percentage), com: ()=>JSX}] 
-				  * 
-				  * GOTCHA: com needs to be a function. If you get an error about "expected string literal
-				  * 		but got JSX", just wrap the component in an arrow function or something
-				  *                             the fix
-				  * <Text>natsumi</Text>         ---->        () => <Text>natsumi</Text>
-				  **/
-				items.map((item, index) => {
-					// { pos: (x, y), com: component }
-					const [x, y] = item.pos;
-					const key = `${item.pos}-ground beef-${index}`;
-					console.log(key);
-					
-					if (selectedTeam == 0) {
+				<ImageBackground
+					source={require("../../Assets/2022Field.png")}
+					style={{ width: width, height: height, marginTop: 20 }}
+					imageStyle={{ borderRadius: 10 }}
+				>
+					{/** this.props.items
+					 * in an effort to make item positioning easier, we have a custom arena wrapper
+					 * GridArena allows us to specify an X and a Y as a percentage (float 0-1)
+					 * It places the top left corner of the component at the specified coord
+					 * 
+					 * maybe we can change it to place the middle of the component at the coord?
+					 * we would need to know the height and width of the component though, so we'd 
+					 * need to render it once to get the dimensions, then again to re-position
+					 * 
+					 * follows the format
+					 * [{pos: (percentage, percentage), com: ()=>JSX}] 
+					 * 
+					 * GOTCHA: com needs to be a function. If you get an error about "expected string literal
+					 * 		but got JSX", just wrap the component in an arrow function or something
+					 *                             the fix
+					 * <Text>natsumi</Text>         ---->        () => <Text>natsumi</Text>
+					 **/
+					items.map((item, index) => {
+						// { pos: (x, y), com: component }
+						const [x, y] = item.pos;
+						
+						// if we're flipping the arena, position by bottom right corner instead of top left
+						const positionStyle = 
+							((selectedTeam == 0)? 
+								{ position: "absolute", left: width*x, top: height*y } :
+								{ position: "absolute", right: width*x, bottom: height*y });
+						
+						// each item in an iterable needs to have a unique key
+						// see https://stackoverflow.com/a/34868672
+						const key = `${item.pos}-ground beef-${index}`;
+
 						return (
-							<View style={{ position: "absolute", left: width*x, top: height*y, key: key }}>
+							<View style={[positionStyle]} key={key}>
 								<item.com/>
 							</View>
 						);
-					} else {
-						return (
-							<View style={{ position: "absolute", right: width*x, bottom: height*y, key: key }}>
-								<item.com/>
-							</View>
-						);
-					}
-				})}
-			</ImageBackground>
+					})}
+				</ImageBackground>
 			</Pressable>
 		</View>
 	);
