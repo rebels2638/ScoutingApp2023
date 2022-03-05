@@ -40,7 +40,7 @@ export default function TeleOp() {
 					)},
 
 					{ pos: [0.1, 0.5], com: _=>(
-						<BoolButton id="PlaysDefense" bgc="lime" width={160}>PlaysDefense</BoolButton>
+						<BoolButton id="PlaysDefense" bgc="lime" width={160}>Plays Defense</BoolButton>
 					)},
 				]} />
 

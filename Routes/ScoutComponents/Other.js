@@ -17,6 +17,7 @@ export default function Other() {
 				<NumButton id="TechFoulCount" width={160}>Tech Fouls</NumButton>
 				<BoolButton id="YellowCard" bgc="yellow" width={160}>Yellow Card</BoolButton>
 				<BoolButton id="RedCard" bgc="red" width={160}>Red Card</BoolButton>
+				<BoolButton id="Breakdown" bgc="orange" width={160}>Breakdown</BoolButton>
 			</View>
 		</View>
 	);

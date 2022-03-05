@@ -7,7 +7,6 @@ import {
 import BoolButton from "../../Components/Buttons/BoolButton.js";
 import NumButton from "../../Components/Buttons/NumButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
-import Arena from "../../Components/Utility/Arena.js";
 import GridArena from "../../Components/Utility/GridArena.js";
 import ScoutingColors from "../../Config/ScoutingColors";
 
@@ -35,7 +34,7 @@ export default function Autonomous() {
 						<NumButton id="AutoLowerHubMissed" width={160}>Lower Hub Missed</NumButton>
 					</>)},
 
-					{ pos: [0.1, 0.5], com: _=>(
+					{ pos: [0.1, 0.45], com: _=>(
 						<BoolButton id="Taxi" bgc="lime" width={160}>Crosses Line/Taxi</BoolButton>
 					)},
 
@@ -51,11 +50,11 @@ export default function Autonomous() {
 						<BoolButton id="AutoBP3" bgc="blue" width={50}>Picks Up</BoolButton>
 					)},
 
-					{ pos: [0.05, 0.6], com: _=>(
+					{ pos: [0.07, 0.6], com: _=>(
 						<BoolButton id="AutoBP4" bgc="blue" width={50}>Picks Up</BoolButton>
 					)},
 
-					{ pos: [0.1, 0.6], com: _=>(
+					{ pos: [0.14, 0.6], com: _=>(
 						<BoolButton id="AutoBP5" bgc="blue" width={50}>Picks Up</BoolButton>
 					)},
 				]} />

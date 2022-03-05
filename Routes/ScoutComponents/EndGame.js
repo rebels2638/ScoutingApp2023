@@ -41,9 +41,8 @@ export default function Endgame() {
 					<Text style={{ fontWeight: "bold", fontSize: 20 }}>Comments</Text>
 					<Text style={{ fontSize: 12, textAlign: "center" }}>
 							Add any comments that you feel are useful. Do they attempt to climb but fall?
-							Do they get in the way of other robots? Do they swing a lot on the climb? Are they able to balance the rung?
-							Are they able to adjust their climb position? Do they slide on the run? Anything else that shows evidence of
-							good/poor performance?
+							Do they get in the way of other robots? Do they swing a lot on the climb?
+							Anything else that shows evidence of good/poor performance?
 					</Text>
 					<CustomTextBox
 						multi={true}
