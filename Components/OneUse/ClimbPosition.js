@@ -39,7 +39,7 @@ export default function ClimbPosition(props) {
 						const [x, y] = position;
 
 						return (
-							<Pressable onPress={() => {dispatch(setKeyPair([props.id, i]))}}>
+							<Pressable onPress={() => {dispatch(setKeyPair([props.id, i]))}} key={v}>
 								<View style={[
 									styles.button,
 									{ position: "absolute", left: width*x, top: height*y, key: value },
