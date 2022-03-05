@@ -19,9 +19,6 @@ export default function TeleOp() {
 
 	// set default value
 	dispatch(setDefault([arenaID, 0]));
-	// since this isn't an input, no need to set default.
-	// get value from store
-	const selectedTeam = useSelector(selectID(arenaID));
 
 	return (
 		<View style={styles.container}>

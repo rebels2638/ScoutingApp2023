@@ -24,8 +24,6 @@ export default function Autonomous() {
 
 	// set default
 	dispatch(setDefault([arenaID, 0]));
-	// get value from store
-	const selectedTeam = useSelector(selectID(arenaID));
 
 	return (
 		<View style={styles.container}>

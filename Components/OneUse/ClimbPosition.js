@@ -37,7 +37,6 @@ export default function ClimbPosition(props) {
 					data.map((v, i) => {
 						const [value, position] = v;
 						const [x, y] = position;
-						console.log(value, x, y);
 
 						return (
 							<Pressable onPress={() => {dispatch(setKeyPair([props.id, i]))}}>
