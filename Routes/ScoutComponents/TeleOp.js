@@ -39,6 +39,13 @@ export default function TeleOp() {
 					{ pos: [0.1, 0.5], com: _=>(
 						<BoolButton id="PlaysDefense" bgc="lime" width={160}>Plays Defense</BoolButton>
 					)},
+
+					{ pos: [0.1, 0.4], com: _=>(
+						<BoolButton id="PicksFromGround" bgc="lime" width={160}>Picks From Ground</BoolButton>
+					)},
+					{ pos: [0.16, 0.81], com: _=>(
+						<BoolButton id="HPStation" bgc="lime" width={160}>Human Player</BoolButton>
+					)},
 				]} />
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
