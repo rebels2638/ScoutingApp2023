@@ -4,9 +4,9 @@ import {
 	StyleSheet,
 	Text,
 	Image,
-	Button,
 	Linking
 } from "react-native";
+import Link from "../Components/Utility/Link";
 import Header from "./AboutComponents/Header";
 
 export default function About() {
@@ -65,7 +65,7 @@ export default function About() {
 						{text("Questions or Comments? Please email reidfleishman5@gmail.com")}
 
 						{title("© 2022 Rebel Robotics")}
-						{title("gnsrobotics.com")}
+						<Link onPress={() => Linking.openURL('https://gnsrobotics.com')}>{title("gnsrobotics.com")}</Link>
 					</View>
 				</ScrollView>
 			</View>

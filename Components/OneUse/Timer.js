@@ -18,7 +18,10 @@ export default function Timer(props) {
 	const [isEnabled, setEnabled] = useState(false);
 	const [seconds, setSeconds] = useState(reduxTime);
 
-	
+	const toggleTimer = () => {
+		setEnabled(v => !v);
+		dispatch(setKeyPair([props.id, seconds]));
+	}
 		
 	useEffect(() => {
 		const timerInterval = setInterval(() => {
@@ -26,10 +29,7 @@ export default function Timer(props) {
 		}, 1000);
 
 		// callback when isEnabled ends
-		return () => {
-			clearInterval(timerInterval);
-			dispatch(setKeyPair([props.id, seconds]));
-		};
+		return () => { clearInterval(timerInterval) };
 
 		// run when isEnabled updates
 	}, [isEnabled]);
@@ -40,7 +40,7 @@ export default function Timer(props) {
 
 			<Text>{(`${(seconds - (seconds % 60)) / 60}:${((seconds % 60) + "").padStart(2, "0")}`)}</Text>
 			
-			<BoolButton id="TimerClicked" bgc="lime" width={160} press={() => setEnabled(v => !v)}>
+			<BoolButton id="TimerClicked" bgc="lime" width={160} press={toggleTimer}>
 				<Text>{!isEnabled ? "Start" : "Stop"} Stopwatch</Text>
 			</BoolButton>
 		</View>
