@@ -54,19 +54,21 @@ export default function GridArena(props) {
 				  *                             the fix
 				  * <Text>natsumi</Text>         ---->        () => <Text>natsumi</Text>
 				  **/
-				items.map((item) => {
+				items.map((item, index) => {
 					// { pos: (x, y), com: component }
 					const [x, y] = item.pos;
+					const key = `${item.pos}-ground beef-${index}`;
+					console.log(key);
 					
 					if (selectedTeam == 0) {
 						return (
-							<View style={{ position: "absolute", left: width*x, top: height*y }}>
+							<View style={{ position: "absolute", left: width*x, top: height*y, key: key }}>
 								<item.com/>
 							</View>
 						);
 					} else {
 						return (
-							<View style={{ position: "absolute", right: width*x, bottom: height*y }}>
+							<View style={{ position: "absolute", right: width*x, bottom: height*y, key: key }}>
 								<item.com/>
 							</View>
 						);
