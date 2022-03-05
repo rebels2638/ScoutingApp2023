@@ -12,7 +12,8 @@ import ScoutingColors from "../../Config/ScoutingColors";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
-import SeperateRadioButton from "../../Components/Buttons/SeperateRadioButon.js";
+import RadioButton from "../../Components/Buttons/RadioButton.js";
+import Spacer from "../../Components/Utility/Spacer.js";
 
 function WhiteText(props) {
 	return (<Text style={{ color: "white" }}>{props.children}</Text>);
@@ -24,6 +25,9 @@ export default function Autonomous() {
 
 	// set default
 	dispatch(setDefault([arenaID, 0]));
+	// get value from store
+	const selectedTeam = useSelector(selectID(arenaID));
+	const color = selectedTeam? "red" : "blue";
 
 	return (
 		<View style={styles.container}>
@@ -42,33 +46,43 @@ export default function Autonomous() {
 					)},
 
 					{ pos: [0.27, 0.25], com: _=>(
-						<BoolButton id="AutoBP1" bgc="blue" width={50}>Picks Up</BoolButton>
+						<BoolButton id="AutoBP1" bgc={color} width={50}>Picks Up</BoolButton>
 					)},
 
 					{ pos: [0.27, 0.62], com: _=>(
-						<BoolButton id="AutoBP2" bgc="blue" width={50}>Picks Up</BoolButton>
+						<BoolButton id="AutoBP2" bgc={color} width={50}>Picks Up</BoolButton>
 					)},
 
 					{ pos: [0.38, 0.77], com: _=>(
-						<BoolButton id="AutoBP3" bgc="blue" width={50}>Picks Up</BoolButton>
+						<BoolButton id="AutoBP3" bgc={color} width={50}>Picks Up</BoolButton>
 					)},
 
 					{ pos: [0.07, 0.6], com: _=>(
-						<BoolButton id="AutoBP4" bgc="blue" width={50}>Picks Up</BoolButton>
+						<BoolButton id="AutoBP4" bgc={color} width={50}>Picks Up</BoolButton>
 					)},
 
 					{ pos: [0.14, 0.6], com: _=>(
-						<BoolButton id="AutoBP5" bgc="blue" width={50}>Picks Up</BoolButton>
+						<BoolButton id="AutoBP5" bgc={color} width={50}>Picks Up</BoolButton>
 					)},
 
-					{ pos: [0.5, 0.5], com: _=>(
-						<WhiteText>Left Start</WhiteText>
-					)},
+					{ pos: [0.4, 0.4], com: _=>(<WhiteText>Left Start</WhiteText>)},
+					{ pos: [0.42, 0.59], com: _=>(<WhiteText>Middle Start</WhiteText>)},
+					{ pos: [0.45, 0.66], com: _=>(<WhiteText>Right Start</WhiteText>)},
 				]} />
 
-				<SeperateRadioButton id="StartingPosition" index={0} width={160}>Starts Left</SeperateRadioButton>
-				<SeperateRadioButton id="StartingPosition" index={1} width={160}>Starts Middle</SeperateRadioButton>
-				<SeperateRadioButton id="StartingPosition" index={2} width={160}>Starts Right</SeperateRadioButton>
+				<Spacer/>
+				<Text style={{ textAlign: "center", fontSize: 18, fontWeight: "bold" }}>Starting Position</Text>
+				<RadioButton
+					id="StartingPosition"
+					data={["Left Start", "Middle Start", "Right Start"]}
+					bgc="orange"
+					segmentedButton
+					forceOption
+					options={{
+						flexDirection: "row",
+					}}
+				/>
+				<Spacer/>
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
 				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
