@@ -1,6 +1,7 @@
 import {
 	View,
-	ImageBackground
+	ImageBackground,
+	Pressable
 } from "react-native";
 
 import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
@@ -26,8 +27,21 @@ export default function GridArena(props) {
 	const width = 900,
 		  height = 453;
 
+	const printDebugCoords = (e) => {
+		// When you click on the arena, print coordinates to console for positioning
+		let x = e.nativeEvent.offsetX / width,
+			y = e.nativeEvent.offsetY / height;
+
+		// truncate to two decimal places
+		[x, y] = [x, y].map(v => ~~(v*100)/100);
+		
+		// as a final note, components are positioned by their TOP LEFT CORNER, not the center.
+		console.log(x, y);
+	}
+
 	return (
 		<View>
+			<Pressable onPress={e => printDebugCoords(e)} >
 			<ImageBackground
 				source={require("../../Assets/2022Field.png")}
 				style={{
@@ -75,6 +89,7 @@ export default function GridArena(props) {
 					}
 				})}
 			</ImageBackground>
+			</Pressable>
 		</View>
 	);
 }
