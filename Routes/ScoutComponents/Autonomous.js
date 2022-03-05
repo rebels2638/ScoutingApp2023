@@ -12,6 +12,11 @@ import ScoutingColors from "../../Config/ScoutingColors";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
+import SeperateRadioButton from "../../Components/Buttons/SeperateRadioButon.js";
+
+function WhiteText(props) {
+	return (<Text style={{ color: "white" }}>{props.children}</Text>);
+}
 
 export default function Autonomous() {
 	const arenaID = "Team";
@@ -57,7 +62,15 @@ export default function Autonomous() {
 					{ pos: [0.14, 0.6], com: _=>(
 						<BoolButton id="AutoBP5" bgc="blue" width={50}>Picks Up</BoolButton>
 					)},
+
+					{ pos: [0.5, 0.5], com: _=>(
+						<WhiteText>Left Start</WhiteText>
+					)},
 				]} />
+
+				<SeperateRadioButton id="StartingPosition" index={0} width={160}>Starts Left</SeperateRadioButton>
+				<SeperateRadioButton id="StartingPosition" index={1} width={160}>Starts Middle</SeperateRadioButton>
+				<SeperateRadioButton id="StartingPosition" index={2} width={160}>Starts Right</SeperateRadioButton>
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
 				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>

@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: "column",
 		justifyContent: "center",
-		alignItems: "center"
+		alignItems: "center",
+		margin: 30
 	},
 	climbPosition: {
 		flex: 1,
