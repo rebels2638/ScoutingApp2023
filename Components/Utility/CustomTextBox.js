@@ -27,7 +27,7 @@ export default function CustomTextBox(props) {
 
 	if (blendedText !== null) {
 		setText(blendedText);
-		dispatch(consumeBlend(props.id))
+		dispatch(consumeBlend(props.id));
 	}
 
 	// keep redux text updated after a 500ms delay of not editing

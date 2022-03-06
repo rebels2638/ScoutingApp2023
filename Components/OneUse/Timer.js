@@ -5,33 +5,43 @@ import {
 } from "react-native";
 import BoolButton from "../Buttons/BoolButton.js";
 
-import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
+import { setKeyPair, setDefault, selectID, selectBlendedID, consumeBlend } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Timer(props) {
 	const dispatch = useDispatch();
+	const [isEnabled, setEnabled] = useState(false);
+	const [seconds, setSeconds] = useState(0);
 
+	// set default values
 	dispatch(setDefault([props.id, 0]));
 
-	const reduxTime = useSelector(selectID(props.id));
+	// https://github.com/rebels2638/ScoutingApp2022/issues/18
+	const blendedTime = useSelector(selectBlendedID(props.id));
 
-	const [isEnabled, setEnabled] = useState(false);
-	const [seconds, setSeconds] = useState(reduxTime);
+	if (blendedTime !== null) {
+		setSeconds(blendedTime);
+		dispatch(consumeBlend(props.id));
+		// stop timer on match reset/load
+		setEnabled(false);
+		dispatch(setKeyPair(["TimerClicked", false]));
+	}
 
+	// when toggling the timer, save the time to redux
 	const toggleTimer = () => {
 		setEnabled(v => !v);
 		dispatch(setKeyPair([props.id, seconds]));
 	}
-		
+	
 	useEffect(() => {
 		const timerInterval = setInterval(() => {
 			if (isEnabled) setSeconds(oldSeconds => oldSeconds + 1);
 		}, 1000);
 
 		// callback when isEnabled ends
-		return () => { clearInterval(timerInterval) };
+		return () => clearInterval(timerInterval);
 
-		// run when isEnabled updates
+		// run when the timer is started/stopped
 	}, [isEnabled]);
 
 	return (
