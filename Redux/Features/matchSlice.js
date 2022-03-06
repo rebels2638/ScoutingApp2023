@@ -9,13 +9,10 @@ export const matchSlice = createSlice({
 		writeMatch: (state, action) => {
 			// action is in format
 			// [key, payload]
-			// Tracer: ESCOURT THE PAYLOAD!
-
 			const [matchKey, kpv] = action.payload;
 
 			if (!(typeof matchKey === "string"))					console.log(`WARNING! Expected key to be string, instead got ${typeof matchKey}.`);
-			if (!(kpv instanceof Array))							console.log(`WARNING! Expected match to be object, instead got ${typeof kpv}.`);
-			if (!Object.values(kpv).every(v => v instanceof Array))	console.log(`WARNING! Expected each item to be an array, instead got ${typeof kpv[0]}.`);
+			if (!(kpv instanceof Object))							console.log(`WARNING! Expected match to be an object, instead got ${typeof kpv}.`);
 
 			const mki = state.matches.findIndex(v => v && (v[0] === matchKey));
 
@@ -32,12 +29,12 @@ export const matchSlice = createSlice({
 
 		importMatches: (state, action) => {
 			// should only be used when the app starts
-			console.log("MATCHES HAVE BEEN IMPORTED!!!");
 			// import that bad boy
 			state.matches = action.payload;
 		},
 
 		resetMatches: (state) => {
+			// resets ALL the matches
 			state.matches = [];
 		}
 	},

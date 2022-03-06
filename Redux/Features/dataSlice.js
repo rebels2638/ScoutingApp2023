@@ -4,6 +4,8 @@ export const dataSlice = createSlice({
 	name: "dataSlice",
 	initialState: {
 		keyPairValues: {},
+		default: {},
+		blendedState: {} // https://github.com/rebels2638/ScoutingApp2022/issues/18
 	},
 	reducers: {
 		setKeyPair: (state, action) => {
@@ -28,13 +30,22 @@ export const dataSlice = createSlice({
 			if (!(key in state.keyPairValues)) {
 				state.keyPairValues[key] = value;
 			}
+
+			state.default[key] = value;
+
+			if (!(key in state.blendedState)) {
+				state.blendedState[key] = null;
+			}
 		},
 
 		loadMatch: (state, action) => {
 			// should only be used when clicking on a match in Past Matches
-			console.log("A match has been loaded.");
 			// import that bad boy
+			console.log("A match has been loaded.");
 			state.keyPairValues = action.payload;
+			
+			// NOTE: loadMatch does not have a whitelist
+			state.blendedState = action.payload;
 		},
 
 		freshStart: (state) => {
@@ -51,14 +62,26 @@ export const dataSlice = createSlice({
 
 			for (let key in state.keyPairValues) {
 				if (!whitelist.includes(key)) {
-					delete state.keyPairValues[key];
+					state.keyPairValues[key] = state.default[key];
+					state.blendedState[key] = state.default[key];
 				}
 			}
+		},
+
+		// https://open.spotify.com/track/3m9lnuSYZmHsopPycNnGqM
+		// hehehe consume CON SUME consumi
+		consumeBlend: (state, action) => {
+			// key should be a string
+			const key = action.payload;
+
+			if (typeof key !== "string") console.log(`WARNING! Expected key, instead got ${typeof key}.`);
+
+			state.blendedState[key] = null;
 		}
 	},
 });
 
-export const { setKeyPair, setDefault, loadMatch, freshStart } = dataSlice.actions;
+export const { setKeyPair, setDefault, loadMatch, freshStart, consumeBlend } = dataSlice.actions;
 window.skp = dataSlice.actions.setKeyPair;
 
 // The function below is called a selector and allows us to select a value from
@@ -67,5 +90,6 @@ window.skp = dataSlice.actions.setKeyPair;
 export const selectData = state => state.data.keyPairValues;
 // yeah these are big brain hours
 export const selectID = id => state => state.data.keyPairValues[id];
+export const selectBlendedID = id => state => state.data.blendedState[id];
 
 export default dataSlice.reducer;
