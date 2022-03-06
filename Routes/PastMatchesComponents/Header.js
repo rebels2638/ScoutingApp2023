@@ -33,22 +33,33 @@ export default function Header() {
 	const selectedTeam = useSelector(selectID(arenaID));
 
 	const clickResetMatches = () => {
-		AsyncStorage.removeItem("matches");
-
-		dispatch(resetMatches());
-
-		// TODO: Add confirmation
-		alert("Cleared all the matches!");
+		if (Platform.OS === "web") {
+			if (confirm("Are you ABSOLUTELY SURE you want to clear all matches?")) {
+				AsyncStorage.removeItem("matches");
+				dispatch(resetMatches());
+				alert("Cleared all the matches!");
+			}
+		} else {
+			Alert.alert(
+				"Reset", "Are you ABSOLUTELY SURE you want to clear all matches? This action is not reversible.",
+				[
+					{ text: "Reset", onPress: () => {
+						AsyncStorage.removeItem("matches");
+						dispatch(resetMatches());
+						alert("Cleared all the matches!");
+					}},
+					{ text: "Cancel", style: "cancel" }
+				]
+			);
+		}
 	};
 
 	const clickExportAllMatches = () => {
 		// write new csv file
-		console.log(matches);
 		const output = kpvToCsv(matches);
-		console.log(output);
 
 		Platform.OS == "web"
-			? webExport(output, "data.csv")
+			? webExport(output, `scouting-${Date}.csv`)
 			: mobileExport(output);
 	};
 

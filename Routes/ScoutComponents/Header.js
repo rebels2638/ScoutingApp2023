@@ -32,19 +32,20 @@ export default function Header() {
 	const selectedTeam = useSelector(selectID(arenaID));
 
 	function reset() {
-		// alert("Everyone needs a fresh start. Why not now?");
-		// dispatch(freshStart());
-		Alert.alert(
-			"Reset",
-			"Are you sure you want to reset the Scoutsheet?",
-			[
-				{ text: "Reset", onPress: () => dispatch(freshStart()) },
-				{ text: "Cancel", style: "cancel" }
-			]
-		);
+		if (Platform.OS === "web") {
+			if (confirm("Everyone needs a fresh start. Why not now?")) dispatch(freshStart());
+		} else {
+			Alert.alert(
+				"Reset", "Are you sure you want to reset the Scoutsheet?",
+				[
+					{ text: "Reset", onPress: () => dispatch(freshStart()) },
+					{ text: "Cancel", style: "cancel" }
+				]
+			);
+		}
 	}
 
-	async function save(successCallback = () => { }) {
+	async function save(successCallback=_=>{}) {
 		// fun fact, kpv is short for KeyPairValue, because it's filled with [key, value]
 		// matchKey is a unique identifier for a match. Right now I could have Team
 		const matchKey = ["Team", "TeamNumber", "MatchNumber", "MatchType", "Scouters"]
@@ -96,19 +97,24 @@ export default function Header() {
 		} else {
 			// if the match key IS found
 			// overwrite
-			Alert.alert(
-				"Overwrite",
-				"A match already exists with this match key. Are you sure you want to overwrite it?",
-				[
-					{
-						text: "Overwrite", onPress: () => {
+			if (Platform.OS === "web") {
+				if (confirm("A match already exists with this match key. Are you sure you want to overwrite it?")) {
+					matches[mki] = final;
+					saveMatch();
+				}
+			} else {
+				Alert.alert(
+					"Overwrite", "A match already exists with this match key. Are you sure you want to overwrite it?",
+					[
+						{ text: "Overwrite", onPress: () => {
 							matches[mki] = final;
 							saveMatch();
-						}
-					},
-					{ text: "Cancel", style: "cancel" }
-				]
-			);
+						}},
+						{ text: "Cancel", style: "cancel" }
+					]
+				);
+			}
+			
 		}
 	}
 
@@ -131,9 +137,7 @@ export default function Header() {
 
 		// Thanks, stackoverflow
 		if (URL && "download" in a) {
-			a.href = URL.createObjectURL(new Blob([content], {
-				type: mimeType
-			}));
+			a.href = URL.createObjectURL(new Blob([content], { type: mimeType }));
 			a.setAttribute("download", fileName);
 			document.body.appendChild(a);
 			a.click();
