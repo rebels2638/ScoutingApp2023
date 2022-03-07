@@ -59,10 +59,9 @@ export default function Header() {
 		const output = kpvToCsv(matches);
 
 		Platform.OS == "web"
-			? webExport(output, `scouting-${Date}.csv`)
+			? webExport(output, `scouting-${Date.now()}.csv`)
 			: mobileExport(output);
 	};
-
 
 	function webExport(content, fileName) {
 		console.log("NAY");

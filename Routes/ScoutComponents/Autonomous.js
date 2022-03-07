@@ -45,24 +45,24 @@ export default function Autonomous() {
 						<BoolButton id="Taxi" bgc="lime" width={160}>Crosses Line/Taxi</BoolButton>
 					)},
 
-					{ pos: [0.27, 0.25], com: _=>(
-						<BoolButton id="AutoBP1" bgc={color} width={50}>Picks Up</BoolButton>
+					{ pos: [0.25, 0.24], com: _=>(
+						<BoolButton id="AutoBP1" bgc={color} width={70}>[1] Picks Up</BoolButton>
 					)},
 
-					{ pos: [0.27, 0.62], com: _=>(
-						<BoolButton id="AutoBP2" bgc={color} width={50}>Picks Up</BoolButton>
+					{ pos: [0.26, 0.62], com: _=>(
+						<BoolButton id="AutoBP2" bgc={color} width={70}>[2] Picks Up</BoolButton>
 					)},
 
-					{ pos: [0.38, 0.77], com: _=>(
-						<BoolButton id="AutoBP3" bgc={color} width={50}>Picks Up</BoolButton>
+					{ pos: [0.37, 0.77], com: _=>(
+						<BoolButton id="AutoBP3" bgc={color} width={70}>[3] Picks Up</BoolButton>
 					)},
 
-					{ pos: [0.07, 0.6], com: _=>(
-						<BoolButton id="AutoBP4" bgc={color} width={50}>Picks Up</BoolButton>
+					{ pos: [0.06, 0.6], com: _=>(
+						<BoolButton id="AutoBP4" bgc={color} width={70}>[4] Picks Up</BoolButton>
 					)},
 
 					{ pos: [0.14, 0.6], com: _=>(
-						<BoolButton id="AutoBP5" bgc={color} width={50}>Picks Up</BoolButton>
+						<BoolButton id="AutoBP5" bgc={color} width={70}>[5] Picks Up</BoolButton>
 					)},
 
 					{ pos: [0.4, 0.4], com: _=>(<WhiteText>Left Start</WhiteText>)},

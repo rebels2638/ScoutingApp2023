@@ -3,98 +3,113 @@
 // matches: KPV[]
 export default function kpvToCsv(matches) {
 	// the holy grail contains all the data for converting the kpv's to one giant csv file
-	const theHolyGrail = [{
+	const theHolyGrail = [{ // match info
 		name: "Team Number",
 		vf: kpv => kpv["TeamNumber"]
 	}, {
 		name: "Match Number",
 		vf: kpv => kpv["MatchNumber"]
-	}, {
-		name: "Fits Under Trench?",
-		vf: kpv => kpv["FitsUnderTrench"] ? "Yes" : "No"
-	}, {
-		name: "Plays Defense?",
-		vf: kpv => kpv["PlaysDefense"] ? "Yes" : "No"
-	}, {
+	},
+	
+	// other (penalties/cards/breakdown)
+	{
 		name: "Penalties",
 		vf: kpv => {
 			const red = kpv["RedCard"];
 			const yellow = kpv["YellowCard"];
 
-			if (red && yellow)  return "Red and Yellow";
-			if (red)            return "Red";
-			if (yellow)         return "Yellow";
+			if (red && yellow) return "Red and Yellow";
+			if (red)           return "Red";
+			if (yellow)        return "Yellow";
 
 			return "None";
 		}
 	}, {
+		name: "Fouls",
+		vf: kpv => {
+			const fouls = kpv["FoulCount"];
+			const techFouls = kpv["TechFoulCount"];
+
+			if (fouls && techFouls) return `${fouls} fouls, ${techFouls} tech fouls`;
+			if (fouls)              return `${fouls} fouls`;
+			if (techFouls)          return `${techFouls} tech fouls`;
+
+			return "No Fouls";
+		}
+	}, {
+		name: "Breakdown",
+		vf: kpv => {
+			return kpv["Breakdown"]? "Yes" : "No";
+		}
+	},
+	
+	// auto
+	{
 		name: "Starting Pieces",
-		vf: kpv => kpv["StartingPieces"]
+		vf: kpv => kpv["StartingPieces"]? "Yes" : "No"
 	}, {
-		name: "Line Position",
-		vf: kpv => kpv["LinePosition"]
+		name: "Starting Position",
+		vf: kpv => kpv["StartingPosition"]
 	}, {
-		name: "Crosses Initiation Line?",
-		vf: kpv => kpv["CrossesInitiationLine"] ? "Yes" : "No"
+		name: "Taxi",
+		vf: kpv => kpv["Taxi"]? "Yes" : "No"
 	}, {
-		name: "Auto Low",
-		vf: kpv => kpv["AutoLow"]
+		name: "Auto Upper",
+		vf: kpv => `${kpv["AutoUpperHubScored"]} scored, ${kpv["AutoUpperHubMissed"]} missed`
 	}, {
-		name: "Auto Outer",
-		vf: kpv => kpv["AutoOuter"]
+		name: "Auto Lower",
+		vf: kpv => `${kpv["AutoLowerHubScored"]} scored, ${kpv["AutoLowerHubMissed"]} missed`
 	}, {
-		name: "Auto Inner",
-		vf: kpv => kpv["AutoInner"]
-	}, {
-		name: "Auto Missed",
-		vf: kpv => kpv["AutoMissed"]
+		name: "Picked Up",
+		vf: kpv => 
+			["AutoBP1", "AutoBP2", "AutoBP3", "AutoBP4", "AutoBP5"]
+				.map((v, i) => kpv[v]? i+1 : -1)    // convert valid to their index+1, invalid to -1
+				.filter(v => v !== -1)              // filter invalid
+				.join(", ")                         // make it pretty
+				|| "None"                           // set a default of "None"
 	}, {
 		name: "Autonomous Comments",
 		vf: kpv => kpv["AutonomousComments"]
+	},
+	
+	// tele
+	{
+		name: "Picks From Ground",
+		vf: kpv => kpv["PicksFromGround"]? "Yes" : "No"
 	}, {
-		name: "Balls Picked Up From Loading Station",
-		vf: kpv => kpv["BallsPickedUpFromLoadingStation"]
+		name: "Plays Defense",
+		vf: kpv => kpv["PlaysDefense"]? "Yes" : "No"
 	}, {
-		name: "Balls Picked Up From Floor",
-		vf: kpv => kpv["BallsPickedUpFromFloor"]
+		name: "Human Player",
+		vf: kpv => kpv["HPStation"]? "Yes" : "No"
 	}, {
-		name: "Tele-Op Low",
-		vf: kpv => kpv["TeleLow"]
+		name: "Tele Upper",
+		vf: kpv => `${kpv["TeleopUpperHubScored"]} scored, ${kpv["TeleopUpperHubMissed"]} missed`
 	}, {
-		name: "Tele-Op Outer",
-		vf: kpv => kpv["TeleOuter"]
-	}, {
-		name: "Tele-Op Inner",
-		vf: kpv => kpv["TeleInner"]
-	}, {
-		name: "Tele-Op Missed",
-		vf: kpv => kpv["TeleMissed"]
-	}, {
-		name: "Shoot From",
-		vf: kpv => [kpv["TargetZone"]? "Target Zone" : "", kpv["TrenchZone"]? "Trench Zone" : "", kpv["Other"]? "Other" : ""]
-			.filter(v => v !== "") // filter out none
-			.join(", ") // make it look nice
-	}, {
-		name: "Rotation",
-		vf: kpv => kpv["Rotation"] ? "Yes" : "No"
-	}, {
-		name: "Color",
-		vf: kpv => kpv["Color"] ? "Yes" : "No"
+		name: "Tele Lower",
+		vf: kpv => `${kpv["TeleopLowerHubScored"]} scored, ${kpv["TeleopLowerHubMissed"]} missed`
 	}, {
 		name: "Teleop Comments",
 		vf: kpv => kpv["TeleopComments"]
-	}, {
-		name: "Endgame Type",
-		vf: kpv => kpv["EndgameType"]
-	}, {
+	},
+	
+	// endgame
+	{
 		name: "Balls Scored",
-		vf: kpv => kpv["BallsScored"]
+		vf: kpv => `${kpv["BallsScored"]} scored`
 	}, {
 		name: "Climb Position",
 		vf: kpv => kpv["ClimbPosition"]
 	}, {
 		name: "Time",
-		vf: kpv => kpv["Time"]
+		vf: kpv => {
+			const seconds = kpv["Time"];
+
+			const fMinutes = (seconds - (seconds % 60)) / 60;
+			const fSeconds = ((seconds % 60) + "").padStart(2, "0");
+
+			return `${fMinutes}:${fSeconds}`
+		}
 	}, {
 		name: "Endgame Comments",
 		vf: kpv => kpv["EndgameComments"]

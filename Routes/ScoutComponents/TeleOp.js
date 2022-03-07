@@ -33,10 +33,6 @@ export default function TeleOp() {
 					</>)},
 
 					{ pos: [0.1, 0.5], com: _=>(
-						<BoolButton id="Taxi" bgc="lime" width={160}>Crosses Line/Taxi</BoolButton>
-					)},
-
-					{ pos: [0.1, 0.5], com: _=>(
 						<BoolButton id="PlaysDefense" bgc="lime" width={160}>Plays Defense</BoolButton>
 					)},
 
