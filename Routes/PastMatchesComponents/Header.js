@@ -2,7 +2,8 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	Platform
+	Platform,
+	Alert
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -82,13 +83,12 @@ export default function Header() {
 		}
 	}
 
-	function mobileExport(output) {
-		console.log("YAY");
+	async function mobileExport(output) {
 		const path = "./data.csv";
 
 		FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });
 		// share the new csv file we just made
-		Sharing.shareAsync(FileSystem.documentDirectory + path);
+		await Sharing.shareAsync(FileSystem.documentDirectory + path);
 	}
 
 	return (

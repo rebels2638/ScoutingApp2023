@@ -82,7 +82,7 @@ export default function Header() {
 			// now update matches in redux
 			dispatch(writeMatch(final));
 			// "hey you saved a match lmao"
-			alert("Saved Match #" + kpv["MatchNumber"]);
+			//alert("Saved Match #" + kpv["MatchNumber"]);
 
 			// now we're finished
 			successCallback(final);

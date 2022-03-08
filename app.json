@@ -8,7 +8,7 @@
       "ios",
       "web"
     ],
-    "version": "4.0.0",
+    "version": "4.0.1",
     "orientation": "landscape",
     "icon": "./Assets/appicon.png",
     "splash": {
@@ -26,7 +26,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.reidf.2638scout",
-      "buildNumber": "3.0.1"
+      "buildNumber": "4.0.1"
     },
     "android": {
       "package": "com.reidf.scout2638",
