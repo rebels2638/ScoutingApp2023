@@ -88,7 +88,12 @@ export default function Header() {
 
 		FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });
 		// share the new csv file we just made
-		await Sharing.shareAsync(FileSystem.documentDirectory + path);
+		try {
+			await Sharing.shareAsync(FileSystem.documentDirectory + path);
+		} catch (e) {
+			alert(e.message);
+		}
+		
 	}
 
 	return (

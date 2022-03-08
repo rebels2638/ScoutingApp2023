@@ -81,8 +81,6 @@ export default function Header() {
 			AsyncStorage.setItem("matches", JSON.stringify(matches));
 			// now update matches in redux
 			dispatch(writeMatch(final));
-			// "hey you saved a match lmao"
-			//alert("Saved Match #" + kpv["MatchNumber"]);
 
 			// now we're finished
 			successCallback(final);
@@ -118,7 +116,7 @@ export default function Header() {
 		}
 	}
 
-	async function saveAndExport() {
+	function saveAndExport() {
 		save(final => {
 			if (final === undefined) return;
 
@@ -147,12 +145,16 @@ export default function Header() {
 		}
 	}
 
-	function mobileExport(output) {
+	async function mobileExport(output) {
 		const path = "./data.csv";
 
 		FileSystem.writeAsStringAsync(FileSystem.documentDirectory + path, output, { encoding: FileSystem.EncodingType.UTF8 });
 		// share the new csv file we just made
-		Sharing.shareAsync(FileSystem.documentDirectory + path);
+		try {
+			await Sharing.shareAsync(FileSystem.documentDirectory + path);
+		} catch (e) {
+			alert(e.message);
+		}
 	}
 
 	return (
@@ -174,7 +176,7 @@ export default function Header() {
 					}}
 				/>
 					
-				<Link color={ScoutingColors.blue} onPress={() => save()}>Save</Link>
+				<Link color={ScoutingColors.blue} onPress={() => save(() => alert("Saved Match #" + kpv["MatchNumber"]))}>Save</Link>
 
 				<Link color={ScoutingColors.blue} onPress={() => saveAndExport()}>Save and Export</Link>
 			</View>
