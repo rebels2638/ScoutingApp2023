@@ -18,11 +18,11 @@ export default function ClimbPosition(props) {
 	// all possible options.
 	// [name, [x, y]]
 	const data = [
-		["Traversal", [0.55, 0.1]],
-		["High",      [0.47, 0.25]],
-		["Medium",    [0.4, 0.42]],
+		["None",      [0.1, 0.8]],
 		["Low",       [0.3, 0.63]],
-		["None",      [0.1, 0.8]]
+		["Medium",    [0.4, 0.42]],
+		["High",      [0.47, 0.25]],
+		["Traversal", [0.55, 0.1]]
 	];
 
 	const width = 800;
