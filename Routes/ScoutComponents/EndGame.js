@@ -11,6 +11,7 @@ import ClimbPosition from "../../Components/OneUse/ClimbPosition.js";
 import ScoutingColors from "../../Config/ScoutingColors";
 import { useDispatch, useSelector } from "react-redux";
 import { setDefault, selectID } from "../../Redux/Features/dataSlice.js";
+import BoolButton from "../../Components/Buttons/BoolButton.js";
 
 export default function Endgame() {
 	const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export default function Endgame() {
 			<View style={styles.endgameContainer}>
 				<View style={{flexDirection: "row", justifyContent: "space-evenly"}}>
 					<View style={{justifyContent: "space-evenly", alignItems: "center"}}>
-						<NumButton id="BallsScored" width={120}>Balls Scored</NumButton>
+						<BoolButton id="FailedClimbPosition" width={120} bgc="red">Failed</BoolButton>
 						<Timer id="Time"/>
 					</View>
 

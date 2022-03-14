@@ -28,13 +28,10 @@ export default function kpvToCsv(matches) {
 		name: "Fouls",
 		vf: kpv => {
 			const fouls = kpv["FoulCount"];
-			const techFouls = kpv["TechFoulCount"];
-
-			if (fouls && techFouls) return `${fouls} fouls, ${techFouls} tech fouls`;
-			if (fouls)              return `${fouls} fouls`;
-			if (techFouls)          return `${techFouls} tech fouls`;
-
-			return "No Fouls";
+			
+			return fouls? 
+				`${fouls} fouls` :
+				"No Fouls";
 		}
 	}, {
 		name: "Breakdown",
@@ -54,11 +51,17 @@ export default function kpvToCsv(matches) {
 		name: "Taxi",
 		vf: kpv => kpv["Taxi"]? "Yes" : "No"
 	}, {
-		name: "Auto Upper",
-		vf: kpv => `${kpv["AutoUpperHubScored"]} scored, ${kpv["AutoUpperHubMissed"]} missed`
+		name: "Auto Upper Scored",
+		vf: kpv => kpv["AutoUpperHubScored"]
 	}, {
-		name: "Auto Lower",
-		vf: kpv => `${kpv["AutoLowerHubScored"]} scored, ${kpv["AutoLowerHubMissed"]} missed`
+		name: "Auto Lower Scored",
+		vf: kpv => kpv["AutoLowerHubScored"]
+	}, {
+		name: "Auto Upper Missed",
+		vf: kpv => kpv["AutoUpperHubMissed"]
+	}, {
+		name: "Auto Lower Missed",
+		vf: kpv => kpv["AutoLowerHubMissed"]
 	}, {
 		name: "Picked Up",
 		vf: kpv => 
@@ -83,11 +86,17 @@ export default function kpvToCsv(matches) {
 		name: "Human Player",
 		vf: kpv => kpv["HPStation"]? "Yes" : "No"
 	}, {
-		name: "Tele Upper",
-		vf: kpv => `${kpv["TeleopUpperHubScored"]} scored, ${kpv["TeleopUpperHubMissed"]} missed`
+		name: "Tele Upper Scored",
+		vf: kpv => kpv["TeleopUpperHubScored"]
 	}, {
-		name: "Tele Lower",
-		vf: kpv => `${kpv["TeleopLowerHubScored"]} scored, ${kpv["TeleopLowerHubMissed"]} missed`
+		name: "Tele Lower Scored",
+		vf: kpv => kpv["TeleopLowerHubScored"]
+	}, {
+		name: "Tele Upper Missed",
+		vf: kpv => kpv["TeleopUpperHubMissed"]
+	}, {
+		name: "Tele Lower Missed",
+		vf: kpv => kpv["TeleopLowerHubMissed"]
 	}, {
 		name: "Teleop Comments",
 		vf: kpv => kpv["TeleopComments"]
@@ -95,8 +104,8 @@ export default function kpvToCsv(matches) {
 	
 	// endgame
 	{
-		name: "Balls Scored",
-		vf: kpv => `${kpv["BallsScored"]} scored`
+		name: "Failed Climb Position",
+		vf: kpv => kpv["FailedClimbPosition"]? "Yes" : "No"
 	}, {
 		name: "Climb Position",
 		vf: kpv => kpv["ClimbPosition"]

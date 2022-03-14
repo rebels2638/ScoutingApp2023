@@ -14,7 +14,6 @@ export default function Other() {
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Other</Text>
 			<View style={styles.otherContainer}>
 				<NumButton id="FoulCount" width={160}>Fouls</NumButton>
-				<NumButton id="TechFoulCount" width={160}>Tech Fouls</NumButton>
 				<BoolButton id="YellowCard" bgc="yellow" width={160}>Yellow Card</BoolButton>
 				<BoolButton id="RedCard" bgc="red" width={160}>Red Card</BoolButton>
 				<BoolButton id="Breakdown" bgc="orange" width={160}>Breakdown</BoolButton>

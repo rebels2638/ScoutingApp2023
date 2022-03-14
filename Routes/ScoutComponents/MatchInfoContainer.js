@@ -40,7 +40,7 @@ export default function MatchInfoContainer() {
 						<Text style={styles.bold}>Match Type: </Text>
 						<RadioButton
 							id="MatchType"
-							data={["Qualification", "Quarterfinal", "Semifinal"]}
+							data={["Practice", "Qualification", "Quarterfinal", "Semifinal"]}
 							bgc="orange"
 							segmentedButton
 							forceOption
