@@ -50,7 +50,7 @@ export default function PastMatches(props) {
 							<View style={[
 								styles.teamIndicator,
 								{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue)}
-							]}>{matchData["Team"]? "Red" : "Blue"}</View>
+							]}></View>
 						</View>
 					</Pressable>
 				);
