@@ -21,8 +21,6 @@ export default function PastMatches(props) {
 	// get value from store
 	const matches = useSelector(selectMatches);
 
-	const find = (pmm, id) => pmm[1][id];
-
 	// matches = storage
 	// parse matches
 	// if new match add to state
@@ -31,17 +29,28 @@ export default function PastMatches(props) {
 		<FlatList
 			data={matches}
 			renderItem={(data) => {
+				const matchData = data.item[1];
+				// ultra scuffed method of adding spaces
+				const s = " ";
+
 				return (
 					<Pressable onPress={() => {
 						props.navigation.navigate("Scout");
 
 						// the VERY VERY lazy solution
-						dispatch(loadMatch(data.item[1]));
+						dispatch(loadMatch(matchData));
 					}}>
 						<View style={styles.item}>
 							<Text style={styles.text}>
-								{["Qualification", "Quarterfinal", "Semifinal"][find(data.item, "MatchType")]} #{find(data.item, "MatchNumber")} (Team {find(data.item, "TeamNumber")})
+								{["Practice", "Qualification", "Quarterfinal", "Semifinal"][matchData["MatchType"]]}{s}
+								#{matchData["MatchNumber"]}{s}
+								(Team {matchData["TeamNumber"]}){s}
 							</Text>
+
+							<View style={[
+								styles.teamIndicator,
+								{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue)}
+							]}>{matchData["Team"]? "Red" : "Blue"}</View>
 						</View>
 					</Pressable>
 				);
@@ -69,7 +78,18 @@ const styles = StyleSheet.create({
 	item: {
 		borderColor: ScoutingColors.dimGray,
 		borderWidth: 1,
-		padding: 20
+		padding: 20,
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center"
+	},
+	teamIndicator: {
+		width: 50,
+		height: 50,
+		borderRadius: 20,
+		borderColor: ScoutingColors.dimGray,
+		borderWidth: 1,
+		margin: 10
 	},
 	text: {
 		fontSize: 20,
