@@ -7,6 +7,7 @@ import BoolButton from "../Buttons/BoolButton.js";
 
 import { setKeyPair, setDefault, selectID, selectBlendedID, consumeBlend } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
+import Link from "../Utility/Link.js";
 
 export default function Timer(props) {
 	const dispatch = useDispatch();
@@ -23,6 +24,13 @@ export default function Timer(props) {
 		setSeconds(blendedTime);
 		dispatch(consumeBlend(props.id));
 		// stop timer on match reset/load
+		setEnabled(false);
+		dispatch(setKeyPair(["TimerClicked", false]));
+	}
+
+	const resetTimer = () => {
+		setSeconds(0);
+		dispatch(setKeyPair([props.id, seconds]));
 		setEnabled(false);
 		dispatch(setKeyPair(["TimerClicked", false]));
 	}
@@ -53,6 +61,8 @@ export default function Timer(props) {
 			<BoolButton id="TimerClicked" bgc="lime" width={160} press={toggleTimer}>
 				<Text>{!isEnabled ? "Start" : "Stop"} Stopwatch</Text>
 			</BoolButton>
+
+			<Link color="red" onPress={resetTimer}>Reset Timer</Link>
 		</View>
 	);
 }
