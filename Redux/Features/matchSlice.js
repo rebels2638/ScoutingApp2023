@@ -33,6 +33,12 @@ export const matchSlice = createSlice({
 			state.matches = action.payload;
 		},
 
+		deleteMatch: (state, action) => {
+			const matchKey = action.payload;
+			const mki = state.matches.findIndex(v => v && (v[0] === matchKey));
+			state.matches.splice(mki, 1);
+		},
+
 		resetMatches: (state) => {
 			// resets ALL the matches
 			state.matches = [];
@@ -42,7 +48,7 @@ export const matchSlice = createSlice({
 
 // dispatch(writeMatch(kpv))
 
-export const { writeMatch, importMatches, resetMatches } = matchSlice.actions;
+export const { writeMatch, importMatches, deleteMatch, resetMatches } = matchSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

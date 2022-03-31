@@ -3,17 +3,20 @@ import {
 	View,
 	FlatList,
 	Pressable,
-	Text
+	Text,
+	Platform
 } from "react-native";
 
 import Header from "./PastMatchesComponents/Header.js";
 import ScoutingColors from "../Config/ScoutingColors";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectMatches } from "../Redux/Features/matchSlice.js";
+import { deleteMatch, selectMatches } from "../Redux/Features/matchSlice.js";
 import { loadMatch } from "../Redux/Features/dataSlice.js";
 
 import { Constants } from "react-native-unimodules";
+import Link from "../Components/Utility/Link.js";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function PastMatches(props) {
 	const dispatch = useDispatch();
@@ -25,11 +28,36 @@ export default function PastMatches(props) {
 	// parse matches
 	// if new match add to state
 
+	const resetIndividualMatch = async (matchKey) => {
+		if (Platform.OS === "web") {
+			if (confirm("Are you sure you want to remove this match?")) {
+				const matches = JSON.parse(await AsyncStorage.getItem("matches")) || [];
+				const mki = matches.findIndex(v => v && (v[0] === matchKey));
+				matches.splice(mki, 1);
+				AsyncStorage.setItem("matches", JSON.stringify(matches));
+
+				dispatch(deleteMatch(matchKey));
+			}
+		} else {
+			Alert.alert(
+				"Reset", "Are you ABSOLUTELY SURE you want to clear all matches? This action is not reversible.",
+				[
+					{ text: "Reset", onPress: () => {
+						AsyncStorage.removeItem("matches");
+						dispatch(resetMatches());
+						alert("Cleared all the matches!");
+					}},
+					{ text: "Cancel", style: "cancel" }
+				]
+			);
+		}
+	};
+
 	return (
 		<FlatList
 			data={matches}
 			renderItem={(data) => {
-				const matchData = data.item[1];
+				const [matchKey, matchData] = data.item;
 				// ultra scuffed method of adding spaces
 				const s = " ";
 
@@ -51,6 +79,10 @@ export default function PastMatches(props) {
 								styles.teamIndicator,
 								{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue)}
 							]}></View>
+
+							<View style={{ marginLeft: "auto", marginRight: 50 }}>
+								<Link onPress={()=>resetIndividualMatch(matchKey)} color="red">Delete</Link>
+							</View>
 						</View>
 					</Pressable>
 				);
