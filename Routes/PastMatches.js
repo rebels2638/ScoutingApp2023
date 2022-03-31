@@ -40,12 +40,15 @@ export default function PastMatches(props) {
 			}
 		} else {
 			Alert.alert(
-				"Reset", "Are you ABSOLUTELY SURE you want to clear all matches? This action is not reversible.",
+				"Reset", "Are you sure you want to remove this match?",
 				[
 					{ text: "Reset", onPress: () => {
-						AsyncStorage.removeItem("matches");
-						dispatch(resetMatches());
-						alert("Cleared all the matches!");
+						const matches = JSON.parse(await AsyncStorage.getItem("matches")) || [];
+						const mki = matches.findIndex(v => v && (v[0] === matchKey));
+						matches.splice(mki, 1);
+						AsyncStorage.setItem("matches", JSON.stringify(matches));
+
+						dispatch(deleteMatch(matchKey));
 					}},
 					{ text: "Cancel", style: "cancel" }
 				]
