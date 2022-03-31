@@ -42,7 +42,7 @@ export default function PastMatches(props) {
 			Alert.alert(
 				"Reset", "Are you sure you want to remove this match?",
 				[
-					{ text: "Reset", onPress: () => {
+					{ text: "Reset", onPress: async () => {
 						const matches = JSON.parse(await AsyncStorage.getItem("matches")) || [];
 						const mki = matches.findIndex(v => v && (v[0] === matchKey));
 						matches.splice(mki, 1);
