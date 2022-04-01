@@ -97,7 +97,12 @@ export default function Header() {
 	}
 
 	return (
-		<View style={{ backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue, flex: 1 }}>
+		<View style={{
+			backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue,
+			flex: 1,
+			borderBottomColor: ScoutingColors.doveGray,
+			borderBottomWidth: StyleSheet.hairlineWidth
+		}}>
 			<Text style={styles.headerText}>2022 - Rapid React{"\n"}</Text>
 			<View style={styles.linkContainer}>
 				<Link color="red" onPress={clickResetMatches}>Delete All Matches</Link>

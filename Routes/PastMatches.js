@@ -57,53 +57,60 @@ export default function PastMatches(props) {
 	};
 
 	return (
-		<FlatList
-			data={matches}
-			renderItem={(data) => {
-				const [matchKey, matchData] = data.item;
-				// ultra scuffed method of adding spaces
-				const s = " ";
+		<View>
+			<View style={{ flex: 1 }}>
+				<Header />
+			</View>
 
-				return (
-					<Pressable onPress={() => {
-						props.navigation.navigate("Scout");
+			<View style={{ flex: 9 }}>
+				<FlatList
+					data={matches}
+					renderItem={(data) => {
+						const [matchKey, matchData] = data.item;
+						// ultra scuffed method of adding spaces
+						const s = " ";
 
-						// the VERY VERY lazy solution
-						dispatch(loadMatch(matchData));
-					}}>
-						<View style={styles.item}>
-							<Pressable onPress={()=>alert(1)}>
-								<View style={[
-									styles.teamIndicator,
-									{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue)}
-								]}></View>
+						return (
+							<Pressable onPress={() => {
+								props.navigation.navigate("Scout");
+
+								// the VERY VERY lazy solution
+								dispatch(loadMatch(matchData));
+							}}>
+								<View style={styles.item}>
+									<Pressable onPress={()=>alert(1)}>
+										<View style={[
+											styles.teamIndicator,
+											{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue)}
+										]}></View>
+									</Pressable>
+
+									<Text style={styles.text}>
+										{["Practice", "Qualification", "Quarterfinal", "Semifinal"][matchData["MatchType"]]}{s}
+										#{matchData["MatchNumber"]}{s}
+										(Team {matchData["TeamNumber"]}){s}
+									</Text>
+
+									<View style={{ marginLeft: "auto", marginRight: 50 }}>
+										<Link onPress={() => resetIndividualMatch(matchKey)} color="red">Delete</Link>
+									</View>
+								</View>
 							</Pressable>
-
-							<Text style={styles.text}>
-								{["Practice", "Qualification", "Quarterfinal", "Semifinal"][matchData["MatchType"]]}{s}
-								#{matchData["MatchNumber"]}{s}
-								(Team {matchData["TeamNumber"]}){s}
-							</Text>
-
-							<View style={{ marginLeft: "auto", marginRight: 50 }}>
-								<Link onPress={() => resetIndividualMatch(matchKey)} color="red">Delete</Link>
+						);
+					}}
+					ListEmptyComponent={() => {
+						return (
+							<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+								<Text style={{ margin: 100, fontSize: 21 }}>There are no items!</Text>
 							</View>
-						</View>
-					</Pressable>
-				);
-			}}
-			ListEmptyComponent={() => {
-				return (
-					<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-						<Text style={{ margin: 100, fontSize: 21 }}>There are no items!</Text>
-					</View>
-				);
-			}}
-			ListHeaderComponent={<Header />}
-			keyExtractor={data => {
-				return data[0];
-			}} /** https://stackoverflow.com/a/49577737/12894940 */
-		/>
+						);
+					}}
+					keyExtractor={data => {
+						return data[0];
+					}} /** https://stackoverflow.com/a/49577737/12894940 */
+				/>
+			</View>
+		</View>
 	);
 }
 
