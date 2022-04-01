@@ -72,19 +72,21 @@ export default function PastMatches(props) {
 						dispatch(loadMatch(matchData));
 					}}>
 						<View style={styles.item}>
+							<Pressable onPress={()=>alert(1)}>
+								<View style={[
+									styles.teamIndicator,
+									{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue)}
+								]}></View>
+							</Pressable>
+
 							<Text style={styles.text}>
 								{["Practice", "Qualification", "Quarterfinal", "Semifinal"][matchData["MatchType"]]}{s}
 								#{matchData["MatchNumber"]}{s}
 								(Team {matchData["TeamNumber"]}){s}
 							</Text>
 
-							<View style={[
-								styles.teamIndicator,
-								{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue)}
-							]}></View>
-
 							<View style={{ marginLeft: "auto", marginRight: 50 }}>
-								<Link onPress={()=>resetIndividualMatch(matchKey)} color="red">Delete</Link>
+								<Link onPress={() => resetIndividualMatch(matchKey)} color="red">Delete</Link>
 							</View>
 						</View>
 					</Pressable>

@@ -20,12 +20,8 @@ export default function Header() {
 	const selectedTeam = useSelector(selectID(arenaID));
 
 	return (
-		<View style={[
-			styles.flex,
-			{ backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue }
-		]}>
+		<View style={{ backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue, flex: 1 }}>
 			<Text style={styles.headerText}>2022 - Rapid React{"\n"}</Text>
-
 			<View style={styles.linkContainer}>
 				<Link>About</Link>
 			</View>
@@ -34,7 +30,6 @@ export default function Header() {
 }
 
 const styles = StyleSheet.create({
-	flex: { flex: 1 },
 	headerText: {
 		flex: 1,
 		fontSize: 20,

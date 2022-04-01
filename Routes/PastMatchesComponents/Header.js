@@ -97,14 +97,10 @@ export default function Header() {
 	}
 
 	return (
-		<View style={[
-			styles.flex,
-			{ backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue }
-		]}>
+		<View style={{ backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue, flex: 1 }}>
 			<Text style={styles.headerText}>2022 - Rapid React{"\n"}</Text>
-
 			<View style={styles.linkContainer}>
-				<Link color="red" onPress={clickResetMatches}>Reset All Matches</Link>
+				<Link color="red" onPress={clickResetMatches}>Delete All Matches</Link>
 
 				<Link color="blue" onPress={clickExportAllMatches}>Export All Matches</Link>
 			</View>
@@ -113,7 +109,6 @@ export default function Header() {
 }
 
 const styles = StyleSheet.create({
-	flex: { flex: 1 },
 	headerText: {
 		flex: 1,
 		fontSize: 20,
