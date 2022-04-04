@@ -15,7 +15,7 @@ import kpvToCsv from "../../Config/kpvToCsv.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 
-import { selectMatches } from "../../Redux/Features/matchSlice.js";
+import { selectMatches, selectSelectedMatches } from "../../Redux/Features/matchSlice.js";
 
 import { resetMatches } from "../../Redux/Features/matchSlice.js";
 import { FileSystem } from "react-native-unimodules";
@@ -26,6 +26,7 @@ export default function Header() {
 	const arenaID = "Team";
 
 	const matches = useSelector(selectMatches);
+	const selectedMatches = useSelector(selectSelectedMatches);
 
 	// set default value
 	dispatch(setDefault([arenaID, 0]));

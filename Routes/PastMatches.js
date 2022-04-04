@@ -11,7 +11,7 @@ import Header from "./PastMatchesComponents/Header.js";
 import ScoutingColors from "../Config/ScoutingColors";
 
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMatch, selectMatches } from "../Redux/Features/matchSlice.js";
+import { deleteMatch, selectMatches, selectSelectedMatches, toggleSelectMatch } from "../Redux/Features/matchSlice.js";
 import { loadMatch } from "../Redux/Features/dataSlice.js";
 
 import { Constants } from "react-native-unimodules";
@@ -23,6 +23,7 @@ export default function PastMatches(props) {
 
 	// get value from store
 	const matches = useSelector(selectMatches);
+	const selectedMatches = useSelector(selectSelectedMatches);
 
 	// matches = storage
 	// parse matches
@@ -78,11 +79,15 @@ export default function PastMatches(props) {
 								dispatch(loadMatch(matchData));
 							}}>
 								<View style={styles.item}>
-									<Pressable onPress={()=>alert(1)}>
+									<Pressable onPress={() => dispatch(toggleSelectMatch(matchKey))}>
 										<View style={[
 											styles.teamIndicator,
 											{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue)}
-										]}></View>
+										]}>
+											<Text style={{ fontSize: 35 }}>
+												{selectedMatches[matchKey] === true? "X" : ""}
+											</Text>
+										</View>
 									</Pressable>
 
 									<Text style={styles.text}>
@@ -133,7 +138,10 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		borderColor: ScoutingColors.dimGray,
 		borderWidth: 1,
-		margin: 10
+		margin: 10,
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center"
 	},
 	text: {
 		fontSize: 20,

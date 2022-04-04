@@ -4,6 +4,7 @@ export const matchSlice = createSlice({
 	name: "matchSlice",
 	initialState: {
 		matches: [],
+		selectedMatches: {}
 	},
 	reducers: {
 		writeMatch: (state, action) => {
@@ -42,17 +43,31 @@ export const matchSlice = createSlice({
 		resetMatches: (state) => {
 			// resets ALL the matches
 			state.matches = [];
+		},
+
+		toggleSelectMatch: (state, action) => {
+			const matchKey = action.payload;
+			
+			// i love that both !false and !undefined equal true
+			// javascript makes coding so lazily fun..!
+			state.selectedMatches[matchKey] = !state.selectedMatches[matchKey];
+			if (!state.selectedMatches[matchKey]) delete state.selectedMatches[matchKey];
+			
+			// to get list of selected matches:
+			// Object.keys(state.selectedMatches)
 		}
 	},
 });
 
 // dispatch(writeMatch(kpv))
 
-export const { writeMatch, importMatches, deleteMatch, resetMatches } = matchSlice.actions;
+export const { writeMatch, importMatches, deleteMatch, resetMatches, toggleSelectMatch } = matchSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectMatches = state => state.matches.matches;
+// what a funny name
+export const selectSelectedMatches = state => state.matches.selectedMatches;
 
 export default matchSlice.reducer;
