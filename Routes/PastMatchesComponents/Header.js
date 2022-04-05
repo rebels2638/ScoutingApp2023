@@ -17,7 +17,7 @@ import { setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 
 import { selectMatches, selectSelectedMatches } from "../../Redux/Features/matchSlice.js";
 
-import { resetMatches } from "../../Redux/Features/matchSlice.js";
+import { deleteMatches } from "../../Redux/Features/matchSlice.js";
 import { FileSystem } from "react-native-unimodules";
 import ScoutingColors from "../../Config/ScoutingColors.js";
 
@@ -34,20 +34,20 @@ export default function Header() {
 	// get value from store
 	const selectedTeam = useSelector(selectID(arenaID));
 
-	const clickResetMatches = () => {
+	const clickDeleteMatches = () => {
 		if (Platform.OS === "web") {
-			if (confirm("Are you ABSOLUTELY SURE you want to clear all matches?")) {
+			if (confirm("Are you ABSOLUTELY SURE you want to delete all matches?")) {
 				AsyncStorage.removeItem("matches");
-				dispatch(resetMatches());
+				dispatch(deleteMatches());
 				alert("Cleared all the matches!");
 			}
 		} else {
 			Alert.alert(
-				"Reset", "Are you ABSOLUTELY SURE you want to clear all matches? This action is not reversible.",
+				"Reset", "Are you ABSOLUTELY SURE you want to delete all matches? This action is not reversible.",
 				[
 					{ text: "Reset", onPress: () => {
 						AsyncStorage.removeItem("matches");
-						dispatch(resetMatches());
+						dispatch(deleteMatches());
 						alert("Cleared all the matches!");
 					}},
 					{ text: "Cancel", style: "cancel" }
@@ -106,7 +106,7 @@ export default function Header() {
 		}}>
 			<Text style={styles.headerText}>2022 - Rapid React{"\n"}</Text>
 			<View style={styles.linkContainer}>
-				<Link color="red" onPress={clickResetMatches}>Delete All Matches</Link>
+				<Link color="red" onPress={clickDeleteMatches}>Delete All Matches</Link>
 
 				<Link color="blue" onPress={clickExportAllMatches}>Export All Matches</Link>
 			</View>

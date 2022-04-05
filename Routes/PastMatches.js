@@ -11,7 +11,7 @@ import Header from "./PastMatchesComponents/Header.js";
 import ScoutingColors from "../Config/ScoutingColors";
 
 import { useDispatch, useSelector } from "react-redux";
-import { deleteMatch, selectMatches, selectSelectedMatches, toggleSelectMatch } from "../Redux/Features/matchSlice.js";
+import { deleteSingleMatch, selectMatches, selectSelectedMatches, toggleSelectMatch } from "../Redux/Features/matchSlice.js";
 import { loadMatch } from "../Redux/Features/dataSlice.js";
 
 import { Constants } from "react-native-unimodules";
@@ -37,7 +37,7 @@ export default function PastMatches(props) {
 				matches.splice(mki, 1);
 				AsyncStorage.setItem("matches", JSON.stringify(matches));
 
-				dispatch(deleteMatch(matchKey));
+				dispatch(deleteSingleMatch(matchKey));
 			}
 		} else {
 			Alert.alert(
@@ -49,7 +49,7 @@ export default function PastMatches(props) {
 						matches.splice(mki, 1);
 						AsyncStorage.setItem("matches", JSON.stringify(matches));
 
-						dispatch(deleteMatch(matchKey));
+						dispatch(deleteSingleMatch(matchKey));
 					}},
 					{ text: "Cancel", style: "cancel" }
 				]
