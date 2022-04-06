@@ -4,7 +4,8 @@ import {
 	StyleSheet,
 	Text,
 	Image,
-	Linking
+	Linking,
+	Dimensions
 } from "react-native";
 import Link from "../Components/Utility/Link";
 import Header from "./AboutComponents/Header";
@@ -16,12 +17,12 @@ export default function About() {
 	const spacer = <Text>{"\n\n"}</Text>;
 
 	return (
-		<View style={styles.flex}>
-			<View style={{ flex: 1 }}>
+		<View style={{ flex: 1 }}>
+			<View style={{ height: Dimensions.get('window').height*0.123 }}>
 				<Header />
 			</View>
 
-			<View style={{ flex: 7 }}>
+			<View style={{ flex: 1 }}>
 				<ScrollView>
 					<View style={styles.credits}>
 						<Image

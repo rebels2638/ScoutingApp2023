@@ -4,7 +4,8 @@ import {
 	FlatList,
 	Pressable,
 	Text,
-	Platform
+	Platform,
+	Dimensions
 } from "react-native";
 
 import Header from "./PastMatchesComponents/Header.js";
@@ -58,12 +59,12 @@ export default function PastMatches(props) {
 	};
 
 	return (
-		<View>
-			<View style={{ flex: 1 }}>
+		<View style={{ flex: 1 }}>
+			<View style={{ height: Dimensions.get('window').height*0.123 }}>
 				<Header />
 			</View>
 
-			<View style={{ flex: 9 }}>
+			<View style={{ flex: 1 }}>
 				<FlatList
 					data={matches}
 					renderItem={(data) => {

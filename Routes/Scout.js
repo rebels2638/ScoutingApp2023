@@ -1,6 +1,7 @@
 import {
 	View,
-	ScrollView
+	ScrollView,
+	Dimensions
 } from "react-native";
 
 import Header from "./ScoutComponents/Header.js";
@@ -15,11 +16,11 @@ import Other from "./ScoutComponents/Other.js";
 export default function Scout() {
 	return (
 		<View style={{ flex: 1 }}>
-			<View style={{ flex: 1, justifyContent: "center" }}>
+			<View style={{ height: Dimensions.get('window').height*0.123 }}>
 				<Header />
 			</View>
 
-			<View style={{ flex: 7 }}>
+			<View style={{ flex: 1 }}>
 				<ScrollView>
 					<MatchInfoContainer />
 					<Autonomous />
