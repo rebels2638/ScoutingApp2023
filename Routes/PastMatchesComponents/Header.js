@@ -27,6 +27,7 @@ export default function Header() {
 
 	const matches = useSelector(selectMatches);
 	const selectedMatches = useSelector(selectSelectedMatches);
+	const selectedMatchKeysLength = Object.keys(selectedMatches).length;
 
 	// set default value
 	dispatch(setDefault([arenaID, 0]));
@@ -97,6 +98,7 @@ export default function Header() {
 		
 	}
 
+
 	return (
 		<View style={{
 			backgroundColor: selectedTeam == 1 ? ScoutingColors.lightRed : ScoutingColors.lightBlue,
@@ -106,9 +108,19 @@ export default function Header() {
 		}}>
 			<Text style={styles.headerText}>2022 - Rapid React{"\n"}</Text>
 			<View style={styles.linkContainer}>
-				<Link color="red" onPress={clickDeleteMatches}>Delete All Matches</Link>
+				<Link color="red" onPress={clickDeleteMatches}>
+					{selectedMatchKeysLength===0? 
+						"Delete All Matches" :
+						`Delete ${selectedMatchKeysLength} Match${selectedMatchKeysLength===1? "" : "es"}`
+					}
+				</Link>
 
-				<Link color="blue" onPress={clickExportAllMatches}>Export All Matches</Link>
+				<Link color="blue" onPress={clickExportAllMatches}>
+					{selectedMatchKeysLength===0? 
+						"Export All Matches" :
+						`Export ${selectedMatchKeysLength} Match${selectedMatchKeysLength===1? "" : "es"}`
+					}
+				</Link>
 			</View>
 		</View>
 	);
