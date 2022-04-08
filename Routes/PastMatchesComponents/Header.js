@@ -77,7 +77,8 @@ export default function Header() {
 
 	const clickExportAllMatches = () => {
 		// write new csv file
-		const output = kpvToCsv(matches);
+		const filteredMatches = matches.filter(([matchKey]) => Object.keys(selectedMatches).includes(matchKey));
+		const output = kpvToCsv(filteredMatches);
 
 		Platform.OS == "web"
 			? webExport(output, `scouting-${Date.now()}.csv`)
@@ -112,7 +113,6 @@ export default function Header() {
 		} catch (e) {
 			alert(e.message);
 		}
-		
 	}
 
 
