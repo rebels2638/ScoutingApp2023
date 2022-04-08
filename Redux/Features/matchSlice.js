@@ -41,14 +41,15 @@ export const matchSlice = createSlice({
 		},
 
 		deleteMatches: (state) => {
-			const selectedMatchKeys = Object.keys(state.matches.selectedMatches);
+			const selectedMatchKeys = Object.keys(state.selectedMatches);
 			// check if selectedMatches is empty. if so,
 			if (selectedMatchKeys.length === 0) {
 				// resets ALL the matches
 				state.matches = [];
 			} else {
 				// otherwise only reset the selected matches, clear selectedMatches
-				state.matches = state.matches.filter(([matchKey]) => !selectedMatchKeys.includes(matchKey))
+				state.matches = state.matches.filter(([matchKey]) => !selectedMatchKeys.includes(matchKey));
+				state.selectedMatches = {};
 			}
 		},
 
@@ -61,7 +62,7 @@ export const matchSlice = createSlice({
 			if (!state.selectedMatches[matchKey]) delete state.selectedMatches[matchKey];
 			
 			// to get list of selected matches:
-			// Object.keys(state.matches.selectedMatches)
+			// Object.keys(state.selectedMatches)
 		}
 	},
 });

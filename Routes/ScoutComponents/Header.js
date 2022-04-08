@@ -62,7 +62,7 @@ export default function Header() {
 			// formatting
 			// prepend "and " to last item
 			// 1, 2, 3, 4, and 5 are blank
-			if (blank.length > 1) { blank[blank.length - 1] = "and " + blank[blank.length - 1]; }
+			if (blank.length > 1) blank[blank.length - 1] = "and " + blank[blank.length - 1];
 
 			alert(`${blank.join(", ")} is blank!`);
 			// stop save()'ing
@@ -119,9 +119,7 @@ export default function Header() {
 	function saveAndExport() {
 		save(final => {
 			if (final === undefined) return;
-
 			const output = kpvToCsv([final]);
-			console.log(output);
 
 			Platform.OS == "web"
 				? webExport(output, "data.csv")

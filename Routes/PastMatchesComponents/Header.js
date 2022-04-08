@@ -36,20 +36,38 @@ export default function Header() {
 	const selectedTeam = useSelector(selectID(arenaID));
 
 	const clickDeleteMatches = () => {
-		if (Platform.OS === "web") {
-			if (confirm("Are you ABSOLUTELY SURE you want to delete all matches?")) {
+		const humanizedMatchText = selectedMatchKeysLength===0? 
+						"all matches" :
+						`${selectedMatchKeysLength} match${selectedMatchKeysLength===1? "" : "es"}`;
+
+		const imLookingForwardToFriday = async () => {
+			if (selectedMatchKeysLength === 0) {
 				AsyncStorage.removeItem("matches");
+			} else {
+				const matchString = await AsyncStorage.getItem("matches");
+				const filteredMatches = JSON.parse(matchString).filter(([matchKey]) => !Object.keys(selectedMatches).includes(matchKey))
+				AsyncStorage.setItem("matches", JSON.stringify(filteredMatches));
+			}
+		}
+		
+		if (Platform.OS === "web") {
+			if (confirm(`Are you ABSOLUTELY SURE you want to delete ${humanizedMatchText}?`)) {
+				//AsyncStorage.removeItem("matches");
+				imLookingForwardToFriday();
+
 				dispatch(deleteMatches());
-				alert("Cleared all the matches!");
+				alert(`Cleared ${humanizedMatchText}!`);
 			}
 		} else {
 			Alert.alert(
-				"Reset", "Are you ABSOLUTELY SURE you want to delete all matches? This action is not reversible.",
+				"Reset", `Are you ABSOLUTELY SURE you want to delete ${humanizedMatchText}? This action is not reversible.`,
 				[
 					{ text: "Reset", onPress: () => {
-						AsyncStorage.removeItem("matches");
+						//AsyncStorage.removeItem("matches");
+						imLookingForwardToFriday();
+						
 						dispatch(deleteMatches());
-						alert("Cleared all the matches!");
+						alert(`Cleared ${humanizedMatchText}!`);
 					}},
 					{ text: "Cancel", style: "cancel" }
 				]
@@ -67,7 +85,6 @@ export default function Header() {
 	};
 
 	function webExport(content, fileName) {
-		console.log("NAY");
 		let a = document.createElement("a"); 
 		let mimeType = "text/csv;encoding:utf-8";
 
