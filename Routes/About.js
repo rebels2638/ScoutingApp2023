@@ -31,7 +31,7 @@ export default function About() {
 						/>
 
 						{title("2638 Scout")}
-						{text("Version 4.1.0 3/16/2022")}
+						{text("Version 4.2.0 4/8/2022")}
 
 						{spacer}
 
