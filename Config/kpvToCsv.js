@@ -113,11 +113,12 @@ export default function kpvToCsv(matches) {
 		name: "Time",
 		vf: kpv => {
 			const seconds = kpv["Time"];
-
-			const fMinutes = (seconds - (seconds % 60)) / 60;
+			/*const fMinutes = (seconds - (seconds % 60)) / 60;
 			const fSeconds = ((seconds % 60) + "").padStart(2, "0");
-
-			return `${fMinutes}:${fSeconds}`
+			return `${fMinutes}:${fSeconds}`*/
+			
+			// don't bother formatting, just return raw seconds
+			return seconds;
 		}
 	}, {
 		name: "Endgame Comments",
