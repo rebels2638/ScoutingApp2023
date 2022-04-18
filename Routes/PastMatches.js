@@ -5,7 +5,8 @@ import {
 	Pressable,
 	Text,
 	Platform,
-	Dimensions
+	Dimensions,
+	Alert
 } from "react-native";
 
 import Header from "./PastMatchesComponents/Header.js";
