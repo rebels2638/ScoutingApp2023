@@ -7,8 +7,12 @@ import {
 	Dimensions
 } from "react-native";
 import { Text } from "../Components/Themed/Text";
+import RadioButton from "../Components/Buttons/RadioButton";
 import Link from "../Components/Utility/Link";
 import Header from "./AboutComponents/Header";
+
+import themes from "../Config/Themes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function About() {
 	const title = input => <Text style={styles.title}>{input}</Text>;
@@ -32,6 +36,17 @@ export default function About() {
 
 						{title("2638 Scout")}
 						{text("Version 4.2.0 4/8/2022")}
+
+						{spacer}
+						{text("Custom Theme")}
+						<RadioButton 
+							id="ThemeSelector"
+							data={["auto", ...Object.keys(themes)]}
+							default={"auto"}
+							onPress={(i) => AsyncStorage.setItem("theme", i+"")}
+							bgc="orange" options={{flexDirection: "row"}}
+							segmentedButton forceOption 
+						/>
 
 						{spacer}
 

@@ -28,7 +28,10 @@ export default function RadioButton(props) {
 				props.data.map((v, i) =>
 					<Pressable
 						key={v}
-						onPress={() => {dispatch(setKeyPair([props.id, i]))}}
+						onPress={() => {
+							dispatch(setKeyPair([props.id, i]));
+							if (props.onPress) props.onPress(i);
+						}}
 					>
 						<View style={{
 							justifyContent: "center",
