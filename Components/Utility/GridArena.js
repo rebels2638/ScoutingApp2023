@@ -6,9 +6,11 @@ import {
 
 import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
 import { useSelector, useDispatch } from "react-redux";
+import { useTheme } from "@react-navigation/native";
 
 export default function GridArena(props) {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 	const arenaID = "Team";
 
 	// set default value
@@ -46,7 +48,7 @@ export default function GridArena(props) {
 				<ImageBackground
 					source={require("../../Assets/2022Field.png")}
 					style={{ width: width, height: height, marginTop: 20 }}
-					imageStyle={{ borderRadius: 10 }}
+					imageStyle={{ borderRadius: 10, borderColor: colors.border }}
 				>
 					{/** this.props.items
 					 * in an effort to make item positioning easier, we have a custom arena wrapper

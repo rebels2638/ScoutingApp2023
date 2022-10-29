@@ -10,9 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { FontAwesome } from "react-native-vector-icons";
 import ScoutingColors from "../../Config/ScoutingColors.js";
+import { useTheme } from "@react-navigation/native";
 
 export default function Incrementer(props) {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 
 	// set default value
 	dispatch(setDefault([props.id, props.default || 0]));
@@ -32,7 +34,7 @@ export default function Incrementer(props) {
 				</View>
 			</TouchableOpacity>
 
-			<Text style={{ fontSize: 30 }}>{props.max ? `${value}/${props.max}` : value+""}</Text>
+			<Text style={{ fontSize: 30, color: colors.text }}>{props.max ? `${value}/${props.max}` : value+""}</Text>
 
 			<TouchableOpacity onPress={() => {
 				// first make sure max value exists, then do comparison
@@ -50,7 +52,6 @@ export default function Incrementer(props) {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: ScoutingColors.white,
 		flex: 1,
 		flexDirection: "row"
 	},

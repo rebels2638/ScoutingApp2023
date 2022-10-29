@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {
-	View,
-	Text
+	View
 } from "react-native";
+import { Text } from "../../Components/Themed/Text";
 import BoolButton from "../Buttons/BoolButton.js";
 
 import { setKeyPair, setDefault, selectID, selectBlendedID, consumeBlend } from "../../Redux/Features/dataSlice.js";

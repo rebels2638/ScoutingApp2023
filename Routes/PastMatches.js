@@ -1,13 +1,14 @@
 import {
 	StyleSheet,
 	View,
+	Text as RNText,
 	FlatList,
 	Pressable,
-	Text,
 	Platform,
 	Dimensions,
 	Alert
 } from "react-native";
+import { Text } from "../Components/Themed/Text";
 
 import Header from "./PastMatchesComponents/Header.js";
 import ScoutingColors from "../Config/ScoutingColors";
@@ -19,9 +20,11 @@ import { loadMatch } from "../Redux/Features/dataSlice.js";
 import { Constants } from "react-native-unimodules";
 import Link from "../Components/Utility/Link.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTheme } from "@react-navigation/native";
 
 export default function PastMatches(props) {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 
 	// get value from store
 	const matches = useSelector(selectMatches);
@@ -80,15 +83,16 @@ export default function PastMatches(props) {
 								// the VERY VERY lazy solution
 								dispatch(loadMatch(matchData));
 							}}>
-								<View style={styles.item}>
+								<View style={[styles.item, {borderColor: colors.border}]}>
 									<Pressable onPress={() => dispatch(toggleSelectMatch(matchKey))}>
 										<View style={[
 											styles.teamIndicator,
-											{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue)}
+											{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue),
+											borderColor: colors.border}
 										]}>
-											<Text style={{ fontSize: 35 }}>
+											<RNText style={{ fontSize: 35 }}>
 												{selectedMatches[matchKey] === true? "X" : ""}
-											</Text>
+											</RNText>
 										</View>
 									</Pressable>
 
@@ -127,7 +131,6 @@ const styles = StyleSheet.create({
 		marginTop: Constants.statusBarHeight,
 	},
 	item: {
-		borderColor: ScoutingColors.dimGray,
 		borderWidth: 1,
 		padding: 20,
 		display: "flex",
@@ -138,7 +141,6 @@ const styles = StyleSheet.create({
 		width: 50,
 		height: 50,
 		borderRadius: 20,
-		borderColor: ScoutingColors.dimGray,
 		borderWidth: 1,
 		margin: 10,
 		display: "flex",

@@ -10,13 +10,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Octicons } from "react-native-vector-icons";
 
 import store from "./Redux/Store.js";
-import { Provider, useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { importMatches } from "./Redux/Features/matchSlice.js";
 
 import Scout from "./Routes/Scout.js";
 import PastMatches from "./Routes/PastMatches.js";
 import About from "./Routes/About.js";
 import ScoutingColors from "./Config/ScoutingColors";
+import RadioButton from "./Components/Buttons/RadioButton";
+import { selectID, setDefault, setKeyPair } from "./Redux/Features/dataSlice";
+import { useEffect } from "react";
 
 // create bottom tab navigation
 const Tab = createBottomTabNavigator();
@@ -71,34 +74,59 @@ function ASS() {
 	return <></>;
 }
 
-function ThemeManager() {
-	return <></>
+function ThemedApp() {
+	const dispatch = useDispatch();
+	const scheme = useColorScheme() || "light";
+	const selectedThemeIndex = useSelector(selectID("ThemeSelector"));
+	
+	useEffect(() => {
+		const setupThemes = async () => {
+			const storedThemeIndex = await AsyncStorage.getItem("theme");
+			console.log("natsumi", storedThemeIndex);
+
+			if (storedThemeIndex == null) {
+				// default to Auto
+				await AsyncStorage.setItem("theme", "0");
+				dispatch(setKeyPair(["ThemeSelector", 0]));
+			} else {
+				dispatch(setKeyPair(["ThemeSelector", Number(storedThemeIndex)]));
+			}
+		}
+
+		setupThemes();
+	}, []);
+
+	// if index is 0, resort to system theme. otherwise, select out of themes[i-1]
+	const selectedThemeName = selectedThemeIndex===0? scheme : Object.keys(themes)[selectedThemeIndex-1];
+	
+	return (
+		<>
+			{/* 
+			<RadioButton id="ThemeSelector" data={["auto", ...Object.keys(themes)]} default={"auto"} bgc="orange" segmentedButton forceOption  options={{flexDirection: "row"}}/>
+			*/}
+			<NavigationContainer theme={themes[selectedThemeName]}>
+				<MyTabs />
+			</NavigationContainer>
+
+			<StatusBar style={scheme} />
+		</>
+	);
 }
 
 export default function App() {
 	// make store global bc I want to see the data pls
 	window.natsumi = store;
-
 	// themes
 	window.themes = themes;
 
 	// shut up console.warn
 	// console.warn = () => {}
 
-	const scheme = useColorScheme();
-
 	return (
 		<Provider store={store}>
 			{/** ASS must be inside the Provider to dispatch importMatches(), so I made it into a component. */}
 			<ASS />
-			<ThemeManager />
-
-			{/** <NavigationContainer theme={scheme === "dark" ? DarkTheme : DefaultTheme} > */}
-			<NavigationContainer>
-				<MyTabs />
-			</NavigationContainer>
-
-			<StatusBar style="dark" />
+			<ThemedApp />
 		</Provider>
 	);
 }

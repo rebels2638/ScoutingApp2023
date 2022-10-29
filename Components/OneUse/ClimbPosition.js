@@ -1,16 +1,20 @@
 import {
 	StyleSheet,
-	Text,
 	View,
+	Text as RNText,
 	Pressable,
 	ImageBackground
 } from "react-native";
+import { Text } from "../../Components/Themed/Text";
+
 import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import ScoutingColors from "../../Config/ScoutingColors.js";
+import { useTheme } from "@react-navigation/native";
 
 export default function ClimbPosition(props) {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 
 	dispatch(setDefault([props.id, 0]));
 	const selectedIndex = useSelector(selectID(props.id));
@@ -32,7 +36,11 @@ export default function ClimbPosition(props) {
 		<View style={{ alignItems: "center" }}>
 			<Text style={{ fontWeight: "bold", fontSize: 20 }}>Climb Position</Text>
 
-			<ImageBackground source={require("../../Assets/ClimbPosition2022.png")} style={{ width: width, height: height }}>
+			<ImageBackground 
+				source={require("../../Assets/ClimbPosition2022.png")}
+				style={{ width: width, height: height }}
+				imageStyle={{ borderRadius: 10 }}
+			>
 				{
 					data.map((v, i) => {
 						const [value, position] = v;
@@ -42,10 +50,12 @@ export default function ClimbPosition(props) {
 							<Pressable onPress={() => {dispatch(setKeyPair([props.id, i]))}} key={v}>
 								<View style={[
 									styles.button,
-									{ position: "absolute", left: width*x, top: height*y, key: value },
-									{ backgroundColor: (selectedIndex === i ? props.bgc : ScoutingColors.white) }
+									{ position: "absolute", left: width*x, top: height*y, key: value,
+										borderRadius: 10,
+										borderColor: colors.border,
+										backgroundColor: (selectedIndex===i? props.bgc : colors.background)}
 								]}>
-									<Text style={{ textAlign: "center" }}>{value}</Text>
+									<RNText style={{ textAlign: "center", color: (selectedIndex===i? "#000" : colors.text) }}>{value}</RNText>
 								</View>
 							</Pressable>
 						);

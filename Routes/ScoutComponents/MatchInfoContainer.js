@@ -1,27 +1,28 @@
 import {
 	StyleSheet,
-	Text,
 	View,
 	Image
 } from "react-native";
+import { Text } from "../../Components/Themed/Text";
 
 import Incrementer from "../../Components/Utility/Incrementer.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
 import RadioButton from "../../Components/Buttons/RadioButton.js";
-import ScoutingColors from "../../Config/ScoutingColors";
 import { useSelector } from "react-redux";
 import { selectID } from "../../Redux/Features/dataSlice.js";
 import BoolButton from "../../Components/Buttons/BoolButton.js";
+import { useTheme } from "@react-navigation/native";
 
 export default function MatchInfoContainer() {
 	const selectedTeam = useSelector(selectID("Team"));
+	const { colors } = useTheme();
 
 	return (
-		<View style={styles.container}>
+		<View style={{backgroundColor: colors.background, paddingHorizontal: 50, paddingVertical: 20}}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Match Info</Text>
 
-			<View style={styles.matchInfoContainer}>
-				<View style={styles.piecesContainer}>
+			<View style={[styles.boundingBox, {borderColor: colors.border}]}>
+				<View style={[styles.piecesContainer, {backgroundColor: colors.card}]}>
 					<View style={styles.inputContainer}>
 						<Text style={styles.bold}>Team Number: </Text>
 						<View style={{ flex: 1, paddingLeft: 5 }}>
@@ -31,9 +32,7 @@ export default function MatchInfoContainer() {
 
 					<View style={styles.inputContainer}>
 						<Text style={styles.bold}>Match Number: </Text>
-						<Incrementer id="MatchNumber">
-							<CustomTextBox id="MatchNumber" placeholder="2638" keyboardType="numeric" width={40} height={40} />
-						</Incrementer>
+						<Incrementer id="MatchNumber" />
 					</View>
 
 					<View style={styles.inputContainer}>
@@ -45,9 +44,7 @@ export default function MatchInfoContainer() {
 							segmentedButton
 							forceOption
 							default="Qualification"
-							options={{
-								flexDirection: "row",
-							}}
+							options={{flexDirection: "row"}}
 						/>
 					</View>
 
@@ -62,7 +59,7 @@ export default function MatchInfoContainer() {
 
 
 
-				<View style={styles.piecesContainer}>
+				<View style={[styles.piecesContainer, {backgroundColor: colors.card}]}>
 					<View style={styles.inputContainer2}>
 						<Text style={styles.bold}>Starting Game Pieces</Text>
 						<BoolButton id="StartingPieces" bgc="lime" width={160}>Has Game Piece</BoolButton>
@@ -84,11 +81,6 @@ const styles = StyleSheet.create({
 		fontSize: 17,
 		fontWeight: "bold"
 	},
-	container: {
-		backgroundColor: ScoutingColors.white,
-		paddingHorizontal: 50,
-		paddingVertical: 20
-	},
 	inputContainer: {
 		flex: 1,
 		flexDirection: "row",
@@ -101,16 +93,16 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		paddingVertical: 15
 	},
-	matchInfoContainer: {
+	boundingBox: {
 		flex: 1,
 		flexDirection: "row",
-		borderColor: ScoutingColors.black,
 		borderWidth: StyleSheet.hairlineWidth,
-		borderRadius: 10
+		borderRadius: 10,
+		overflow: "hidden"
 	},
 	piecesContainer: {
 		flex: 1,
 		paddingHorizontal: 30,
-		paddingVertical: 10
+		paddingVertical: 10,
 	},
 });

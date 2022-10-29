@@ -5,10 +5,12 @@ import {
 
 import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
 import { useSelector, useDispatch } from "react-redux";
+import { useTheme } from "@react-navigation/native";
 
 export default function Arena(props) {
 	const dispatch = useDispatch();
 	const arenaID = "Team";
+	const { colors } = useTheme();
 
 	// set default value
 	dispatch(setDefault([arenaID, 0]));
@@ -26,7 +28,7 @@ export default function Arena(props) {
 					marginTop: 20,
 					width: 900
 				}}
-				imageStyle={{ borderRadius: 10 }}
+				imageStyle={{ borderRadius: 10, borderColor: colors.border }}
 			>
 				{props.children}
 			</ImageBackground>
