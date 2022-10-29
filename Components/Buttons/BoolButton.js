@@ -4,13 +4,14 @@ import {
 	View,
 	Pressable
 } from "react-native";
+import { useTheme } from '@react-navigation/native';
 
 import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
-import ScoutingColors from "../../Config/ScoutingColors.js";
 
 export default function BoolButton(props) {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 
 	// set default value
 	dispatch(setDefault([props.id, false]));
@@ -27,10 +28,11 @@ export default function BoolButton(props) {
 				styles.boolButtonContainer,
 				{
 					width: (props.width || 100),
-					backgroundColor: (value ? props.bgc : ScoutingColors.white)
+					backgroundColor: (value ? props.bgc : colors.background),
+					borderColor: colors.border
 				}
 			]}>
-				<Text style={styles.textCenter}>{props.children}</Text>
+				<Text style={[styles.textCenter, {color: colors.text}]}>{props.children}</Text>
 			</View>
 		</Pressable>
 	);
