@@ -27,6 +27,7 @@ export default function NumButton(props) {
 				justifyContent: "center",
 				borderRadius: 10,
 				borderWidth: StyleSheet.hairlineWidth,
+				borderColor: colors.border,
 				backgroundColor: colors.background,
 				width: (props.width ? props.width : 100),
 				height: (props.height ? props.height : 40),

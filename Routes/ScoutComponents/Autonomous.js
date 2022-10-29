@@ -1,8 +1,9 @@
 import {
 	StyleSheet,
-	Text,
-	View
+	View,
+	Text as RNText
 } from "react-native";
+import { Text } from "../../Components/Themed/Text";
 
 import BoolButton from "../../Components/Buttons/BoolButton.js";
 import NumButton from "../../Components/Buttons/NumButton.js";
@@ -14,9 +15,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
 import RadioButton from "../../Components/Buttons/RadioButton.js";
 import Spacer from "../../Components/Utility/Spacer.js";
+import { useTheme } from "@react-navigation/native";
 
 function WhiteText(props) {
-	return (<Text style={{ color: "white" }}>{props.children}</Text>);
+	return (<RNText style={{ color: "white" }}>{props.children}</RNText>);
 }
 
 export default function Autonomous() {
@@ -28,11 +30,12 @@ export default function Autonomous() {
 	// get value from store
 	const selectedTeam = useSelector(selectID(arenaID));
 	const color = selectedTeam? "red" : "blue";
+	const { colors } = useTheme();
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, {backgroundColor: colors.background}]}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Autonomous</Text>
-			<View style={styles.autonomousContainer}>
+			<View style={[styles.autonomousContainer, {borderColor: colors.border, backgroundColor: colors.card}]}>
 				<GridArena items={[
 					{ pos: [0.69420, 0.2], com: _=>(<>
 						<NumButton id="AutoUpperHubScored" width={160}>Upper Hub Scored</NumButton>
@@ -96,7 +99,6 @@ export default function Autonomous() {
 						width={900}
 						height={250}
 						placeholder="Type your comments here..."
-						backgroundColor={ScoutingColors.lightGray}
 						borderRadius={10}
 					/>
 				</View>
@@ -108,13 +110,11 @@ export default function Autonomous() {
 const styles = StyleSheet.create({
 	autonomousContainer: {
 		alignItems: "center",
-		borderColor: ScoutingColors.black,
 		borderRadius: 10,
 		borderWidth: StyleSheet.hairlineWidth,
 		flex: 1,
 	},
 	container: {
-		backgroundColor: ScoutingColors.white,
 		paddingHorizontal: 50,
 		paddingVertical: 20
 	},

@@ -51,7 +51,6 @@ export default function Endgame() {
 						width={900}
 						height={250}
 						placeholder="Type your comments here..."
-						backgroundColor={ScoutingColors.lightGray}
 						borderRadius={10}
 					/>
 				</View>
