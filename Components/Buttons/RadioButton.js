@@ -9,9 +9,11 @@ import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice
 import { useDispatch, useSelector } from "react-redux";
 
 import ScoutingColors from "../../Config/ScoutingColors";
+import { useTheme } from "@react-navigation/native";
 
 export default function RadioButton(props) {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 	const BORDER_RADIUS = 10;
 
 	// set default value
@@ -31,10 +33,11 @@ export default function RadioButton(props) {
 						<View style={{
 							justifyContent: "center",
 							borderWidth: StyleSheet.hairlineWidth,
+							borderColor: colors.border,
 							margin: props.margin ? props.margin : 0,
 							width: (props.width ? props.width : 100),
 							height: 40,
-							backgroundColor: (selectedIndex === i ? selectedColor : ScoutingColors.white),
+							backgroundColor: (selectedIndex === i ? selectedColor : colors.background),
 
 							/** The ternary operator pretends to be your friend, until you realize a few months later,
 							 *  when you don't understand any of your code, that it was actually the spawn of Satan
@@ -45,7 +48,7 @@ export default function RadioButton(props) {
 							borderTopRightRadius: props.segmentedButton ? (i == props.data.length - 1 ? BORDER_RADIUS : 0) : BORDER_RADIUS,
 							borderBottomRightRadius: props.segmentedButton ? (i == props.data.length - 1 ? BORDER_RADIUS : 0) : BORDER_RADIUS
 						}}>
-							<Text style={{ textAlign: "center" }}>{v}</Text>
+							<Text style={{ textAlign: "center", color: (selectedIndex === i? "#000" : colors.text) }}>{v}</Text>
 						</View>
 					</Pressable>
 				)
