@@ -78,7 +78,7 @@ function ThemedApp() {
 	const selectedTheme = useSelector(selectID("ThemeSelector"));
 	return (
 		<>
-			<RadioButton id="ThemeSelector" data={Object.keys(themes)} bgc="orange" segmentedButton forceOption default="default" options={{flexDirection: "row"}}/>
+			<RadioButton id="ThemeSelector" data={Object.keys(themes)} default={"dark"} bgc="orange" segmentedButton forceOption  options={{flexDirection: "row"}}/>
 			<NavigationContainer theme={themes[Object.keys(themes)[selectedTheme]]}> {/* themes[selectedTheme] */}
 			{/*<NavigationContainer>*/}
 				<MyTabs />

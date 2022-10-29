@@ -24,27 +24,18 @@ export default function BoolButton(props) {
 			props.press && props.press();
 			dispatch(setKeyPair([props.id, !value]));
 		}}>
-			<View style={[
-				styles.boolButtonContainer,
-				{
-					width: (props.width || 100),
-					backgroundColor: (value ? props.bgc : colors.background),
-					borderColor: colors.border
-				}
-			]}>
-				<Text style={[styles.textCenter, {color: colors.text}]}>{props.children}</Text>
+			<View style={{
+				justifyContent: "center",
+				borderRadius: 10,
+				borderWidth: StyleSheet.hairlineWidth,
+				margin: 10,
+				height: 40,
+				width: (props.width || 100),
+				backgroundColor: (value ? props.bgc : colors.background),
+				borderColor: colors.border
+			}}>
+				<Text style={{textAlign: "center", color: colors.text}}>{props.children}</Text>
 			</View>
 		</Pressable>
 	);
 }
-
-const styles = new StyleSheet.create({
-	boolButtonContainer: {
-		justifyContent: "center",
-		borderRadius: 10,
-		borderWidth: StyleSheet.hairlineWidth,
-		margin: 10,
-		height: 40,
-	},
-	textCenter: { textAlign: "center" }
-});

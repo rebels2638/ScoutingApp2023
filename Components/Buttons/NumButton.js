@@ -5,13 +5,13 @@ import {
 	Pressable
 } from "react-native";
 
-import ScoutingColors from "../../Config/ScoutingColors";
-
 import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
+import { useTheme } from "@react-navigation/native";
 
 export default function NumButton(props) {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 
 	// set default value
 	dispatch(setDefault([props.id, props.default || false]));
@@ -20,25 +20,20 @@ export default function NumButton(props) {
 
 	return (
 		<Pressable
-			onPress={() => {
-				dispatch(setKeyPair([props.id, value + 1]));
-			}}
-			onLongPress={() => {
-				dispatch(setKeyPair([props.id, Math.max((value - 1), 0)]));
-			}}
+			onPress={() => {dispatch(setKeyPair([props.id, value + 1]));}}
+			onLongPress={() => {dispatch(setKeyPair([props.id, Math.max((value - 1), 0)]));}}
 		>
 			<View style={{
 				justifyContent: "center",
 				borderRadius: 10,
 				borderWidth: StyleSheet.hairlineWidth,
+				backgroundColor: colors.background,
 				width: (props.width ? props.width : 100),
 				height: (props.height ? props.height : 40),
-				backgroundColor: ScoutingColors.white,
+				backgroundColor: colors.background,
 				justifyContent: "center",
 			}}>
-				<View style={{ flex: 1, justifyContent: "center" }}>
-					<Text style={{ textAlign: "center" }}>{props.children} {`(${value})`}</Text>
-				</View>
+				<Text style={{ textAlign: "center", color: colors.text, }}>{props.children} {`(${value})`}</Text>
 			</View>
 		</Pressable>
 	);
