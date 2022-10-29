@@ -12,13 +12,13 @@ import ScoutingColors from "../../Config/ScoutingColors";
 
 export default function RadioButton(props) {
 	const dispatch = useDispatch();
+	const BORDER_RADIUS = 10;
 
 	// set default value
-	dispatch(setDefault([props.id, 0]));
+	dispatch(setDefault([props.id, (props.data.findIndex(v => v===props.default)) || 0]));
 	// get value from store
 	const selectedIndex = useSelector(selectID(props.id));
-
-	const BORDER_RADIUS = 10;
+	const selectedColor = props.bgc || "orange";
 
 	return (
 		<View style={{ ...props.options }}>
@@ -26,9 +26,7 @@ export default function RadioButton(props) {
 				props.data.map((v, i) =>
 					<Pressable
 						key={v}
-						onPress={() => {
-							dispatch(setKeyPair([props.id, i]));
-						}}
+						onPress={() => {dispatch(setKeyPair([props.id, i]))}}
 					>
 						<View style={{
 							justifyContent: "center",
@@ -36,7 +34,7 @@ export default function RadioButton(props) {
 							margin: props.margin ? props.margin : 0,
 							width: (props.width ? props.width : 100),
 							height: 40,
-							backgroundColor: (selectedIndex === i ? props.bgc : ScoutingColors.white),
+							backgroundColor: (selectedIndex === i ? selectedColor : ScoutingColors.white),
 
 							/** The ternary operator pretends to be your friend, until you realize a few months later,
 							 *  when you don't understand any of your code, that it was actually the spawn of Satan

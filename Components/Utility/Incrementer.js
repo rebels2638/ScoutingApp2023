@@ -15,7 +15,7 @@ export default function Incrementer(props) {
 	const dispatch = useDispatch();
 
 	// set default value
-	dispatch(setDefault([props.id, 0]));
+	dispatch(setDefault([props.id, props.default || 0]));
 	// get value from store
 	const value = useSelector(selectID(props.id));
 
