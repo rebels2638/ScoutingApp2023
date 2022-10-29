@@ -12,10 +12,10 @@ import ScoutingColors from "../../Config/ScoutingColors";
 
 export default function CustomTextBox(props) {
 	const dispatch = useDispatch();
-	const [text, setText] = useState("");
+	const [text, setText] = useState(props.default || "");
 	
 	// set default value
-	dispatch(setDefault([props.id, ""]));
+	dispatch(setDefault([props.id, props.default || ""]));
 
 	// get value from store
 	const reduxText = useSelector(selectID(props.id));
