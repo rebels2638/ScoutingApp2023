@@ -13,6 +13,7 @@ import { useTheme } from "@react-navigation/native";
 export default function CustomTextBox(props) {
 	const dispatch = useDispatch();
 	const { colors } = useTheme();
+
 	const [text, setText] = useState(props.default || "");
 	
 	// set default value

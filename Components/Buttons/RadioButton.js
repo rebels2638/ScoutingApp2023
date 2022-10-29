@@ -14,6 +14,7 @@ import { useTheme } from "@react-navigation/native";
 export default function RadioButton(props) {
 	const dispatch = useDispatch();
 	const { colors } = useTheme();
+
 	const BORDER_RADIUS = 10;
 
 	// set default value
