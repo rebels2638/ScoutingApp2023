@@ -2,11 +2,11 @@ import {
 	View,
 	ScrollView,
 	StyleSheet,
-	Text,
 	Image,
 	Linking,
 	Dimensions
 } from "react-native";
+import { Text } from "../Components/Themed/Text";
 import Link from "../Components/Utility/Link";
 import Header from "./AboutComponents/Header";
 

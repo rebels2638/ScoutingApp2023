@@ -31,10 +31,10 @@ export default function BoolButton(props) {
 				margin: 10,
 				height: 40,
 				width: (props.width || 100),
-				backgroundColor: (value ? props.bgc : colors.background),
+				backgroundColor: (value? props.bgc : colors.background),
 				borderColor: colors.border
 			}}>
-				<Text style={{textAlign: "center", color: colors.text}}>{props.children}</Text>
+				<Text style={{textAlign: "center", color: (value? "#000" : colors.text)}}>{props.children}</Text>
 			</View>
 		</Pressable>
 	);

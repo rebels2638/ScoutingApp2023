@@ -1,18 +1,20 @@
 import {
 	StyleSheet,
-	Text,
 	View
 } from "react-native";
+import { Text } from "../../Components/Themed/Text";
 
 import BoolButton from "../../Components/Buttons/BoolButton";
 import NumButton from "../../Components/Buttons/NumButton";
-import ScoutingColors from "../../Config/ScoutingColors";
+import { useTheme } from "@react-navigation/native";
 
 export default function Other() {
+	const { colors } = useTheme();
+
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, {backgroundColor: colors.background}]}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Other</Text>
-			<View style={styles.otherContainer}>
+			<View style={[styles.otherContainer, {backgroundColor: colors.card, borderColor: colors.border}]}>
 				<NumButton id="FoulCount" width={160}>Fouls</NumButton>
 				<BoolButton id="YellowCard" bgc="yellow" width={160}>Yellow Card</BoolButton>
 				<BoolButton id="RedCard" bgc="red" width={160}>Red Card</BoolButton>
@@ -24,7 +26,6 @@ export default function Other() {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: ScoutingColors.white,
 		paddingHorizontal: 50,
 		paddingVertical: 20
 	},
@@ -33,7 +34,6 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-around",
-		borderColor: ScoutingColors.black,
 		borderWidth: StyleSheet.hairlineWidth,
 		borderRadius: 10,
 		paddingVertical: 20,

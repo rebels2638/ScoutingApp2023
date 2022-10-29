@@ -1,30 +1,31 @@
 import {
 	StyleSheet,
-	Text,
 	View
 } from "react-native";
+import { Text } from "../../Components/Themed/Text";
 
-import NumButton from "../../Components/Buttons/NumButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox";
 import Timer from "../../Components/OneUse/Timer.js";
 import ClimbPosition from "../../Components/OneUse/ClimbPosition.js";
 import ScoutingColors from "../../Config/ScoutingColors";
-import { useDispatch, useSelector } from "react-redux";
-import { setDefault, selectID } from "../../Redux/Features/dataSlice.js";
+import { useDispatch } from "react-redux";
+import { setDefault } from "../../Redux/Features/dataSlice.js";
 import BoolButton from "../../Components/Buttons/BoolButton.js";
+import { useTheme } from "@react-navigation/native";
 
 export default function Endgame() {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 	const endgameID = "EndgameType";
 
 	// set default value
 	dispatch(setDefault([endgameID, 0]));
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, {backgroundColor: colors.background}]}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Endgame</Text>
 
-			<View style={styles.endgameContainer}>
+			<View style={[styles.endgameContainer, {borderColor: colors.border, backgroundColor: colors.card}]}>
 				<View style={{flexDirection: "row", justifyContent: "space-evenly"}}>
 					<View style={{justifyContent: "space-evenly", alignItems: "center"}}>
 						<BoolButton id="FailedClimbPosition" width={120} bgc="red">Failed</BoolButton>
@@ -74,13 +75,11 @@ const styles = StyleSheet.create({
 		alignItems: "center"
 	},
 	container: {
-		backgroundColor: ScoutingColors.white,
 		paddingHorizontal: 50,
 		paddingVertical: 20
 	},
 	endgameContainer: {
 		alignItems: "center",
-		borderColor: ScoutingColors.black,
 		borderRadius: 10,
 		borderWidth: StyleSheet.hairlineWidth,
 		padding: 20

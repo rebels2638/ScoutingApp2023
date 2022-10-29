@@ -1,29 +1,30 @@
 import {
 	StyleSheet,
-	Text,
 	View
 } from "react-native";
+import { Text } from "../../Components/Themed/Text";
 
 import BoolButton from "../../Components/Buttons/BoolButton.js";
 import NumButton from "../../Components/Buttons/NumButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
 import GridArena from "../../Components/Utility/GridArena.js";
 
-import { useDispatch, useSelector } from "react-redux";
-import { setDefault, selectID } from "../../Redux/Features/dataSlice.js";
-import ScoutingColors from "../../Config/ScoutingColors.js";
+import { useDispatch } from "react-redux";
+import { setDefault } from "../../Redux/Features/dataSlice.js";
+import { useTheme } from "@react-navigation/native";
 
 export default function TeleOp() {
 	const dispatch = useDispatch();
+	const { colors } = useTheme();
 	const arenaID = "Team";
 
 	// set default value
 	dispatch(setDefault([arenaID, 0]));
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, {backgroundColor: colors.background}]}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Tele-Op</Text>
-			<View style={styles.teleOpContainer}>
+			<View style={[styles.teleOpContainer, {borderColor: colors.border, backgroundColor: colors.card}]}>
 				<GridArena items={[
 					{ pos: [0.69420, 0.3], com: _=>(<>
 						<NumButton id="TeleopUpperHubScored" width={160}>Upper Hub Scored</NumButton>
@@ -68,13 +69,11 @@ export default function TeleOp() {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: ScoutingColors.white,
 		paddingHorizontal: 50,
 		paddingVertical: 20
 	},
 	teleOpContainer: {
 		alignItems: "center",
-		borderColor: ScoutingColors.black,
 		borderRadius: 10,
 		borderWidth: StyleSheet.hairlineWidth
 	}
