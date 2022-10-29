@@ -32,9 +32,7 @@ export default function MatchInfoContainer() {
 
 					<View style={styles.inputContainer}>
 						<Text style={styles.bold}>Match Number: </Text>
-						<Incrementer id="MatchNumber">
-							<CustomTextBox id="MatchNumber" placeholder="2638" keyboardType="numeric" width={40} height={40} />
-						</Incrementer>
+						<Incrementer id="MatchNumber" />
 					</View>
 
 					<View style={styles.inputContainer}>
