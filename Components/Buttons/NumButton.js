@@ -14,7 +14,7 @@ export default function NumButton(props) {
 	const dispatch = useDispatch();
 
 	// set default value
-	dispatch(setDefault([props.id, 0]));
+	dispatch(setDefault([props.id, props.default || false]));
 	// get value from store
 	const value = useSelector(selectID(props.id));
 
