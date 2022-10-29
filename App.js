@@ -74,17 +74,20 @@ function ASS() {
 }
 
 function ThemedApp() {
-	const scheme = useColorScheme();
-	const selectedTheme = useSelector(selectID("ThemeSelector"));
+	const scheme = useColorScheme() || "light";
+	const selectedThemeIndex = useSelector(selectID("ThemeSelector"));
+	// if index is 0, resort to system theme. otherwise, select out of themes[i-1]
+	const selectedThemeName = selectedThemeIndex===0? scheme : Object.keys(themes)[selectedThemeIndex-1];
+	
 	return (
 		<>
-			<RadioButton id="ThemeSelector" data={Object.keys(themes)} default={"dark"} bgc="orange" segmentedButton forceOption  options={{flexDirection: "row"}}/>
-			<NavigationContainer theme={themes[Object.keys(themes)[selectedTheme]]}> {/* themes[selectedTheme] */}
+			<RadioButton id="ThemeSelector" data={["Auto", ...Object.keys(themes)]} default={"Auto"} bgc="orange" segmentedButton forceOption  options={{flexDirection: "row"}}/>
+			<NavigationContainer theme={themes[selectedThemeName]}> {/* themes[selectedTheme] */}
 			{/*<NavigationContainer>*/}
 				<MyTabs />
 			</NavigationContainer>
 
-			<StatusBar style={scheme || "light"} />
+			<StatusBar style={scheme} />
 		</>
 	);
 }
