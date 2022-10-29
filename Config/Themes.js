@@ -7,7 +7,7 @@ const createTheme = (theme, colors) => ({ dark: theme.dark, colors: {...theme.co
 // you can build off of existing themes, and just add whatever changes you want afterwards
 export default {
     light: createTheme(DefaultTheme, {border: "#000"}),
-    dark: createTheme(DarkTheme),
+    dark: createTheme(DarkTheme, {card: "#252525", border: "#AAA"}),
     green: createTheme(DefaultTheme, {primary: "#6AA84F", card: "#5E9C43", background: "#84C966", border: "#000"})
 }
 
