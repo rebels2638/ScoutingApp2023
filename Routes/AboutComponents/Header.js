@@ -26,7 +26,7 @@ export default function Header() {
 			borderBottomColor: ScoutingColors.doveGray,
 			borderBottomWidth: StyleSheet.hairlineWidth
 		}}>
-			<Text style={styles.headerText}>2022 - Rapid React{"\n"}</Text>
+			<Text style={styles.headerText}>2023 - Charged Up{"\n"}</Text>
 			<View style={styles.linkContainer}>
 				<Link>About</Link>
 			</View>

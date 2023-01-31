@@ -80,7 +80,7 @@ export default function About() {
 
 						{text("Questions or Comments? Please email reidfleishman5@gmail.com")}
 
-						{title("© 2022 Rebel Robotics")}
+						{title("© 2023 Rebel Robotics")}
 						<Link onPress={() => Linking.openURL('https://gnsrobotics.com')}>{title("gnsrobotics.com")}</Link>
 					</View>
 				</ScrollView>

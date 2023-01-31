@@ -1,7 +1,6 @@
-# Scouting App 2022 Edition
-Team 2638's Scouting App for the year 2022!
-New and improved! A Scouting App so shiny if you look at it for too long it'll stare into your soul.
-We now have custom themes available! Light, dark, and a funky fresh green theme available in the About page.
+# Scouting App 2023 Edition
+Team 2638's Scouting App for the year 2023 (Charged Up)!
+
 
 If you have any suggestions or improvements you would like to see in the app, please make an issue in the Github Issues section!
 
@@ -20,6 +19,7 @@ If you have any suggestions or improvements you would like to see in the app, pl
 
 
 ## Previous Years
+- [Scouting App 2022](https://github.com/PatheticMustan/ScoutingApp2022)
 - [Scouting App 2020](https://github.com/PatheticMustan/ScoutingApp2020)
 - [Scouting App 2019](https://github.com/PatheticMustan/ScoutingApp2019)
 
