@@ -11,7 +11,6 @@ import {
 import { Text } from "../Components/Themed/Text";
 
 import Header from "./PastMatchesComponents/Header.js";
-import ScoutingColors from "../Config/ScoutingColors";
 
 import { useDispatch, useSelector } from "react-redux";
 import { deleteSingleMatch, selectMatches, selectSelectedMatches, toggleSelectMatch } from "../Redux/Features/matchSlice.js";
@@ -87,7 +86,7 @@ export default function PastMatches(props) {
 									<Pressable onPress={() => dispatch(toggleSelectMatch(matchKey))}>
 										<View style={[
 											styles.teamIndicator,
-											{backgroundColor: (matchData["Team"]? ScoutingColors.lightRed : ScoutingColors.lightBlue),
+											{backgroundColor: (matchData["Team"]? colors.red : colors.blue),
 											borderColor: colors.border}
 										]}>
 											<RNText style={{ fontSize: 35 }}>

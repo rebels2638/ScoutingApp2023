@@ -7,7 +7,6 @@ import {
 
 import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
-import ScoutingColors from "../../Config/ScoutingColors.js";
 
 export default function SeperateRadioButton(props) {
 	const dispatch = useDispatch();
@@ -32,7 +31,7 @@ export default function SeperateRadioButton(props) {
 				margin: 10,
 				height: 40,
 				width: (props.width || 100),
-				backgroundColor: (selectedIndex === buttonIndex ? selectedColor : ScoutingColors.white)
+				backgroundColor: (selectedIndex === buttonIndex ? selectedColor : "#FFF")
 			}}>
 				<Text style={{ textAlign: "center" }}>{props.children}</Text>
 			</View>

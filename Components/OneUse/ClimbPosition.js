@@ -9,7 +9,6 @@ import { Text } from "../../Components/Themed/Text";
 
 import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
-import ScoutingColors from "../../Config/ScoutingColors.js";
 import { useTheme } from "@react-navigation/native";
 
 export default function ClimbPosition(props) {

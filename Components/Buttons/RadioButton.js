@@ -8,7 +8,6 @@ import {
 import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 
-import ScoutingColors from "../../Config/ScoutingColors";
 import { useTheme } from "@react-navigation/native";
 
 export default function RadioButton(props) {
