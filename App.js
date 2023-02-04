@@ -17,7 +17,6 @@ import Scout from "./Routes/Scout.js";
 import PastMatches from "./Routes/PastMatches.js";
 import About from "./Routes/About.js";
 import ScoutingColors from "./Config/ScoutingColors";
-import RadioButton from "./Components/Buttons/RadioButton";
 import { selectID, setDefault, setKeyPair } from "./Redux/Features/dataSlice";
 import { useEffect } from "react";
 

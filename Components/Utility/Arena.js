@@ -21,7 +21,7 @@ export default function Arena(props) {
 	return (
 		<View>
 			<ImageBackground
-				source={require("../../Assets/2022Field.png")}
+				source={require("../../Assets/2022/2022Field.png")}
 				style={{
 					flexDirection: selectedTeam == 0 ? "row" : "row-reverse",
 					height: 453,

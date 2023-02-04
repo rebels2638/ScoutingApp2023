@@ -36,7 +36,7 @@ export default function ClimbPosition(props) {
 			<Text style={{ fontWeight: "bold", fontSize: 20 }}>Climb Position</Text>
 
 			<ImageBackground 
-				source={require("../../Assets/ClimbPosition2022.png")}
+				source={require("../../Assets/2022/ClimbPosition2022.png")}
 				style={{ width: width, height: height }}
 				imageStyle={{ borderRadius: 10 }}
 			>

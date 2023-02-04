@@ -46,7 +46,7 @@ export default function GridArena(props) {
 		<View>
 			<Pressable onPress={e => printDebugCoords(e)} >
 				<ImageBackground
-					source={require("../../Assets/2022Field.png")}
+					source={require("../../Assets/2022/2022Field.png")}
 					style={{ width: width, height: height, marginTop: 20 }}
 					imageStyle={{ borderRadius: 10, borderColor: colors.border }}
 				>
