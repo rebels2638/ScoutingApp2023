@@ -17,7 +17,9 @@ export default function RadioButton(props) {
 	const BORDER_RADIUS = 10;
 
 	// set default value
-	dispatch(setDefault([props.id, (props.data.findIndex(v => v===props.default)) || 0]));
+	if (props.default) dispatch(setDefault([props.id, (props.data.findIndex(v => v===(props.default)))]));
+	else dispatch(setDefault([props.id, 0]));
+	
 	// get value from store
 	const selectedIndex = useSelector(selectID(props.id));
 	const selectedColor = props.bgc || "orange";
