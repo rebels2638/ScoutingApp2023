@@ -16,6 +16,7 @@ import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
 import RadioButton from "../../Components/Buttons/RadioButton.js";
 import Spacer from "../../Components/Utility/Spacer.js";
 import { useTheme } from "@react-navigation/native";
+import Timer from "../../Components/OneUse/Timer";
 
 function WhiteText(props) {
 	return (<RNText style={{ color: "white" }}>{props.children}</RNText>);
@@ -80,7 +81,6 @@ export default function Autonomous() {
 					data={["Left Start", "Middle Start", "Right Start"]}
 					bgc="orange"
 					segmentedButton
-					forceOption
 					options={{
 						flexDirection: "row",
 					}}
@@ -112,14 +112,9 @@ export default function Autonomous() {
 			<BoolButton id="Taxi" bgc="lime" width={160}>Does Taxi</BoolButton>
 			<Grid></Grid>
 			<NumButton id="AutoMissed" width={160}>Auto Missed</NumButton>
-			<CustomTextBox
-				multi
-				id="EndgameComments"
-				width={900}
-				height={250}
-				placeholder="Type your comments here..."
-				borderRadius={10}
-			/>
+			<RadioButton id="AutoClimb" data={["None", "Docked", "Engaged"]} bgc="orange" segmentedButton options={{flexDirection: "row"}}/>
+			<Timer id="AutoTimeToEngaged">Time to Engaged</Timer>
+			<CustomTextBox multi id="AutoComments" width={900} height={250} placeholder="Type your comments here..." borderRadius={10}/>
 		</View>
 	);
 }

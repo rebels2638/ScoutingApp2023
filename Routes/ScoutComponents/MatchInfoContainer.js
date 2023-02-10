@@ -42,7 +42,6 @@ export default function MatchInfoContainer() {
 							data={["Practice", "Qualification", "Quarterfinal", "Semifinal"]}
 							bgc="orange"
 							segmentedButton
-							forceOption
 							default="Qualification"
 							options={{flexDirection: "row"}}
 						/>

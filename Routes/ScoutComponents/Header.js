@@ -173,7 +173,6 @@ export default function Header() {
 					data={["Blue Alliance", "Red Alliance"]}
 					bgc="orange"
 					segmentedButton
-					forceOption
 					options={{
 						flexDirection: "row",
 					}}

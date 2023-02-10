@@ -45,7 +45,7 @@ export default function About() {
 							default={"auto"}
 							onPress={(i) => AsyncStorage.setItem("theme", i+"")}
 							bgc="orange" options={{flexDirection: "row"}}
-							segmentedButton forceOption 
+							segmentedButton 
 						/>
 
 						{spacer}
