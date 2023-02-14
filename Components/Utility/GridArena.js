@@ -26,8 +26,8 @@ export default function GridArena(props) {
     const items = props.items || [];
     // hopefully this makes positioning easier
 
-	const width = 900,
-		  height = 453;
+	const width = 953,
+		  height = 418;
 
 	const printDebugCoords = (e) => {
 		// When you click on the arena, print coordinates to console for positioning
@@ -46,7 +46,7 @@ export default function GridArena(props) {
 		<View>
 			<Pressable onPress={e => printDebugCoords(e)} >
 				<ImageBackground
-					source={require("../../Assets/2022/2022Field.png")}
+					source={require("../../Assets/2023/2023Field.png")}
 					style={{ width: width, height: height, marginTop: 20 }}
 					imageStyle={{ borderRadius: 10, borderColor: colors.border }}
 				>

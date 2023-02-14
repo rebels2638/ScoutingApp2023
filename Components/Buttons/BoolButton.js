@@ -28,7 +28,7 @@ export default function BoolButton(props) {
 				justifyContent: "center",
 				borderRadius: 10,
 				borderWidth: StyleSheet.hairlineWidth,
-				margin: 10,
+				margin: props.margin ?? 10,
 				height: 40,
 				width: (props.width || 100),
 				backgroundColor: (value? props.bgc : colors.background),
