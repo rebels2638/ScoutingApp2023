@@ -67,7 +67,19 @@ export default function TeleOp() {
 
 	return (
 		<View>
-			{/* AIDAN!!! do your stuff here */}
+			<BoolButton id="FedGamePieces" width={160}> Fed Game Pieces</BoolButton>
+			<BoolButton id="WasDefended" width={160}> Was Defended</BoolButton>
+			<BoolButton id="PlaysDefence" width={160}> Plays Defense</BoolButton>
+			<NumButton id="TeleOpMissed" width={160}>TeleOp Missed</NumButton>
+			<CustomTextBox
+				multi={true}
+				id="TeleopComments"
+				width={900}
+				height={250}
+				placeholder="Type your comments here..."
+				borderRadius={10}
+			/>
+			
 		</View>
 	);
 
