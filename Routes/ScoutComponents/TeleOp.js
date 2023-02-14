@@ -25,9 +25,24 @@ export default function TeleOp() {
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Tele-Op</Text>
 			<View style={[styles.teleOpContainer, {borderColor: colors.border, backgroundColor: colors.card}]}>
 				<GridArena items={[
-					{ pos: [0.1, 0.1], com: _=>(<>
+					{ pos: [0.1, 0.8], com: _=>(<>
 						<BoolButton id="FedGamePieces" bgc="lime" width={160} margin={0}> Fed Game Pieces</BoolButton>
-					</>)}
+					</>)},
+
+					{ pos: [0.1, 0.155], com: _=>(<>
+						<NumButton id="TeleOpMissed" width={160}>TeleOp Missed</NumButton>
+					</>)},
+
+					{ pos: [0.3, 0.3], com: _=>(<>
+						<BoolButton id="WasDefended" bgc="lime" width={160}> Was Defended</BoolButton>
+					</>)},
+
+					{ pos: [0.3, 0.4], com: _=>(<>
+						<BoolButton id="PlaysDefense" bgc="lime" width={160}> Plays Defense</BoolButton>
+					</>)},
+					
+					
+
 				]} />
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
