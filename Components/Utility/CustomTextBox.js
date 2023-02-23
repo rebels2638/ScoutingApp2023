@@ -10,6 +10,26 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useTheme } from "@react-navigation/native";
 
+/** CustomTextBox
+ * 
+ * A custom textbox that automatically handles our state system stuff.
+ * 
+ * 
+ * ```text
+ * Props
+ * id (string) [REQUIRED] - The ID the textbox should use for state. If you don't 
+ * 							provide a value, the app will crash
+ * default (string) - The text the textbox should default to when starting/restarting
+ * width (number) - Width of the textbox
+ * height (number) - Height of the textbox
+ * keyboardType (string) - https://reactnative.dev/docs/textinput#keyboardtype
+ * multi (bool) - If the textbox should be a multiline textbox or not
+ * placeholder (string) - Placeholder text
+ * backgroundColor (string) - The background color of the textbox
+ * borderRadius (number) - How round the textbox should be! https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius
+ * options (object) - Any additional props you would like to pass to the TextInput object
+ * ```
+ */
 export default function CustomTextBox(props) {
 	const dispatch = useDispatch();
 	const { colors } = useTheme();
@@ -50,7 +70,6 @@ export default function CustomTextBox(props) {
 			<TextInput
 				keyboardType={props.keyboardType}
 				multiline={props.multi}
-				numberOfLines={props.multi ? props.lines : 1}
 				editable
 				placeholder={props.placeholder || ""}
 				style={{
