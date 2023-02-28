@@ -32,46 +32,25 @@ export default function Autonomous() {
 	const selectedTeam = useSelector(selectID(arenaID));
 	const color = selectedTeam? "red" : "blue";
 	const { colors } = useTheme();
-	/*
+	
+	/**
+	 * 
+	 * 
+			<Grid></Grid>
+			<NumButton id="AutoMissed" width={160}>Auto Missed</NumButton>
+			<RadioButton id="AutoClimb" data={["None", "Docked", "Engaged"]} bgc="orange" segmentedButton options={{flexDirection: "row"}}/>
+			<Timer id="AutoTimeToEngaged">Time to Engaged</Timer>
+			<CustomTextBox multi id="AutoComments" width={900} height={250} placeholder="Type your comments here..." borderRadius={10}/>
+	 */
+
 	return (
 		<View style={[styles.container, {backgroundColor: colors.background}]}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Autonomous</Text>
 			<View style={[styles.autonomousContainer, {borderColor: colors.border, backgroundColor: colors.card}]}>
 				<GridArena items={[
-					{ pos: [0.69420, 0.2], com: _=>(<>
-						<NumButton id="AutoUpperHubScored" width={160}>Upper Hub Scored</NumButton>
-						<NumButton id="AutoLowerHubScored" width={160}>Lower Hub Scored</NumButton>
-						<NumButton id="AutoUpperHubMissed" width={160}>Upper Hub Missed</NumButton>
-						<NumButton id="AutoLowerHubMissed" width={160}>Lower Hub Missed</NumButton>
+					{ pos: [0.3, 0.29], com: _=>(<>
+						<BoolButton id="Taxi" bgc="lime" width={160}>Does Taxi</BoolButton>
 					</>)},
-
-					{ pos: [0.1, 0.45], com: _=>(
-						<BoolButton id="Taxi" bgc="lime" width={160}>Crosses Line/Taxi</BoolButton>
-					)},
-
-					{ pos: [0.25, 0.24], com: _=>(
-						<BoolButton id="AutoBP1" bgc={color} width={70}>[1] Picks Up</BoolButton>
-					)},
-
-					{ pos: [0.26, 0.62], com: _=>(
-						<BoolButton id="AutoBP2" bgc={color} width={70}>[2] Picks Up</BoolButton>
-					)},
-
-					{ pos: [0.37, 0.77], com: _=>(
-						<BoolButton id="AutoBP3" bgc={color} width={70}>[3] Picks Up</BoolButton>
-					)},
-
-					{ pos: [0.06, 0.6], com: _=>(
-						<BoolButton id="AutoBP4" bgc={color} width={70}>[4] Picks Up</BoolButton>
-					)},
-
-					{ pos: [0.14, 0.6], com: _=>(
-						<BoolButton id="AutoBP5" bgc={color} width={70}>[5] Picks Up</BoolButton>
-					)},
-
-					{ pos: [0.4, 0.4], com: _=>(<WhiteText>Left Start</WhiteText>)},
-					{ pos: [0.42, 0.59], com: _=>(<WhiteText>Middle Start</WhiteText>)},
-					{ pos: [0.45, 0.66], com: _=>(<WhiteText>Right Start</WhiteText>)},
 				]} />
 
 				<Spacer/>
@@ -103,18 +82,6 @@ export default function Autonomous() {
 					/>
 				</View>
 			</View>
-		</View>
-	);
-	*/
-
-	return (
-		<View>
-			<BoolButton id="Taxi" bgc="lime" width={160}>Does Taxi</BoolButton>
-			<Grid></Grid>
-			<NumButton id="AutoMissed" width={160}>Auto Missed</NumButton>
-			<RadioButton id="AutoClimb" data={["None", "Docked", "Engaged"]} bgc="orange" segmentedButton options={{flexDirection: "row"}}/>
-			<Timer id="AutoTimeToEngaged">Time to Engaged</Timer>
-			<CustomTextBox multi id="AutoComments" width={900} height={250} placeholder="Type your comments here..." borderRadius={10}/>
 		</View>
 	);
 }

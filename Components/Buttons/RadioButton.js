@@ -25,7 +25,7 @@ export default function RadioButton(props) {
 	const selectedColor = props.bgc || "orange";
 
 	return (
-		<View style={{ ...props.options }}>
+		<View style={{ flexDirection: "row", ...props.options }}>
 			{
 				props.data.map((v, i) =>
 					<Pressable

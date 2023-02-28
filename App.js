@@ -101,7 +101,7 @@ function ThemedApp() {
 	return (
 		<>
 			{/* 
-			<RadioButton id="ThemeSelector" data={["auto", ...Object.keys(themes)]} default={"auto"} bgc="orange" segmentedButton options={{flexDirection: "row"}}/>
+			<RadioButton id="ThemeSelector" data={["auto", ...Object.keys(themes)]} default={"auto"} bgc="orange" segmentedButton />
 			*/}
 			<NavigationContainer theme={themes[selectedThemeName]}>
 				<MyTabs />

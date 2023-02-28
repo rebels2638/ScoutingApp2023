@@ -24,6 +24,29 @@ export default function MatchInfoContainer() {
 			<View style={[styles.boundingBox, {borderColor: colors.border}]}>
 				<View style={[styles.piecesContainer, {backgroundColor: colors.card}]}>
 					<View style={styles.inputContainer}>
+						<Text style={styles.bold}>Scouters: </Text>
+						<View style={{ flex: 1, paddingLeft: 5 }}>
+							<CustomTextBox id="Scouters" placeholder="Name and Name" width={350} height={40} />
+						</View>
+					</View>
+
+					<View style={styles.inputContainer}>
+						<Text style={styles.bold}>Match Type: </Text>
+						<RadioButton
+							id="MatchType"
+							data={["Practice", "Qualification", "Playoff"]}
+							bgc="orange"
+							segmentedButton
+							default="Qualification"
+							options={{flexDirection: "row"}}
+						/>
+					</View>
+				</View>
+
+
+
+				<View style={[styles.piecesContainer, {backgroundColor: colors.card}]}>
+					<View style={styles.inputContainer}>
 						<Text style={styles.bold}>Team Number: </Text>
 						<View style={{ flex: 1, paddingLeft: 5 }}>
 							<CustomTextBox id="TeamNumber" placeholder="2638" keyboardType="numeric" width={80} height={40} />
@@ -36,38 +59,8 @@ export default function MatchInfoContainer() {
 					</View>
 
 					<View style={styles.inputContainer}>
-						<Text style={styles.bold}>Match Type: </Text>
-						<RadioButton
-							id="MatchType"
-							data={["Practice", "Qualification", "Quarterfinal", "Semifinal"]}
-							bgc="orange"
-							segmentedButton
-							default="Qualification"
-							options={{flexDirection: "row"}}
-						/>
-					</View>
-
-					<View style={styles.inputContainer}>
-						<Text style={styles.bold}>Scouters: </Text>
-
-						<View style={{ flex: 1, paddingLeft: 5 }}>
-							<CustomTextBox id="Scouters" placeholder="Name and Name" width={350} height={40} />
-						</View>
-					</View>
-				</View>
-
-
-
-				<View style={[styles.piecesContainer, {backgroundColor: colors.card}]}>
-					<View style={styles.inputContainer2}>
-						<Text style={styles.bold}>Starting Game Pieces</Text>
-						<BoolButton id="StartingPieces" bgc="lime" width={160}>Has Game Piece</BoolButton>
-						<View>
-							<Image
-								source={selectedTeam===1? require("../../Assets/2022/redCargo2022.jpg") : require("../../Assets/2022/blueCargo2022.jpg")}
-								style={{ width: 150, height: 150 }}
-							/>
-						</View>
+						<Text style={styles.bold}>Starting Position: </Text>
+						<RadioButton id="StartingPosition" data={["Left", "Middle", "Right"]} bgc="orange" segmentedButton default="Qualification" />
 					</View>
 				</View>
 			</View>
@@ -83,12 +76,6 @@ const styles = StyleSheet.create({
 	inputContainer: {
 		flex: 1,
 		flexDirection: "row",
-		alignItems: "center",
-		paddingVertical: 15
-	},
-	inputContainer2: {
-		flex: 1,
-		flexDirection: "column",
 		alignItems: "center",
 		paddingVertical: 15
 	},
