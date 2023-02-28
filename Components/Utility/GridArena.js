@@ -75,7 +75,7 @@ export default function GridArena(props) {
 						const positionStyle = 
 							((selectedTeam == 0)? 
 								{ position: "absolute", left: width*x, top: height*y } :
-								{ position: "absolute", right: width*x, bottom: height*y });
+								{ position: "absolute", right: width*x, top: height*y });
 						
 						// each item in an iterable needs to have a unique key
 						// see https://stackoverflow.com/a/34868672
