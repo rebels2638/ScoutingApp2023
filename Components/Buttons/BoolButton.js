@@ -23,19 +23,17 @@ export default function BoolButton(props) {
 			// if the press event exists, run it
 			props.press && props.press();
 			dispatch(setKeyPair([props.id, !value]));
+		}} style={{
+			justifyContent: "center",
+			borderRadius: 10,
+			borderWidth: StyleSheet.hairlineWidth,
+			margin: props.margin ?? 10,
+			height: 40,
+			width: (props.width || 100),
+			backgroundColor: (value? props.bgc : colors.background),
+			borderColor: colors.border
 		}}>
-			<View style={{
-				justifyContent: "center",
-				borderRadius: 10,
-				borderWidth: StyleSheet.hairlineWidth,
-				margin: props.margin ?? 10,
-				height: 40,
-				width: (props.width || 100),
-				backgroundColor: (value? props.bgc : colors.background),
-				borderColor: colors.border
-			}}>
-				<Text style={{textAlign: "center", color: (value? "#000" : colors.text)}}>{props.children}</Text>
-			</View>
+			<Text style={{textAlign: "center", color: (value? "#000" : colors.text)}}>{props.children}</Text>
 		</Pressable>
 	);
 }

@@ -2,6 +2,7 @@ import {
 	StyleSheet,
 	View,
 	Text as RNText,
+	Image,
 	Pressable,
 	ImageBackground
 } from "react-native";
@@ -11,27 +12,171 @@ import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice
 import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "@react-navigation/native";
 
-export default function Grid(props) {
+function ConeButton(props) {
 	const dispatch = useDispatch();
 	const { colors } = useTheme();
 
+	// set default value
+	dispatch(setDefault([props.id, props.default || 0]));
+	// get value from store
+	const value = useSelector(selectID(props.id));
+
 	return (
-		<View style={{ alignItems: "center" }}>
-			<Text>PLACEHOLDER GRID!!!!!! :3</Text>
+		<Pressable
+			style={[styles.button, { borderColor: colors.border }]}
+			onPress={() => { dispatch(setKeyPair([props.id, (value+1)%2])); }}
+		>
+			{
+				value===0? (<Image style={{flex: 1}} source={require("../../Assets/2023/2023Cone.png")} />) :
+				<Text style={{textAlign: "center", color: (value? "#000" : colors.text)}}>Empty</Text>
+			}
+		</Pressable>
+	);
+}
+
+function BoxButton(props) {
+	const dispatch = useDispatch();
+	const { colors } = useTheme();
+
+	// set default value
+	dispatch(setDefault([props.id, props.default || 0]));
+	// get value from store
+	const value = useSelector(selectID(props.id));
+
+	return (
+		<Pressable
+			style={[styles.button, { borderColor: colors.border }]}
+			onPress={() => { dispatch(setKeyPair([props.id, (value+1)%2])); }}
+		>
+			{
+				value===0? (<Image style={{flex: 1}} source={require("../../Assets/2023/2023Cube.png")} />) :
+				<Text style={{textAlign: "center", color: (value? "#000" : colors.text)}}>Empty</Text>
+				
+			}
+		</Pressable>
+	);
+}
+
+function ConeBoxButton(props) {
+	const dispatch = useDispatch();
+	const { colors } = useTheme();
+
+	// set default value
+	dispatch(setDefault([props.id, props.default || 0]));
+	// get value from store
+	const value = useSelector(selectID(props.id));
+
+	return (
+		<Pressable
+			style={[styles.button, { borderColor: colors.border }]}
+			onPress={() => { dispatch(setKeyPair([props.id, (value+1)%3])); }}
+		>
+			{
+				value===0? (<Image style={{flex: 1}} source={require("../../Assets/2023/2023Cone.png")} />) :
+				value===1? (<Image style={{flex: 1}} source={require("../../Assets/2023/2023Cube.png")} />) :
+				<Text style={{textAlign: "center", color: (value? "#000" : colors.text)}}>Empty</Text>
+			}
+		</Pressable>
+	);
+}
+
+
+export default function Grid(props) {
+	const dispatch = useDispatch();
+	const { colors } = useTheme();
+	const arenaID = "Team";
+
+	// set default value
+	dispatch(setDefault([arenaID, 0]));
+	// since this isn't an input, no need to set default.
+	// get value from store
+	const selectedTeam = useSelector(selectID(arenaID));
+
+    // each item should be in the form
+    // { pos: (x, y), com: component }
+    // x and y being floats from 0-1. 0 will be top left, 1 will be bottom right.
+    // com should be the component to render
+    const items = props.items || [];
+    // hopefully this makes positioning easier
+
+	const width = 1415/1.5,
+		  height = 324/1.5;
+
+	const printDebugCoords = (e) => {
+		// When you click on the arena, print coordinates to console for positioning
+		let x = e.nativeEvent.offsetX / width,
+			y = e.nativeEvent.offsetY / height;
+
+		// truncate to two decimal places
+		// this is why i love javascript
+		[x, y] = [x, y].map(v => ~~(v*100)/100);
+		
+		// as a final note, components are positioned by their TOP LEFT CORNER, not the center.
+		console.log(x, y);
+	}
+
+	return (
+		<View>
+			<ConeButton id="AutoGrid-0-0"/>
+			<BoxButton id="AutoGrid-0-1"/>
+			<ConeBoxButton id="AutoGrid-0-2"/>
+			<Pressable onPress={e => printDebugCoords(e)} >
+				<ImageBackground
+					source={selectedTeam? require("../../Assets/2023/BlueGrid.png") : require("../../Assets/2023/RedGrid.png")}
+					style={{ width: width, height: height, marginTop: 20 }}
+					imageStyle={{ borderRadius: 10, borderColor: colors.border }}
+				>
+					{/** this.props.items
+					 * in an effort to make item positioning easier, we have a custom arena wrapper
+					 * GridArena allows us to specify an X and a Y as a percentage (float 0-1)
+					 * It places the top left corner of the component at the specified coord
+					 * 
+					 * maybe we can change it to place the middle of the component at the coord?
+					 * we would need to know the height and width of the component though, so we'd 
+					 * need to render it once to get the dimensions, then again to re-position
+					 * 
+					 * follows the format
+					 * [{pos: (percentage, percentage), com: ()=>JSX}] 
+					 * 
+					 * GOTCHA: com needs to be a function. If you get an error about "expected string literal
+					 * 		but got JSX", just wrap the component in an arrow function or something
+					 *                             the fix
+					 * <Text>natsumi</Text>         ---->        () => <Text>natsumi</Text>
+					 **/
+					items.map((item, index) => {
+						// { pos: (x, y), com: component }
+						const [x, y] = item.pos;
+						
+						// if we're flipping the arena, position by bottom right corner instead of top left
+						const positionStyle = 
+							((selectedTeam == 0)? 
+								{ position: "absolute", left: width*x, top: height*y } :
+								{ position: "absolute", right: width*x, top: height*y });
+						
+						// each item in an iterable needs to have a unique key
+						// see https://stackoverflow.com/a/34868672
+						const key = `${item.pos}-ground beef-${index}`;
+
+						return (
+							<View style={[positionStyle]} key={key}>
+								<item.com/>
+							</View>
+						);
+					})}
+				</ImageBackground>
+			</Pressable>
 		</View>
 	);
 }
+
 
 const styles = StyleSheet.create({
 	button: {
 		justifyContent: "center",
 		borderRadius: 10,
 		borderWidth: StyleSheet.hairlineWidth,
-		width: 100,
-		height: 40,
+		margin: 10,
+		height: 70,
+		width: 70
 	}
-});
-
-
-
-// <Grid>children</Grid>
+})

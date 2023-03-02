@@ -36,35 +36,24 @@ export default function Autonomous() {
 	/**
 	 * 
 	 * 
-			<Grid></Grid>
-			<NumButton id="AutoMissed" width={160}>Auto Missed</NumButton>
-			<RadioButton id="AutoClimb" data={["None", "Docked", "Engaged"]} bgc="orange" segmentedButton options={{flexDirection: "row"}}/>
-			<Timer id="AutoTimeToEngaged">Time to Engaged</Timer>
-			<CustomTextBox multi id="AutoComments" width={900} height={250} placeholder="Type your comments here..." borderRadius={10}/>
+			
+			
 	 */
 
 	return (
 		<View style={[styles.container, {backgroundColor: colors.background}]}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Autonomous</Text>
 			<View style={[styles.autonomousContainer, {borderColor: colors.border, backgroundColor: colors.card}]}>
-				<GridArena items={[
-					{ pos: [0.3, 0.29], com: _=>(<>
-						<BoolButton id="Taxi" bgc="lime" width={160}>Does Taxi</BoolButton>
-					</>)},
-				]} />
+				<BoolButton id="Taxi" bgc="lime" width={160}>Does Taxi</BoolButton>
+
+				<Grid id="AutonomousGrid"/>
 
 				<Spacer/>
-				<Text style={{ textAlign: "center", fontSize: 18, fontWeight: "bold" }}>Starting Position</Text>
-				<RadioButton
-					id="StartingPosition"
-					data={["Left Start", "Middle Start", "Right Start"]}
-					bgc="orange"
-					segmentedButton
-					options={{
-						flexDirection: "row",
-					}}
-				/>
-				<Spacer/>
+
+				<NumButton id="AutoMissed" width={160}>Auto Missed</NumButton>
+				
+				<RadioButton id="AutoClimb" data={["None", "Docked", "Engaged"]} bgc="orange" segmentedButton options={{flexDirection: "row"}}/>
+				<Timer id="AutoTimeToEngaged">Time to Engaged</Timer>
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
 				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
