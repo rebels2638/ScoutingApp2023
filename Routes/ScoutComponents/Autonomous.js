@@ -16,7 +16,7 @@ import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
 import RadioButton from "../../Components/Buttons/RadioButton.js";
 import Spacer from "../../Components/Utility/Spacer.js";
 import { useTheme } from "@react-navigation/native";
-import Timer from "../../Components/OneUse/Timer";
+import Timer from "../../Components/OneUse/Timer.js";
 
 export default function Autonomous() {
 	const arenaID = "Team";
@@ -40,7 +40,7 @@ export default function Autonomous() {
 
 				<NumButton id="AutoMissed" width={160}>Auto Missed</NumButton>
 				
-				<RadioButton id="AutoClimb" data={["None", "Docked", "Engaged"]} bgc="orange" segmentedButton options={{flexDirection: "row"}}/>
+				<RadioButton id="AutoClimb" data={["None", "Docked", "Engaged"]} bgc="orange" segmentedButton/>
 				<Timer id="AutoTimeToEngaged">Time to Engaged</Timer>
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>

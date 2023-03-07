@@ -7,6 +7,8 @@ import { Text } from "../../Components/Themed/Text";
 import BoolButton from "../../Components/Buttons/BoolButton";
 import NumButton from "../../Components/Buttons/NumButton";
 import { useTheme } from "@react-navigation/native";
+import RadioButton from "../../Components/Buttons/RadioButton";
+import Grid from "../../Components/OneUse/Grid";
 
 export default function Other() {
 	const { colors } = useTheme();
@@ -15,10 +17,20 @@ export default function Other() {
 		<View style={[styles.container, {backgroundColor: colors.background}]}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Other</Text>
 			<View style={[styles.otherContainer, {backgroundColor: colors.card, borderColor: colors.border}]}>
-				<NumButton id="FoulCount" width={160}>Fouls</NumButton>
-				<BoolButton id="YellowCard" bgc="yellow" width={160}>Yellow Card</BoolButton>
-				<BoolButton id="RedCard" bgc="red" width={160}>Red Card</BoolButton>
-				<BoolButton id="Breakdown" bgc="orange" width={160}>Breakdown</BoolButton>
+				<View style={{display: "flex"}}>
+					<View style={{flexDirection: "row", alignItems: "center"}}>
+						<BoolButton id="Breakdown" bgc="orange" width={160}>Breakdown</BoolButton>
+						<BoolButton id="GroundPickup" bgc="orange" width={160}>Ground Pickup</BoolButton>
+						<BoolButton id="ChutePickup" bgc="orange" width={160}>Chute Pickup</BoolButton>
+						<BoolButton id="PlatformPickup" bgc="orange" width={160}>Platform Pickup</BoolButton>
+						<RadioButton id="GamePiecePickup" data={["Cone", "Cube", "Both"]} bgc="orange" segmentedButton/>
+					</View>
+
+					<View>
+						<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Alliance Game Pieces</Text>
+						<Grid id="AllianceScoredPosition"/>
+					</View>
+				</View>
 			</View>
 		</View>
 	);

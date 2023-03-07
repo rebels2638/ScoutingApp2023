@@ -31,6 +31,7 @@ export default function NumButton(props) {
 				backgroundColor: colors.background,
 				width: (props.width ? props.width : 100),
 				height: (props.height ? props.height : 40),
+				margin: props.margin ?? 10,
 				backgroundColor: colors.background,
 				justifyContent: "center",
 			}}>
