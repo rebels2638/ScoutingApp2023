@@ -1,12 +1,12 @@
 import {
 	StyleSheet,
 	View,
-	Text as RNText,
+	Text,
 	Image,
 	Pressable,
 	ImageBackground
 } from "react-native";
-import { Text } from "../../Components/Themed/Text";
+//import { Text } from "../../Components/Themed/Text";
 
 import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -88,6 +88,8 @@ export default function Grid(props) {
 	// set default value
 	dispatch(setDefault([arenaID, 0]));
 	const selectedTeam = useSelector(selectID(arenaID));
+	// grid ID
+	const gridID = useSelector(selectID(props.id));
 
 	const width = 1415/1.5,
 		  height = 324/1.5;
@@ -101,7 +103,7 @@ export default function Grid(props) {
 	return (
 		<View>
 			<ImageBackground
-				source={selectedTeam? require("../../Assets/2023/BlueGrid.png") : require("../../Assets/2023/RedGrid.png")}
+				source={selectedTeam? require("../../Assets/2023/RedGrid.png") : require("../../Assets/2023/BlueGrid.png")}
 				style={{ width: width, height: height, marginTop: 20 }}
 				imageStyle={{ borderRadius: 10, borderColor: colors.border }}
 			>
@@ -116,10 +118,10 @@ export default function Grid(props) {
 					
 						// 0 is Cone, 1 is Box, 2 is ConeBox
 						return (
-							<View style={positionStyle}>
-								{(c===0)? <ConeButton id={`AutoGrid-${i}-${o}`} /> :
-								(c===1)? <BoxButton id={`AutoGrid-${i}-${o}`} /> :
-										<ConeBoxButton id={`AutoGrid-${i}-${o}`} />}
+							<View style={positionStyle} key={`${gridID}-${i}-${o}`}>
+								{(c===0)? <ConeButton  id={`${gridID}-${i}-${o}`} /> :
+								 (c===1)? <BoxButton   id={`${gridID}-${i}-${o}`} /> :
+										<ConeBoxButton id={`${gridID}-${i}-${o}`} />}
 							</View>
 						);
 					})

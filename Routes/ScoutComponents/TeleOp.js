@@ -7,7 +7,7 @@ import { Text } from "../../Components/Themed/Text";
 import BoolButton from "../../Components/Buttons/BoolButton.js";
 import NumButton from "../../Components/Buttons/NumButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
-import GridArena from "../../Components/Utility/GridArena.js";
+import Grid from "../../Components/OneUse/Grid.js";
 
 import { useDispatch } from "react-redux";
 import { setDefault } from "../../Redux/Features/dataSlice.js";
@@ -24,26 +24,12 @@ export default function TeleOp() {
 		<View style={[styles.container, {backgroundColor: colors.background}]}>
 			<Text style={{ textAlign: "center", fontSize: 35, fontWeight: "bold" }}>Tele-Op</Text>
 			<View style={[styles.teleOpContainer, {borderColor: colors.border, backgroundColor: colors.card}]}>
-				<GridArena items={[
-					{ pos: [0.1, 0.8], com: _=>(<>
-						<BoolButton id="FedGamePieces" bgc="lime" width={160} margin={0}> Fed Game Pieces</BoolButton>
-					</>)},
+				<Grid id="TeleopGrid"/>
 
-					{ pos: [0.1, 0.155], com: _=>(<>
-						<NumButton id="TeleOpMissed" width={160}>TeleOp Missed</NumButton>
-					</>)},
-
-					{ pos: [0.3, 0.3], com: _=>(<>
-						<BoolButton id="WasDefended" bgc="lime" width={160}> Was Defended</BoolButton>
-					</>)},
-
-					{ pos: [0.3, 0.4], com: _=>(<>
-						<BoolButton id="PlaysDefense" bgc="lime" width={160}> Plays Defense</BoolButton>
-					</>)},
-					
-					
-
-				]} />
+				<NumButton id="TeleOpMissed" width={160}>TeleOp Missed</NumButton>
+				<BoolButton id="PlaysDefense" bgc="lime" width={160}> Plays Defense</BoolButton>
+				<BoolButton id="WasDefended" bgc="lime" width={160}> Was Defended</BoolButton>
+				
 
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
 				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
@@ -64,17 +50,6 @@ export default function TeleOp() {
 			</View>
 		</View>
 	);
-
-	return (
-		<View>
-			
-			<BoolButton id="WasDefended" bgc="lime" width={160}> Was Defended</BoolButton>
-			<BoolButton id="PlaysDefense" bgc="lime" width={160}> Plays Defense</BoolButton>
-			<NumButton id="TeleOpMissed" width={160}>TeleOp Missed</NumButton>
-			
-		</View>
-	);
-
 }
 
 const styles = StyleSheet.create({

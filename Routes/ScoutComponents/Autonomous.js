@@ -18,10 +18,6 @@ import Spacer from "../../Components/Utility/Spacer.js";
 import { useTheme } from "@react-navigation/native";
 import Timer from "../../Components/OneUse/Timer";
 
-function WhiteText(props) {
-	return (<RNText style={{ color: "white" }}>{props.children}</RNText>);
-}
-
 export default function Autonomous() {
 	const arenaID = "Team";
 	const dispatch = useDispatch();
@@ -30,15 +26,7 @@ export default function Autonomous() {
 	dispatch(setDefault([arenaID, 0]));
 	// get value from store
 	const selectedTeam = useSelector(selectID(arenaID));
-	const color = selectedTeam? "red" : "blue";
 	const { colors } = useTheme();
-	
-	/**
-	 * 
-	 * 
-			
-			
-	 */
 
 	return (
 		<View style={[styles.container, {backgroundColor: colors.background}]}>
@@ -46,7 +34,7 @@ export default function Autonomous() {
 			<View style={[styles.autonomousContainer, {borderColor: colors.border, backgroundColor: colors.card}]}>
 				<BoolButton id="Taxi" bgc="lime" width={160}>Does Taxi</BoolButton>
 
-				<Grid id="AutonomousGrid"/>
+				<Grid id="AutoGrid"/>
 
 				<Spacer/>
 
