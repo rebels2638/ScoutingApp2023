@@ -89,7 +89,7 @@ export default function Grid(props) {
 	dispatch(setDefault([arenaID, 0]));
 	const selectedTeam = useSelector(selectID(arenaID));
 	// grid ID
-	const gridID = useSelector(selectID(props.id));
+	const gridID = props.id;
 
 	const width = 1415/1.5,
 		  height = 324/1.5;
