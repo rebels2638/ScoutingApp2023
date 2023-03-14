@@ -72,6 +72,7 @@ export default function PastMatches(props) {
 					data={matches}
 					renderItem={(data) => {
 						const [matchKey, matchData] = data.item;
+						const [modalVisible, setModalVisible] = useState(false);
 						// ultra scuffed method of adding spaces
 						const s = " ";
 
@@ -101,7 +102,16 @@ export default function PastMatches(props) {
 										(Team {matchData["TeamNumber"]}){s}
 									</Text>
 
-									<View style={{ marginLeft: "auto", marginRight: 50 }}>
+									<View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginLeft: "auto", gap: 30, marginRight: 50 }}>
+										<Pressable onPress={() => setModalVisible(!modalVisible)}>
+											<View style={[
+												styles.qrCodeButton,
+												{backgroundColor: colors.background, borderColor: colors.border}
+											]}>
+												<Text style={{fontSize: 20}}>QR Code</Text>
+											</View>
+										</Pressable>
+
 										<Link onPress={() => resetIndividualMatch(matchKey)} color="red">Delete</Link>
 									</View>
 								</View>
@@ -142,6 +152,15 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		borderWidth: 1,
 		margin: 10,
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center"
+	},
+	qrCodeButton: {
+		width: 100,
+		height: 50,
+		borderRadius: 20,
+		borderWidth: 1,
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center"
