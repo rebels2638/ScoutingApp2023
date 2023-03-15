@@ -10,7 +10,6 @@ import NumButton from "../../Components/Buttons/NumButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
 import GridArena from "../../Components/Utility/GridArena.js";
 import Grid from "../../Components/OneUse/Grid.js";
-import QRCode from "react-native-qrcode-svg";
 
 import { useSelector, useDispatch } from "react-redux";
 import { selectID, setDefault } from "../../Redux/Features/dataSlice.js";
@@ -59,8 +58,6 @@ export default function Autonomous() {
 						borderRadius={10}
 					/>
 				</View>
-
-				<QRCode size={700} ecl="H" quietZone={50} value="aaaaa" />
 			</View>
 		</View>
 	);

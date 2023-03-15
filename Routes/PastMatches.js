@@ -11,6 +11,7 @@ import {
 import { Text } from "../Components/Themed/Text";
 
 import Header from "./PastMatchesComponents/Header.js";
+import QRCode from "react-native-qrcode-svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { deleteSingleMatch, selectMatches, selectSelectedMatches, toggleSelectMatch } from "../Redux/Features/matchSlice.js";
@@ -20,6 +21,9 @@ import { Constants } from "react-native-unimodules";
 import Link from "../Components/Utility/Link.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTheme } from "@react-navigation/native";
+import { useState } from "react";
+import { Modal } from "react-native-web";
+import { kpvToString } from "../Config/kpvToCsv";
 
 export default function PastMatches(props) {
 	const dispatch = useDispatch();
@@ -28,10 +32,12 @@ export default function PastMatches(props) {
 	// get value from store
 	const matches = useSelector(selectMatches);
 	const selectedMatches = useSelector(selectSelectedMatches);
-
 	// matches = storage
 	// parse matches
 	// if new match add to state
+
+	const [modalMatchIndex, setModalMatchIndex] = useState(-1);
+	const [modalVisible, setModalVisible] = useState(false);
 
 	const resetIndividualMatch = async (matchKey) => {
 		if (Platform.OS === "web") {
@@ -67,12 +73,26 @@ export default function PastMatches(props) {
 				<Header />
 			</View>
 
+			{/** The QR code modal takes it's data from the modalMatchIndex */}
+			<Modal animationType="fade" transparent={true} visible={modalVisible}>
+				<Pressable
+					style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#222222AA"}}
+					onPress={() => setModalVisible(false)}
+				>
+					<QRCode
+						size={400}
+						ecl="H"
+						quietZone={20}
+						value={(modalMatchIndex!==-1)? kpvToString(matches[modalMatchIndex]) : "oops! tell somebody on the app team that something is broken"}
+					/>
+				</Pressable>
+			</Modal>
+
 			<View style={{ flex: 1 }}>
 				<FlatList
 					data={matches}
-					renderItem={(data) => {
-						const [matchKey, matchData] = data.item;
-						const [modalVisible, setModalVisible] = useState(false);
+					renderItem={({item, index}) => {
+						const [matchKey, matchData] = item;
 						// ultra scuffed method of adding spaces
 						const s = " ";
 
@@ -103,7 +123,10 @@ export default function PastMatches(props) {
 									</Text>
 
 									<View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginLeft: "auto", gap: 30, marginRight: 50 }}>
-										<Pressable onPress={() => setModalVisible(!modalVisible)}>
+										<Pressable onPress={() => {
+											setModalMatchIndex(index);
+											setModalVisible(true);
+										}}>
 											<View style={[
 												styles.qrCodeButton,
 												{backgroundColor: colors.background, borderColor: colors.border}

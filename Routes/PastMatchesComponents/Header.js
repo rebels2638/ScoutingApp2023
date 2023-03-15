@@ -77,7 +77,9 @@ export default function Header() {
 
 	const clickExportAllMatches = () => {
 		// write new csv file
-		const filteredMatches = matches.filter(([matchKey]) => Object.keys(selectedMatches).includes(matchKey));
+		const filteredMatches = selectedMatchKeysLength !== 0?
+									matches.filter(([matchKey]) => Object.keys(selectedMatches).includes(matchKey)) :
+									matches;
 		const output = kpvToCsv(filteredMatches);
 
 		Platform.OS == "web"
