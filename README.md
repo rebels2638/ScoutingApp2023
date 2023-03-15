@@ -23,4 +23,8 @@ If you have any suggestions or improvements you would like to see in the app, pl
 - [Scouting App 2020](https://github.com/PatheticMustan/ScoutingApp2020)
 - [Scouting App 2019](https://github.com/PatheticMustan/ScoutingApp2019)
 
-## [Usage](Usage.md)
+### [Development Quickstart](./docs/Usage.md)
+A guide to setting up your development environment.
+
+### [Building](./docs/Building.md)
+A guide to how to build the app for web/iOS (still in progress)!!
