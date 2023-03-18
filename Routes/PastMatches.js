@@ -104,38 +104,42 @@ export default function PastMatches(props) {
 								dispatch(loadMatch(matchData));
 							}}>
 								<View style={[styles.item, {borderColor: colors.border}]}>
-									<Pressable onPress={() => dispatch(toggleSelectMatch(matchKey))}>
-										<View style={[
-											styles.teamIndicator,
-											{backgroundColor: (matchData["Team"]? colors.red : colors.blue),
-											borderColor: colors.border}
-										]}>
-											<RNText style={{ fontSize: 35 }}>
-												{selectedMatches[matchKey] === true? "X" : ""}
-											</RNText>
-										</View>
-									</Pressable>
-
-									<Text style={styles.text}>
-										{["Practice", "Qualification", "Quarterfinal", "Semifinal"][matchData["MatchType"]]}{s}
-										#{matchData["MatchNumber"]}{s}
-										(Team {matchData["TeamNumber"]}){s}
-									</Text>
-
-									<View style={{ display: "flex", flexDirection: "row", alignItems: "center", marginLeft: "auto", gap: 30, marginRight: 50 }}>
-										<Pressable onPress={() => {
-											setModalMatchIndex(index);
-											setModalVisible(true);
-										}}>
+									<View style={{display: "flex", flexDirection: "row",  alignItems: "center"}}>
+										<Pressable onPress={() => dispatch(toggleSelectMatch(matchKey))}>
 											<View style={[
-												styles.qrCodeButton,
-												{backgroundColor: colors.background, borderColor: colors.border}
+												styles.teamIndicator,
+												{backgroundColor: (matchData["Team"]? colors.red : colors.blue),
+												borderColor: colors.border}
 											]}>
-												<Text style={{fontSize: 20}}>QR Code</Text>
+												<RNText style={{ fontSize: 35 }}>
+													{selectedMatches[matchKey] === true? "X" : ""}
+												</RNText>
 											</View>
 										</Pressable>
 
-										<Link onPress={() => resetIndividualMatch(matchKey)} color="red">Delete</Link>
+										<Text style={styles.text}>
+											{["Practice", "Qualification", "Quarterfinal", "Semifinal"][matchData["MatchType"]]}{s}
+											#{matchData["MatchNumber"]}{s}
+											(Team {matchData["TeamNumber"]}){s}
+										</Text>
+									</View>
+									
+									<View style={{display: "flex", flexDirection: "row",  alignItems: "center", backgroundColor: "blue"}}>
+										<View style={{display: "flex", flexDirection: "row", alignItems: "center", gap: 30, marginRight: 50, backgroundColor:"orange" }}>
+											<Pressable onPress={() => {
+												setModalMatchIndex(index);
+												setModalVisible(true);
+											}}>
+												<View style={[
+													styles.qrCodeButton,
+													{backgroundColor: colors.background, borderColor: colors.border}
+												]}>
+													<Text style={{fontSize: 20}}>QR Code</Text>
+												</View>
+											</Pressable>
+
+											<Link onPress={() => resetIndividualMatch(matchKey)} color="red">Delete</Link>
+										</View>
 									</View>
 								</View>
 							</Pressable>
@@ -166,7 +170,9 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		padding: 20,
 		display: "flex",
+		flex: 1,
 		flexDirection: "row",
+		justifyContent: "space-between",
 		alignItems: "center"
 	},
 	teamIndicator: {
