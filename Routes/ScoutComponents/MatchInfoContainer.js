@@ -10,11 +10,9 @@ import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
 import RadioButton from "../../Components/Buttons/RadioButton.js";
 import { useSelector } from "react-redux";
 import { selectID } from "../../Redux/Features/dataSlice.js";
-import BoolButton from "../../Components/Buttons/BoolButton.js";
 import { useTheme } from "@react-navigation/native";
 
 export default function MatchInfoContainer() {
-	const selectedTeam = useSelector(selectID("Team"));
 	const { colors } = useTheme();
 
 	return (

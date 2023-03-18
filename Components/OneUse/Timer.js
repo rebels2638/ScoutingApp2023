@@ -53,7 +53,7 @@ export default function Timer(props) {
 	}, [isEnabled]);
 
 	return (
-		<View style={{ alignItems: "center" }}>
+		<View style={{ alignItems: "center", flex: 1 }}>
 			<Text style={{ fontSize: 20, fontWeight: "bold" }}>{props.children || "Stopwatch"}</Text>
 
 			<Text>{(`${(seconds - (seconds % 60)) / 60}:${((seconds % 60) + "").padStart(2, "0")}`)}</Text>

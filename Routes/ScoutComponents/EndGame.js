@@ -26,7 +26,6 @@ export default function Endgame() {
 			<View style={[styles.endgameContainer, {borderColor: colors.border, backgroundColor: colors.card}]}>
 				<RadioButton id="EndgameClimb" data={["None", "Parked", "Docked", "Engaged", "Failed"]} bgc="orange" segmentedButton options={{flexDirection: "row"}}/>
 				<Timer id="EndgameTimeToEngaged">Time to Engaged</Timer>
-				<NumButton id="TimeToEngaged" width={160}>Endgame Time to Engaged</NumButton>
 				<NumButton id="NumRoboClimbed" width={160}>Number of Robots climbed</NumButton>
 				
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>

@@ -8,7 +8,6 @@ import { Text } from "../../Components/Themed/Text";
 import BoolButton from "../../Components/Buttons/BoolButton.js";
 import NumButton from "../../Components/Buttons/NumButton.js";
 import CustomTextBox from "../../Components/Utility/CustomTextBox.js";
-import GridArena from "../../Components/Utility/GridArena.js";
 import Grid from "../../Components/OneUse/Grid.js";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -25,7 +24,6 @@ export default function Autonomous() {
 	// set default
 	dispatch(setDefault([arenaID, 0]));
 	// get value from store
-	const selectedTeam = useSelector(selectID(arenaID));
 	const { colors } = useTheme();
 
 	return (
@@ -42,7 +40,7 @@ export default function Autonomous() {
 				
 				<RadioButton id="AutoClimb" data={["None", "Docked", "Engaged"]} bgc="orange" segmentedButton/>
 				<Timer id="AutoTimeToEngaged">Time to Engaged</Timer>
-
+				
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
 				<Text style={{ textAlign: "center", fontSize: 14, marginLeft: 20, marginRight: 20, marginTop: 10 }}>
 					Add any comments that you feel are useful. Do they struggle with picking up balls or scoring?
@@ -67,8 +65,7 @@ const styles = StyleSheet.create({
 	autonomousContainer: {
 		alignItems: "center",
 		borderRadius: 10,
-		borderWidth: StyleSheet.hairlineWidth,
-		flex: 1,
+		borderWidth: StyleSheet.hairlineWidth
 	},
 	container: {
 		paddingHorizontal: 50,
