@@ -12,8 +12,8 @@ import { setKeyPair, setDefault, selectID } from "../../Redux/Features/dataSlice
 import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "@react-navigation/native";
 
-const coneImage = require("../../Assets/2023/2023Cone.png");
-const cubeImage = require("../../Assets/2023/2023Cube.png");
+const coneImage = () => <Image style={{flex: 1, width: 50, height: 50}} source={require("../../Assets/2023/2023Cone.png")} />;
+const cubeImage = () => <Image style={{flex: 1, width: 50, height: 50}} source={require("../../Assets/2023/2023Cube.png")} />;
 const redGrid = require("../../Assets/2023/RedGrid.png");
 const blueGrid = require("../../Assets/2023/BlueGrid.png");
 
@@ -33,7 +33,7 @@ function ConeButton(props) {
 		>
 			{
 				value===0? (<Text style={{textAlign: "center"}}>Empty</Text>) :
-				(<Image style={{flex: 1}} source={coneImage} />)
+				(coneImage)
 			}
 		</Pressable>
 	);
@@ -55,7 +55,7 @@ function BoxButton(props) {
 		>
 			{
 				value===0? (<Text style={{textAlign: "center"}}>Empty</Text>) :
-				(<Image style={{flex: 1}} source={cubeImage} />)
+				(cubeImage)
 			}
 		</Pressable>
 	);
@@ -77,8 +77,8 @@ function ConeBoxButton(props) {
 		>
 			{
 				value===0? (<Text style={{textAlign: "center"}}>Empty</Text>) :
-				value===1? (<Image style={{flex: 1}} source={coneImage} />) :
-				(<Image style={{flex: 1}} source={cubeImage} />)
+				value===1? (coneImage) :
+				(cubeImage)
 			}
 		</Pressable>
 	);
