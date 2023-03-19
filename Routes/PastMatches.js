@@ -124,22 +124,21 @@ export default function PastMatches(props) {
 										</Text>
 									</View>
 									
-									<View style={{display: "flex", flexDirection: "row",  alignItems: "center", backgroundColor: "blue"}}>
-										<View style={{display: "flex", flexDirection: "row", alignItems: "center", gap: 30, marginRight: 50, backgroundColor:"orange" }}>
-											<Pressable onPress={() => {
-												setModalMatchIndex(index);
-												setModalVisible(true);
-											}}>
-												<View style={[
-													styles.qrCodeButton,
-													{backgroundColor: colors.background, borderColor: colors.border}
-												]}>
-													<Text style={{fontSize: 20}}>QR Code</Text>
-												</View>
-											</Pressable>
+									{/** The manual width is necessary for proper iOS spacing */}
+									<View style={{width: 200, flexDirection: "row", alignItems: "center"}}>
+										<Pressable onPress={() => {
+											setModalMatchIndex(index);
+											setModalVisible(true);
+										}}>
+											<View style={[
+												styles.qrCodeButton,
+												{backgroundColor: colors.background, borderColor: colors.border}
+											]}>
+												<Text style={{fontSize: 20}}>QR Code</Text>
+											</View>
+										</Pressable>
 
-											<Link onPress={() => resetIndividualMatch(matchKey)} color="red">Delete</Link>
-										</View>
+										<Link onPress={() => resetIndividualMatch(matchKey)} color="red">Delete</Link>
 									</View>
 								</View>
 							</Pressable>
