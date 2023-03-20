@@ -32,6 +32,11 @@
       "package": "com.reidf.scout2638",
       "versionCode": 1
     },
-    "githubUrl": "https://github.com/rebels2638/ScoutingApp2023"
+    "githubUrl": "https://github.com/rebels2638/ScoutingApp2023",
+    "extra": {
+      "eas": {
+        "projectId": "44d2d06c-fd52-44bc-b7c9-ba1c0d834836"
+      }
+    }
   }
 }

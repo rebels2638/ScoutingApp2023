@@ -1,5 +1,25 @@
 function TakeTheSoulFromGrids(kpv, gridID) {
+	// empty grid with 3 rows, 9 columns
+	let grid = new Array(3).fill(new Array(9).fill(0));
 
+	// 0 is Cone, 1 is Box, 2 is ConeBox
+	const boxes = [[0, 1, 0,    0, 1, 0,    0, 1, 0],
+				[0, 1, 0,    0, 1, 0,    0, 1, 0],
+				[2, 2, 2,    2, 2, 2,    2, 2, 2]];
+				
+	// 0 is None, 1 is Cone, 2 is Cube
+	// map answer based on whether it's a cube/cone/cubecone
+	grid = boxes.map((row, i) => row.map((v, o) => {
+		// ConeButton and ConeBoxButton both return their normal values,
+		// but for CubeButton, it needs to manually be mapped to the correct values
+		// check if it's a CubeButton with (v===1) and add the correct multiplier
+		return kpv[`${gridID}-${i}-${o}`] * ((v === 1)? 2 : 1);
+	}));
+
+	// get it into the format Vincent wants it in
+	grid = grid.map(row => row.map(v => ["na", "cn", "cb"][v]));
+
+	return grid.map(row => row.join(",")).join("|");
 }
 
 // the holy grail contains all the data for converting the kpv's to one giant csv file
@@ -27,36 +47,7 @@ const theHolyGrail = [
 		vf: kpv => +kpv["Taxi"]
 	}, {
 		name: "Auto Position Scored",
-		vf: kpv => {
-			// empty grid with 3 rows, 9 columns
-			let grid = new Array(3).fill(new Array(9).fill(0));
-
-			// 0 is Cone, 1 is Box, 2 is ConeBox
-			const boxes = [[0, 1, 0,    0, 1, 0,    0, 1, 0],
-						   [0, 1, 0,    0, 1, 0,    0, 1, 0],
-						   [2, 2, 2,    2, 2, 2,    2, 2, 2]];
-			
-			// 0 is None, 1 is Cone, 2 is Cube
-			// map answer based on whether it's a cube/cone/cubecone
-			boxes.map((row, i) => row.map((v, o) => {
-				switch (v) {
-					case 0:    // ConeButton, either 0 or 1
-						grid[i][o] = kpv[`AutoGrid-${i}-${o}`];
-						break;
-					case 1:    // BoxButton, either 0 or 2
-						grid[i][o] = kpv[`AutoGrid-${i}-${o}`] * 2;
-						break;
-					case 2:    // ConeBoxButton, can be 0, 1, or 2
-						grid[i][o] = kpv[`AutoGrid-${i}-${o}`];
-						break;
-				}
-			}));
-			
-			// convert this unholy mess into the format Vincent wants
-			grid = grid.map((row) => row.map((v) => ["na", "cn", "cb"][v]));
-			console.log(grid);
-			return grid;
-		}
+		vf: kpv => TakeTheSoulFromGrids(kpv, "AutoGrid")
 	},
 	
 	
