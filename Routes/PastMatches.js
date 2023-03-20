@@ -74,7 +74,7 @@ export default function PastMatches(props) {
 			</View>
 
 			{/** The QR code modal takes it's data from the modalMatchIndex */}
-			<Modal animationType="fade" transparent={true} visible={modalVisible}>
+			{/* <Modal animationType="fade" transparent={true} visible={modalVisible}> */}
 				<Pressable
 					style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#222222AA"}}
 					onPress={() => setModalVisible(false)}
@@ -86,7 +86,7 @@ export default function PastMatches(props) {
 						value={(modalMatchIndex!==-1)? kpvToString(matches[modalMatchIndex]) : "oops! tell somebody on the app team that something is broken"}
 					/>
 				</Pressable>
-			</Modal>
+			{/* </Modal> */}
 
 			<View style={{ flex: 1 }}>
 				<FlatList
@@ -129,6 +129,7 @@ export default function PastMatches(props) {
 										<Pressable onPress={() => {
 											setModalMatchIndex(index);
 											setModalVisible(true);
+											console.log(kpvToString(matches[index]));
 										}}>
 											<View style={[
 												styles.qrCodeButton,

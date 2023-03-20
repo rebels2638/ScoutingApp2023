@@ -58,7 +58,7 @@ export const dataSlice = createSlice({
 
 			// if you couldn't tell, this erases everything but info
 			// whitelist vals not to remove
-			const whitelist = ["Team", "TeamNumber", "MatchNumber", "MatchType", "Scouters", "StartingPieces"];
+			const whitelist = ["Team", "Scouters", "MatchType", "MatchNumber", "TeamNumber", "StartingPosition", "ThemeSelector"];
 
 			for (let key in state.keyPairValues) {
 				if (!whitelist.includes(key)) {

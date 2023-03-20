@@ -35,8 +35,7 @@ export default function MatchInfoContainer() {
 							data={["Practice", "Qualification", "Playoff"]}
 							bgc="orange"
 							segmentedButton
-							default="Qualification"
-							options={{flexDirection: "row"}}
+							default="Practice"
 						/>
 					</View>
 				</View>
@@ -58,7 +57,7 @@ export default function MatchInfoContainer() {
 
 					<View style={styles.inputContainer}>
 						<Text style={styles.bold}>Starting Position: </Text>
-						<RadioButton id="StartingPosition" data={["Left", "Middle", "Right"]} bgc="orange" segmentedButton default="Qualification" />
+						<RadioButton id="StartingPosition" data={["Left", "Middle", "Right"]} bgc="orange" segmentedButton default="Left" />
 					</View>
 				</View>
 			</View>

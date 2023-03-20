@@ -35,17 +35,17 @@ export default function About() {
 						/>
 
 						{title("2638 Scout")}
-						{text("Version 4.2.0 4/8/2022")}
+						{text("Version 5.0.0 3/20/2023")}
 
 						{spacer}
 						{text("Custom Theme")}
 						<RadioButton 
 							id="ThemeSelector"
 							data={["auto", ...Object.keys(themes)]}
-							default={"auto"}
+							default="auto"
 							onPress={(i) => AsyncStorage.setItem("theme", i+"")}
-							bgc="orange" options={{flexDirection: "row"}}
-							segmentedButton 
+							bgc="orange"
+							segmentedButton
 						/>
 
 						{spacer}
