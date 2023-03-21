@@ -57,6 +57,7 @@ export default function About() {
 
 						{title("App Development Team (React Native)")}
 						{person("Developer", "Kevin Wang")}
+						{person("Developer", "Aiden Pan")}
 						{person("Developer", "Eric Yachabes")}
 						{person("Developer", "Aidan Din")}
 
@@ -67,6 +68,7 @@ export default function About() {
 						{text("Expo")}
 						{text("VSCode")}
 						{text("Github Codespaces")}
+						<Link onPress={() => Linking.openURL("https://github.com/rebels2638/ScoutingApp2023")}>{title("Check out our code on Github")}</Link>
 
 						{spacer}
 
@@ -74,6 +76,7 @@ export default function About() {
 						{text("John Motchkavitz")}
 						{text("Matthew Corrigan")}
 						{text("Andrea Zinn")}
+						{text("George Motchkavitz")}
 						{text(<Text style={styles.italic}>And all of our amazing mentors!</Text>)}
 
 						{spacer}
