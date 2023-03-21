@@ -48,116 +48,72 @@ const theHolyGrail = [
 	}, {
 		name: "Auto Position Scored",
 		vf: kpv => TakeTheSoulFromGrids(kpv, "AutoGrid")
-	},
-	
-	
-	
-	
-	{
-		name: "Starting Pieces",
-		vf: kpv => kpv["StartingPieces"]? "Yes" : "No"
 	}, {
-		name: "Auto Upper Scored",
-		vf: kpv => kpv["AutoUpperHubScored"]
+		name: "Auto Missed",
+		vf: kpv => +kpv["AutoMissed"]
 	}, {
-		name: "Auto Lower Scored",
-		vf: kpv => kpv["AutoLowerHubScored"]
+		name: "Auto Climb",
+		vf: kpv => ["None", "Docked", "Engaged", "Failed"][kpv["AutoClimb"]]
 	}, {
-		name: "Auto Upper Missed",
-		vf: kpv => kpv["AutoUpperHubMissed"]
+		name: "Auto Time to Engaged",
+		vf: kpv => +kpv["AutoTimeToEngaged"]
 	}, {
-		name: "Auto Lower Missed",
-		vf: kpv => kpv["AutoLowerHubMissed"]
-	}, {
-		name: "Picked Up",
-		vf: kpv => 
-			["AutoBP1", "AutoBP2", "AutoBP3", "AutoBP4", "AutoBP5"]
-				.map((v, i) => kpv[v]? i+1 : -1)    // convert valid to their index+1, invalid to -1
-				.filter(v => v !== -1)              // filter invalid
-				.join(", ")                         // make it pretty
-				|| "None"                           // set a default of "None"
-	}, {
-		name: "Autonomous Comments",
+		name: "Auto Comment",
 		vf: kpv => kpv["AutonomousComments"]
-	},
-
-	// other (penalties/cards/breakdown)
+	}, 
+	
+	// tele-op
 	{
-		name: "Penalties",
-		vf: kpv => {
-			const red = kpv["RedCard"];
-			const yellow = kpv["YellowCard"];
-
-			if (red && yellow) return "Red and Yellow";
-			if (red)           return "Red";
-			if (yellow)        return "Yellow";
-
-			return "None";
-		}
+		name: "Tele-Op Position Scored",
+		vf: kpv => TakeTheSoulFromGrids(kpv, "TeleopGrid")
 	}, {
-		name: "Fouls",
-		vf: kpv => {
-			const fouls = kpv["FoulCount"];
-			
-			return fouls? 
-				`${fouls} fouls` :
-				"No Fouls";
-		}
+		name: "Tele-Op Missed",
+		vf: kpv => +kpv["TeleOpMissed"]
 	}, {
-		name: "Breakdown",
-		vf: kpv => {
-			return kpv["Breakdown"]? "Yes" : "No";
-		}
-	},
-
-	// tele
-	{
-		name: "Picks From Ground",
-		vf: kpv => kpv["PicksFromGround"]? "Yes" : "No"
+		name: "Play Defense?",
+		vf: kpv => +kpv["PlaysDefense"]
 	}, {
-		name: "Plays Defense",
-		vf: kpv => kpv["PlaysDefense"]? "Yes" : "No"
+		name: "Was Defended?",
+		vf: kpv => +kpv["WasDefended"]
 	}, {
-		name: "Human Player",
-		vf: kpv => kpv["HPStation"]? "Yes" : "No"
-	}, {
-		name: "Tele Upper Scored",
-		vf: kpv => kpv["TeleopUpperHubScored"]
-	}, {
-		name: "Tele Lower Scored",
-		vf: kpv => kpv["TeleopLowerHubScored"]
-	}, {
-		name: "Tele Upper Missed",
-		vf: kpv => kpv["TeleopUpperHubMissed"]
-	}, {
-		name: "Tele Lower Missed",
-		vf: kpv => kpv["TeleopLowerHubMissed"]
-	}, {
-		name: "Teleop Comments",
+		name: "Tele-Op Comment",
 		vf: kpv => kpv["TeleopComments"]
-	},
+	}, 
 
 	// endgame
 	{
-		name: "Failed Climb Position",
-		vf: kpv => kpv["FailedClimbPosition"]? "Yes" : "No"
+		name: "Endgame Climb",
+		vf: kpv => ["None", "Parked", "Docked", "Engaged", "Failed"][kpv["EndgameClimb"]]
 	}, {
-		name: "Climb Position",
-		vf: kpv => kpv["ClimbPosition"]
+		name: "Endgame Time to Engaged",
+		vf: kpv => +kpv["EndgameTimeToEngaged"]
 	}, {
-		name: "Time",
-		vf: kpv => {
-			const seconds = kpv["Time"];
-			/*const fMinutes = (seconds - (seconds % 60)) / 60;
-			const fSeconds = ((seconds % 60) + "").padStart(2, "0");
-			return `${fMinutes}:${fSeconds}`*/
-			
-			// don't bother formatting, just return raw seconds
-			return seconds;
-		}
+		name: "Number of Robot Climbed",
+		vf: kpv => +kpv["NumRoboClimbed"]
 	}, {
-		name: "Endgame Comments",
+		name: "Endgame Comment",
 		vf: kpv => kpv["EndgameComments"]
+	}, 
+
+	// other
+	{
+		name: "Breakdown?",
+		vf: kpv => +kpv["Breakdown"]
+	}, {
+		name: "Ground Pickup?",
+		vf: kpv => +kpv["GroundPickup"]
+	}, {
+		name: "Chute Pickup",
+		vf: kpv => +kpv["ChutePickup"]
+	}, {
+		name: "Platform Pickup",
+		vf: kpv => +kpv["PlatformPickup"]
+	}, {
+		name: "Game Piece Pickup",
+		vf: kpv => ["Cone", "Cube", "Both"][kpv["GamePiecePickup"]]
+	}, {
+		name: "Alliance Position Scored",
+		vf: kpv => TakeTheSoulFromGrids(kpv, "AllianceScoredPosition")
 	}
 ];
 

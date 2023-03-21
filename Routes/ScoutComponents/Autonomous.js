@@ -38,7 +38,7 @@ export default function Autonomous() {
 
 				<NumButton id="AutoMissed" width={160}>Auto Missed</NumButton>
 				
-				<RadioButton id="AutoClimb" data={["None", "Docked", "Engaged"]} bgc="orange" segmentedButton/>
+				<RadioButton id="AutoClimb" data={["None", "Docked", "Engaged", "Failed"]} bgc="orange" segmentedButton/>
 				<Timer id="AutoTimeToEngaged">Time to Engaged</Timer>
 				
 				<Text style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}>Comments</Text>
